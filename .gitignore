@@ -6,4 +6,7 @@
 ehthumbs.db
 Thumbs.db
 
-.~lock*
+webserver/__pycache__/
+webserver/*.py[cod]
+webserver/*$py.class
+webserver/env
