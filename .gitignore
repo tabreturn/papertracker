@@ -10,3 +10,4 @@ webserver/__pycache__/
 webserver/*.py[cod]
 webserver/*$py.class
 webserver/env
+webserver/node_modules

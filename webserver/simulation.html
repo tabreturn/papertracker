@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>PaperTracker</title>
+
+  <style>
+    #board {
+      border: 8px solid rgb(85,23,167);
+      display: grid;
+      margin: auto;
+    }
+    #board .cell {
+      outline: 1px solid rgb(85,23,167);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="board">
+    <!-- <div class="cell"></div> -->
+  </div>
+
+  <script>
+    var size = 40;
+    var rows = 7;
+    var cols = 9;
+    var board = document.getElementById('board');
+    var cells = [];
+
+    document.getElementById('board').style.height = rows*size + 'px';
+    document.getElementById('board').style.width = cols*size + 'px';
+
+    for (let i=0; i<rows; i++) {
+      cells.push([]);
+
+      for (let j=0; j<cols; j++) {
+        cells[i].push([]);
+        let cell = document.createElement('div');
+        cell.className = 'cell';
+        board.appendChild(cell);
+      }
+    }
+
+    rowsfr = '1fr '.repeat(rows);
+    colsfr = '1fr '.repeat(cols);
+
+    board.style.gridTemplateRows = rowsfr;
+    board.style.gridTemplateColumns = colsfr;
+
+  </script>
+
+</body>
+</html>
