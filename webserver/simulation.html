@@ -6,12 +6,19 @@
   <title>PaperTracker</title>
 
   <style>
+    body {
+      text-align: center;
+    }
+
     #board {
       border: 8px solid rgb(85,23,167);
       display: grid;
       margin: auto;
     }
     #board .cell {
+      align-items: center;
+      display: flex;
+      justify-content: center;
       outline: 1px solid rgb(85,23,167);
     }
   </style>
@@ -23,13 +30,15 @@
     <!-- <div class="cell"></div> -->
   </div>
 
+  <button type="button">start</button>
+
   <script>
     var cells = [];
+    var size = 40;
+    var rows = 7;
+    var cols = 9;
 
-    function setupBoard(s, r, c) {
-      var size = s;
-      var rows = r;
-      var cols = c;
+    function setupBoard() {
       var board = document.getElementById('board');
 
       document.getElementById('board').style.height = rows*size + 'px';
@@ -53,9 +62,29 @@
       board.style.gridTemplateColumns = colsfr;
     }
 
-    setupBoard(40, 7, 9);
+    function addTile(r, c, tile) {
+      cells[r][c] = tile;
+      document.querySelectorAll('#board .cell')[(r)*(cols) + (c)].innerHTML = tile;
+    }
 
-    cells[3][4] = 'X';
+    setupBoard();
+    addTile(3, 4, ['X']);
+    addTile(0, 0, ['0']);
+    addTile(6, 8, ['E']);
+    addTile(6, 5, ['X']);
+
+    function updateBoard() {
+
+      for (let i=0; i<rows; i++) {
+
+        for (let j=0; j<cols; j++) {
+          addTile(1, 4, ['X']);
+        }
+      }
+    }
+
+    //window.setInterval(updateBoard, 1000);
+
 
   </script>
 
