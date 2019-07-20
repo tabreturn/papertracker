@@ -7,9 +7,14 @@
 
   <style>
     body {
+      font-size: 18px;
       text-align: center;
     }
-
+    button {
+      border-radius: 3px;
+      padding: 5px 10px;
+      margin-bottom: 8px;
+    }
     #board {
       border: 8px solid rgb(85,23,167);
       display: grid;
@@ -17,237 +22,68 @@
     }
     #board .cell {
       align-items: center;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid rgb(85,23,167);
+    }
+    #board .cell .tile1,
+    #board .cell .tile2 {
+      align-items: center;
       display: flex;
+      height: 100%;
       justify-content: center;
-      outline: 1px solid rgb(85,23,167);
+    }
+    #board .cell .tile1 {
+      border-right: 1px dashed rgb(85,23,167, 0.25);
     }
   </style>
 </head>
 
 <body>
 
+  <button type="button" id="step">step</button>
+  <button type="button" id="start" >start</button>
+
   <div id="board">
-    <!-- <div class="cell"></div> -->
+    <!-- cell structure (applied in js)
+    <div class="cell">
+      <div class="tile1"></div>
+      <div class="tile2"></div>
+    </div>
+    -->
   </div>
 
-  <button type="button" id="start">start</button>
+  <script src="Tile.js" type="module"></script>
+  <script src="Board.js" type="module"></script>
 
-  <script>
-    // config variables
-    var cells = [];
-    var size = 40;
-    var rows = 9;
-    var cols = 12;
-    var speed = 5;
+  <script type="module">
+    import {Tile} from './Tile.js';
+    import {Board} from './Board.js';
 
-    class Tile {
+    // initialize board position tiles -- Board(size, rows, cols, speed)
+    // DEV MODE:
+    window.Tile = Tile;
+    window.game = new Board(60, 6, 12, 5);
+    // LIVE MODE:
+    //let game = new Board();
 
-      constructor(tile1, tile2, orientation='v') {
-        this.tile1 = tile1;
-        this.tile2 = tile2;
-        this.orientation = orientation;
-      }
-
-    }
-
-    function setupBoard() {
-
-      var board = document.getElementById('board');
-
-      document.getElementById('board').style.height = rows*size + 'px';
-      document.getElementById('board').style.width = cols*size + 'px';
-
-      for (let r=0; r<rows; r++) {
-        cells.push([]);
-
-        for (let c=0; c<cols; c++) {
-          cells[r].push({
-            symbol: ' ',
-            hasmoved: false,
-            isactive: false,
-            dir: null
-          });
-          let cell = document.createElement('div');
-          cell.className = 'cell';
-          board.appendChild(cell);
-        }
-      }
-
-      rowsfr = '1fr '.repeat(rows);
-      colsfr = '1fr '.repeat(cols);
-
-      board.style.gridTemplateRows = rowsfr;
-      board.style.gridTemplateColumns = colsfr;
-    }
-
-    function applyCells(func) {
-
-      for (let r=0; r<rows; r++) {
-
-        for (let c=0; c<cols; c++) {
-            func(r,c);
-        }
-      }
-    }
-
-    function addTile(r, c, tile) {
-      cells[r][c].symbol = tile;
-
-      switch (tile) {
-        case '←':
-          cells[r][c].isactive = true;
-          cells[r][c].dir = 'W';
-          break;
-        case '→':
-          cells[r][c].isactive = true;
-          cells[r][c].dir = 'E';
-          break;
-        case '↑':
-          cells[r][c].isactive = true;
-          cells[r][c].dir = 'N';
-          break;
-        case '↓':
-          cells[r][c].isactive = true;
-          cells[r][c].dir = 'S';
-          break;
-      }
-
-      drawBoard();
-    }
-
-    function drawBoard() {
-
-      applyCells((r,c) => {
-        cell = document.querySelectorAll('#board .cell')[(r*cols)+c];
-        cell.innerHTML = cells[r][c].symbol;
-
-        if (cells[r][c].isactive) {
-          cell.style.backgroundColor = 'red';
-        }
-        else {
-          cell.style.backgroundColor = 'transparent';
-        }
-      });
-    }
-
-    function resetMoved() {
-
-      applyCells((r,c) => {
-        cells[r][c].hasmoved = false;
-      });
-    }
-
-    function updateBoard() {
-
-      applyCells((r,c) => {
-
-        if (!cells[r][c].hasmoved && cells[r][c].isactive) {
-
-          if (cells[r][c].dir == 'W') {
-            switch (cells[r][c].symbol) {
-              case '└':
-                cells[r][c].dir = 'N';
-                break;
-              case '┌':
-                cells[r][c].dir = 'S';
-                break;
-            }
-          }
-          else if (cells[r][c].dir == 'E') {
-            switch (cells[r][c].symbol) {
-              case '┐':
-                cells[r][c].dir = 'S';
-                break;
-              case '┘':
-                cells[r][c].dir = 'N';
-                break;
-            }
-          }
-          else if (cells[r][c].dir == 'N') {
-            switch (cells[r][c].symbol) {
-              case '┐':
-                cells[r][c].dir = 'W';
-                break;
-              case '┌':
-                cells[r][c].dir = 'E';
-                break;
-            }
-          }
-          else if (cells[r][c].dir == 'S') {
-            switch (cells[r][c].symbol) {
-              case '└':
-                cells[r][c].dir = 'E';
-                break;
-              case '┘':
-                cells[r][c].dir = 'W';
-                break;
-            }
-          }
-
-          switch (cells[r][c].dir) {
-            case 'W':
-              cells[r][c-1].isactive = true;
-              cells[r][c-1].isactive = true;
-              cells[r][c-1].dir = 'W';
-              break;
-            case 'E':
-              cells[r][c+1].isactive = true;
-              cells[r][c+1].hasmoved = true;
-              cells[r][c+1].dir = 'E';
-              break;
-            case 'N':
-              cells[r-1][c].isactive = true;
-              cells[r-1][c].hasmoved = true;
-              cells[r-1][c].dir = 'N';
-              break;
-            case 'S':
-              cells[r+1][c].isactive = true;
-              cells[r+1][c].hasmoved = true;
-              cells[r+1][c].dir = 'S';
-              break;
-          }
-
-          cells[r][c].isactive = false;
-          cells[r][c].dir = null;
-        }
-        cells[r][c].hasmoved = true;
-      });
-
-      drawBoard();
-      resetMoved();
-    }
-
+    // start button
     document.getElementById('start').addEventListener('click', () => {
-      window.setInterval(updateBoard, 1000/speed);
+      window.setInterval(() => game.updateBoard(), 1000/game.speed);
+    });
+    // step button
+    document.getElementById('step').addEventListener('click', () => {
+      game.updateBoard();
+      console.log(game);
     });
 
-    setupBoard();
-
-    // position tiles
-
-    addTile(0, 0, new Tile('→', '┐', 'v'));
-    /*
-    addTile(3, 7, '┐');
-    addTile(6, 7, '┘');
-    addTile(6, 2, '└');
-    addTile(0, 2, '┌');
-    addTile(0, 3, '┐');
-    addTile(4, 3, '└');
-    addTile(4, 5, '┘');
-    addTile(1, 5, '┌');
-    addTile(1, 6, '┐');
-    addTile(2, 6, '┘');
-    addTile(2, 0, '┌');
-    addTile(3, 0, '└');
-
-    addTile(6, 11, '↑');
-    addTile(0, 11, '┐');
-    addTile(0, 9, '┌');
-    addTile(5, 9, '└');
-    addTile(5, 11, '┘');
-    */
-//window.setInterval(updateBoard, 1000/speed);
-
+    game.setupBoard();
+    // position tiles -- addTile(r, c, new Tile(tile1, tile2, orientation))
+    game.addTile(0, 0, new Tile('E', 'A6'));
+    game.addTile(2, 2, new Tile('N', ' '));
+    game.addTile(3, 3, new Tile('┐', 'A1'));
+    game.addTile(0, 4, new Tile('S', 'A6', 'h'));
+    game.addTile(1, 8, new Tile('W', 'A6', 'h'));
   </script>
 
 </body>

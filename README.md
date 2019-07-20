@@ -20,8 +20,11 @@ An educational platform for engaging 14–140 year-olds with music, technology, 
 
 ## to-do:
 
-* ~animated presentation~
+* ~~animated presentation~~
 * client-side board simulation
+ * rewrite piece rules
+ * remove pulse if it passes the border
+ * ...
 * client-photo submission
 * server-side grid and tile detection
 * ...
