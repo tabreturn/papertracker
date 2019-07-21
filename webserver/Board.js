@@ -158,14 +158,37 @@ export class Board {
   }
 
   /**
-   * Advance the state of all the cells in the cell array a single 'step'.
+   * Advance the state of all the cells in the cell array a single step.
    */
   updateBoard() {
-
+    // the rules of the tiles/pieces
     this.loop2d((r,c) => {
-      // the rules of the tiles/pieces
+
+      let tilepair = this.cells[r][c].tile.tilepair;
+
+      if (typeof tilepair !== 'undefined' && this.pulses[r][c].dir) {
+
+        for (let i in tilepair) {
+          // change pulse direction
+          switch (tilepair[i]) {
+            case '🢁':
+              this.pulses[r][c].dir = 'N';
+              break;
+            case '🢃':
+              this.pulses[r][c].dir = 'S';
+              break;
+            case '🢀':
+              this.pulses[r][c].dir = 'W';
+              break;
+            case '🢂':
+              this.pulses[r][c].dir = 'E';
+              break;
+          }
+        }
+      }
+
       if (!this.pulses[r][c].hasmoved) {
-        // direction rules
+        // move pulse along current heading
         switch (this.pulses[r][c].dir) {
           case 'N':
             this.pulses[r-1][c].color = this.pulses[r][c].color;
@@ -194,7 +217,7 @@ export class Board {
         this.pulses[r][c].hasmoved = true;
       }
     });
-    // reset everything for next updateBoard()
+    // reset the hasmoved states for next updateBoard() call
     this.loop2d((r,c) => {
       this.pulses[r][c].hasmoved = false;
     });
