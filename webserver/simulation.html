@@ -30,21 +30,25 @@
     import {Tile} from './Tile.js';
     import {Board} from './Board.js';
 
-    // initialize board position tiles -- Board(size, rows, cols, speed)
-    // DEV MODE:
-    window.Tile = Tile;
-    window.game = new Board(60, 6, 12, 5);
-    // LIVE MODE:
-    //let game = new Board();
+    let devmode = 1;
 
-    // start button
-    document.getElementById('start').addEventListener('click', () => {
-      window.setInterval(() => game.updateBoard(), 1000/game.speed);
-    });
+    if (devmode) {
+      var game = new Board(60, 6, 12, 5); // Board(size, rows, cols, speed)
+      window.game = game;
+      window.Tile = Tile;
+    }
+    else {
+      var game = new Board();
+    }
+
     // step button
     document.getElementById('step').addEventListener('click', () => {
       game.updateBoard();
       console.log(game);
+    });
+    // start button
+    document.getElementById('start').addEventListener('click', () => {
+      window.setInterval(() => game.updateBoard(), 1000/game.speed);
     });
 
     game.setupBoard();
@@ -61,7 +65,6 @@
     game.addTile(2, 5, new Tile('E', 'C2'));
     game.addTile(2, 9, new Tile('A1', 'W'));
     //game.addTile(1, 6, new Tile('W', 'C2'));
-
   </script>
 
 </body>
