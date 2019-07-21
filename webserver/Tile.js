@@ -17,10 +17,19 @@ export class Tile {
 
     [tile1, tile2].forEach(function(v, i) {
       switch (v) {
+        // directions
         case 'W': this.tilepair[i] = '🢀'; break;
         case 'E': this.tilepair[i] = '🢂'; break;
         case 'N': this.tilepair[i] = '🢁'; break;
         case 'S': this.tilepair[i] = '🢃'; break;
+        // colors
+        case 'C1': this.tilepair[i] = '#FF0000'; break;
+        case 'C2': this.tilepair[i] = '#00FF00'; break;
+        case 'C3': this.tilepair[i] = '#0000FF'; break;
+        case 'C4': this.tilepair[i] = '#FFFF00'; break;
+        case 'C5': this.tilepair[i] = '#00FFFF'; break;
+        case 'C6': this.tilepair[i] = '#FF00FF'; break;
+        // audio
         case 'A1': this.tilepair[i] = '🎹'; break;
         case 'A2': this.tilepair[i] = '🎻'; break;
         case 'A3': this.tilepair[i] = '🎷'; break;
