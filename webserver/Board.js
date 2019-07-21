@@ -79,6 +79,29 @@ export class Board {
   }
 
   /**
+   * Converts an arrow to a cardinal point.
+   *
+   * @param {string} arrow The arrow character.
+   * @return {string} A N/S/W/E
+   */
+  arrowToCardinal(arrow) {
+    switch (arrow) {
+      case '🢁':
+        return 'N';
+        break;
+      case '🢃':
+        return 'S';
+        break;
+      case '🢀':
+        return 'W';
+        break;
+      case '🢂':
+        return 'E';
+        break;
+    }
+  }
+
+  /**
    * Add a new half-tile to the cells an pulses arrays.
    *
    * @param {number} r The row address.
@@ -89,32 +112,17 @@ export class Board {
     // add tile to cells array
     this.cells[r][c].tile = tile;
 
-    for (let [key, value] of Object.entries(this.cells[r][c].tile.tilepair)) {
-
-      if (value.charAt(0) == '#') {
-        // assign any color to pulses array
+    let tilepair = this.cells[r][c].tile.tilepair;
+    // add any pulse starting point to pulses array
+    for (let [key, value] of Object.entries(tilepair)) {
+      // check for a arrow-color tile combo
+      if (tilepair[0].charAt(0) == '#') {
         this.pulses[r][c].color = value;
+        this.pulses[r][c].dir = this.arrowToCardinal(tilepair[1]);
       }
-      else {
-        // assign any direction to pulses array
-        switch (value) {
-          case '🢀':
-            this.pulses[r][c].isactive = true;
-            this.pulses[r][c].dir = 'W';
-            break;
-          case '🢂':
-            this.pulses[r][c].isactive = true;
-            this.pulses[r][c].dir = 'E';
-            break;
-          case '🢁':
-            this.pulses[r][c].isactive = true;
-            this.pulses[r][c].dir = 'N';
-            break;
-          case '🢃':
-            this.pulses[r][c].isactive = true;
-            this.pulses[r][c].dir = 'S';
-            break;
-        }
+      else if (tilepair[1].charAt(0) == '#') {
+        this.pulses[r][c].color = value;
+        this.pulses[r][c].dir = this.arrowToCardinal(tilepair[0]);
       }
     }
 
@@ -159,36 +167,36 @@ export class Board {
       if (!this.pulses[r][c].hasmoved) {
         // direction rules
         switch (this.pulses[r][c].dir) {
-          case 'W':
-            this.pulses[r][c-1].hasmoved = true;
-            this.pulses[r][c-1].dir = 'W';
-            this.pulses[r][c-1].color = this.pulses[r][c].color;
-            this.pulses[r][c].color = 'transparent';
-            break;
-          case 'E':
-            this.pulses[r][c+1].hasmoved = true;
-            this.pulses[r][c+1].dir = 'E';
-            this.pulses[r][c+1].color = this.pulses[r][c].color;
-            this.pulses[r][c].color = 'transparent';
-            break;
           case 'N':
-            this.pulses[r-1][c].hasmoved = true;
-            this.pulses[r-1][c].dir = 'N';
             this.pulses[r-1][c].color = this.pulses[r][c].color;
-            this.pulses[r][c].color = 'transparent';
+            this.pulses[r-1][c].dir = 'N';
+            this.pulses[r-1][c].hasmoved = true;
             break;
           case 'S':
-            this.pulses[r+1][c].hasmoved = true;
-            this.pulses[r+1][c].dir = 'S';
             this.pulses[r+1][c].color = this.pulses[r][c].color;
-            this.pulses[r][c].color = 'transparent';
+            this.pulses[r+1][c].dir = 'S';
+            this.pulses[r+1][c].hasmoved = true;
+            break;
+          case 'W':
+            this.pulses[r][c-1].color = this.pulses[r][c].color;
+            this.pulses[r][c-1].dir = 'W';
+            this.pulses[r][c-1].hasmoved = true;
+            break;
+          case 'E':
+            this.pulses[r][c+1].color = this.pulses[r][c].color;
+            this.pulses[r][c+1].dir = 'E';
+            this.pulses[r][c+1].hasmoved = true;
             break;
         }
 
+        this.pulses[r][c].color = 'transparent';
         this.pulses[r][c].dir = null;
+        this.pulses[r][c].hasmoved = true;
       }
+    });
+    // reset everything for next updateBoard()
+    this.loop2d((r,c) => {
       this.pulses[r][c].hasmoved = false;
-
     });
 
     this.drawBoard();
