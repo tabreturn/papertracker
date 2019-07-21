@@ -24,6 +24,7 @@ An educational platform for engaging 14–140 year-olds with music, technology, 
 * client-side board simulation
   * rewrite piece rules
   * remove pulse if it passes the border
+  * add sounds
   * ...
 * client-photo submission
 * server-side grid and tile detection
