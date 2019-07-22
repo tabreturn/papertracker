@@ -25,6 +25,7 @@ An educational platform for engaging 14–140 year-olds with music, technology, 
   * rewrite piece rules
   * remove pulse if it passes the border
   * add sounds
+  * [tonejs integration?](https://tonejs.github.io/)
   * ...
 * client-photo submission
 * server-side grid and tile detection
