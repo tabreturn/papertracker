@@ -79,29 +79,6 @@ export class Board {
   }
 
   /**
-   * Converts an arrow to a cardinal point.
-   *
-   * @param {string} arrow The arrow character.
-   * @return {string} A N/S/W/E
-   */
-  arrowToCardinal(arrow) {
-    switch (arrow) {
-      case '🢁':
-        return 'N';
-        break;
-      case '🢃':
-        return 'S';
-        break;
-      case '🢀':
-        return 'W';
-        break;
-      case '🢂':
-        return 'E';
-        break;
-    }
-  }
-
-  /**
    * Add a new half-tile to the cells an pulses arrays.
    *
    * @param {number} r The row address.
@@ -112,17 +89,17 @@ export class Board {
     // add tile to cells array
     this.cells[r][c].tile = tile;
 
-    let tilepair = this.cells[r][c].tile.tilepair;
+    let tileicons = this.cells[r][c].tile.tileicons;
     // add any pulse starting point to pulses array
-    for (let [key, value] of Object.entries(tilepair)) {
+    for (let [key, value] of Object.entries(tileicons)) {
       // check for a arrow-color tile combo
-      if (tilepair[0].charAt(0) == '#') {
+      if (tileicons[0].charAt(0) == '#') {
         this.pulses[r][c].color = value;
-        this.pulses[r][c].dir = this.arrowToCardinal(tilepair[1]);
+        this.pulses[r][c].dir = this.cells[r][c].tile.tilepair[1];
       }
-      else if (tilepair[1].charAt(0) == '#') {
+      else if (tileicons[1].charAt(0) == '#') {
         this.pulses[r][c].color = value;
-        this.pulses[r][c].dir = this.arrowToCardinal(tilepair[0]);
+        this.pulses[r][c].dir = this.cells[r][c].tile.tilepair[0];
       }
     }
 
@@ -136,18 +113,18 @@ export class Board {
 
     this.loop2d((r,c) => {
       let cell = document.querySelectorAll('#board .cell')[(r*this.cols)+c];
-      let tilepair = this.cells[r][c].tile.tilepair;
+      let tileicons = this.cells[r][c].tile.tileicons;
 
-      if (typeof tilepair !== 'undefined') {
+      if (typeof tileicons !== 'undefined') {
         // draw symbol, or draw background color (if symbol begins with #)
-        for (let i in tilepair) {
+        for (let i in tileicons) {
           let elem = '.tile'+(parseInt(i)+1);
 
-          if (tilepair[i].charAt(0) == '#') {
-            cell.querySelectorAll(elem)[0].style.backgroundColor = tilepair[i];
+          if (tileicons[i].charAt(0) == '#') {
+            cell.querySelectorAll(elem)[0].style.backgroundColor = tileicons[i];
           }
           else {
-            cell.querySelectorAll(elem)[0].innerHTML = tilepair[i];
+            cell.querySelectorAll(elem)[0].innerHTML = tileicons[i];
           }
         }
       }
@@ -170,19 +147,9 @@ export class Board {
 
         for (let i in tilepair) {
           // change pulse direction
-          switch (tilepair[i]) {
-            case '🢁':
-              this.pulses[r][c].dir = 'N';
-              break;
-            case '🢃':
-              this.pulses[r][c].dir = 'S';
-              break;
-            case '🢀':
-              this.pulses[r][c].dir = 'W';
-              break;
-            case '🢂':
-              this.pulses[r][c].dir = 'E';
-              break;
+          if (tilepair[i] == 'N' || tilepair[i] == 'S' ||
+              tilepair[i] == 'W' || tilepair[i] == 'E') {
+            this.pulses[r][c].dir = tilepair[i];
           }
         }
       }

@@ -14,28 +14,29 @@ export class Tile {
 
     this.orientation = orientation;
     this.tilepair = [tile1, tile2];
+    this.tileicons = [tile1, tile2];
 
     [tile1, tile2].forEach(function(v, i) {
       switch (v) {
         // directions
-        case 'N': this.tilepair[i] = '🢁'; break;
-        case 'S': this.tilepair[i] = '🢃'; break;
-        case 'W': this.tilepair[i] = '🢀'; break;
-        case 'E': this.tilepair[i] = '🢂'; break;
+        case 'N': this.tileicons[i] = '<i class="fas fa-arrow-alt-circle-up"></i>'; break;
+        case 'S': this.tileicons[i] = '<i class="fas fa-arrow-alt-circle-down"></i>'; break;
+        case 'W': this.tileicons[i] = '<i class="fas fa-arrow-alt-circle-left"></i>'; break;
+        case 'E': this.tileicons[i] = '<i class="fas fa-arrow-alt-circle-right"></i>'; break;
         // colors
-        case 'C1': this.tilepair[i] = '#FF0000'; break;
-        case 'C2': this.tilepair[i] = '#00FF00'; break;
-        case 'C3': this.tilepair[i] = '#0000FF'; break;
-        case 'C4': this.tilepair[i] = '#FFFF00'; break;
-        case 'C5': this.tilepair[i] = '#00FFFF'; break;
-        case 'C6': this.tilepair[i] = '#FF00FF'; break;
+        case 'C1': this.tileicons[i] = '#FF0000'; break;
+        case 'C2': this.tileicons[i] = '#00FF00'; break;
+        case 'C3': this.tileicons[i] = '#0000FF'; break;
+        case 'C4': this.tileicons[i] = '#FFFF00'; break;
+        case 'C5': this.tileicons[i] = '#00FFFF'; break;
+        case 'C6': this.tileicons[i] = '#FF00FF'; break;
         // audio
-        case 'A1': this.tilepair[i] = '🎹'; break;
-        case 'A2': this.tilepair[i] = '🎻'; break;
-        case 'A3': this.tilepair[i] = '🎷'; break;
-        case 'A4': this.tilepair[i] = '🎺'; break;
-        case 'A5': this.tilepair[i] = '🎸'; break;
-        case 'A6': this.tilepair[i] = '🥁'; break;
+        case 'A1': this.tileicons[i] = '🎹'; break;
+        case 'A2': this.tileicons[i] = '🎻'; break;
+        case 'A3': this.tileicons[i] = '🎷'; break;
+        case 'A4': this.tileicons[i] = '🎺'; break;
+        case 'A5': this.tileicons[i] = '<i class="fas fa-guitar"></i>'; break;
+        case 'A6': this.tileicons[i] = '<i class="fas fa-drum"></i>'; break;
       }
     }, this);
 
