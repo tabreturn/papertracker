@@ -141,13 +141,16 @@ export class Board {
     // the rules of the tiles/pieces
     this.loop2d((r,c) => {
 
-      let tileicons = this.cells[r][c].tile.tileicons;
+      let tilepair = this.cells[r][c].tile.tilepair;
 
       if (typeof tilepair !== 'undefined' && this.pulses[r][c].dir) {
 
         for (let i in tilepair) {
           // change pulse direction
-          this.pulses[r][c].dir = tilepair[i];
+          if (tilepair[i] == 'N' || tilepair[i] == 'S' ||
+              tilepair[i] == 'W' || tilepair[i] == 'E') {
+            this.pulses[r][c].dir = tilepair[i];
+          }
         }
       }
 
