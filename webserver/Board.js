@@ -1,5 +1,5 @@
 /**
- * Board module for drawing and controlling the board, and cells array.
+ * Board module for drawing and controlling the board (and cells and pulses arrays).
  * @module Board
  */
 
