@@ -1,5 +1,5 @@
 /**
- * Tile module that hold two half-tiles (the most each cell can hold).
+ * Tile module for a single tile comprised of two half-tiles (which may be empty).
  * @module Tile
  */
 
@@ -14,7 +14,7 @@ export class Tile {
 
     this.orientation = orientation;
     this.tilepair = [tile1, tile2];
-    this.tileicons = [tile1, tile2];
+    this.tileicons = [tile1, tile2]; // these values are overwritten in the foreach below
 
     [tile1, tile2].forEach(function(v, i) {
       switch (v) {

@@ -1,11 +1,11 @@
 /**
- * Board module for drawing and controlling the board, and cells array.
+ * Board module for drawing and controlling the board (and cells and pulses arrays).
  * @module Board
  */
 
 export class Board {
   /**
-   * Create a new board; ordinarily, just only one is required.
+   * Create a new board; ordinarily, just one board is required.
    * @param {number} size=50 Width/height of each cell in pixels.
      @param {number} rows=9 Number of rows in the grid.
      @param {number} cols=12 Number of columns in the grid.
@@ -21,7 +21,7 @@ export class Board {
     this.speed = speed;
   }
   /**
-   * Populate the cells and pulses arrays, and fill the board with visual cells.
+   * Populate the cells and pulses arrays, and fill the board with visible cells.
    */
   setupBoard() {
 
@@ -46,7 +46,7 @@ export class Board {
         this.cells[r].push({
           tile: {}
         });
-        // add empty cell divs (with two empty half-tiles each)
+        // add empty cell divs (with two empty half-tile divs in each)
         let cell = document.createElement('div');
         cell.className = 'cell';
         let tile1 = document.createElement('div');
@@ -58,7 +58,7 @@ export class Board {
         board.appendChild(cell);
       }
     }
-    // css grid magic (a 1fr for each row and column)
+    // some css grid magic (a 1fr for each row and column)
     board.style.gridTemplateRows = '1fr '.repeat(this.rows);
     board.style.gridTemplateColumns = '1fr '.repeat(this.cols);
   }
@@ -79,20 +79,20 @@ export class Board {
   }
 
   /**
-   * Add a new half-tile to the cells an pulses arrays.
+   * Add a new half-tile to the cells and pulses arrays.
    *
    * @param {number} r The row address.
    * @param {number} c The column address.
-   * @param {Tile} r A tile object.
+   * @param {Tile} tile A tile object.
    */
   addTile(r, c, tile) {
     // add tile to cells array
     this.cells[r][c].tile = tile;
 
     let tileicons = this.cells[r][c].tile.tileicons;
-    // add any pulse starting point to pulses array
+    // add the starting position of any pulse to the pulses array
     for (let [key, value] of Object.entries(tileicons)) {
-      // check for a arrow-color tile combo
+      // check for an arrow-color tile combo
       if (tileicons[0].charAt(0) == '#') {
         this.pulses[r][c].color = value;
         this.pulses[r][c].dir = this.cells[r][c].tile.tilepair[1];
@@ -116,7 +116,7 @@ export class Board {
       let tileicons = this.cells[r][c].tile.tileicons;
 
       if (typeof tileicons !== 'undefined') {
-        // draw symbol, or draw background color (if symbol begins with #)
+        // draw a symbol, or draw a background color if the symbol begins with #
         for (let i in tileicons) {
           let elem = '.tile'+(parseInt(i)+1);
 
@@ -128,7 +128,7 @@ export class Board {
           }
         }
       }
-      // apply pulse color to appropriate cell
+      // apply pulse color to the appropriate cell
       cell.style.backgroundColor = this.pulses[r][c].color;
     });
 
@@ -138,7 +138,7 @@ export class Board {
    * Advance the state of all the cells in the cell array a single step.
    */
   updateBoard() {
-    // the rules of the tiles/pieces
+    // the rules of the tiles/pieces are defined here
     this.loop2d((r,c) => {
 
       let tilepair = this.cells[r][c].tile.tilepair;
@@ -155,7 +155,7 @@ export class Board {
       }
 
       if (!this.pulses[r][c].hasmoved) {
-        // move pulse along current heading
+        // move the pulse along its current heading
         switch (this.pulses[r][c].dir) {
           case 'N':
             this.pulses[r-1][c].color = this.pulses[r][c].color;
