@@ -135,6 +135,22 @@ export class Board {
   }
 
   /**
+   * Checks and removes pulse that has overstepped the edge.
+   *
+   * @param {number} row Row index to test.
+   * @param {number} col Col index to test.
+     @return {boolean} If the pulse has overstepped boundary, then true
+   */
+  isOutOfBounds(row, col) {
+    // remove overstepped tile
+    if (row >= this.rows || row < 0 ||
+        col >= this.cols || col < 0) {
+      return true;
+    }
+    return false;
+  }
+
+  /**
    * Advance the state of all the cells in the cell array a single step.
    */
   updateBoard() {
@@ -145,21 +161,25 @@ export class Board {
 
         switch (this.pulses[r][c].dir) {
           case 'N':
+            if ( this.isOutOfBounds(r-1,c) ) break;
             this.pulses[r-1][c].color = this.pulses[r][c].color;
             this.pulses[r-1][c].dir = 'N';
             this.pulses[r-1][c].hasmoved = true;
             break;
           case 'S':
+            if ( this.isOutOfBounds(r+1,c) ) break;
             this.pulses[r+1][c].color = this.pulses[r][c].color;
             this.pulses[r+1][c].dir = 'S';
             this.pulses[r+1][c].hasmoved = true;
             break;
           case 'W':
+            if ( this.isOutOfBounds(r,c-1) ) break;
             this.pulses[r][c-1].color = this.pulses[r][c].color;
             this.pulses[r][c-1].dir = 'W';
             this.pulses[r][c-1].hasmoved = true;
             break;
           case 'E':
+            if ( this.isOutOfBounds(r,c+1) ) break;
             this.pulses[r][c+1].color = this.pulses[r][c].color;
             this.pulses[r][c+1].dir = 'E';
             this.pulses[r][c+1].hasmoved = true;
