@@ -138,24 +138,11 @@ export class Board {
    * Advance the state of all the cells in the cell array a single step.
    */
   updateBoard() {
-    // the rules of the tiles/pieces are defined here
+    // move the pulse along its current heading
     this.loop2d((r,c) => {
 
-      let tilepair = this.cells[r][c].tile.tilepair;
-
-      if (typeof tilepair !== 'undefined' && this.pulses[r][c].dir) {
-
-        for (let i in tilepair) {
-          // change pulse direction
-          if (tilepair[i] == 'N' || tilepair[i] == 'S' ||
-              tilepair[i] == 'W' || tilepair[i] == 'E') {
-            this.pulses[r][c].dir = tilepair[i];
-          }
-        }
-      }
-
       if (!this.pulses[r][c].hasmoved) {
-        // move the pulse along its current heading
+
         switch (this.pulses[r][c].dir) {
           case 'N':
             this.pulses[r-1][c].color = this.pulses[r][c].color;
@@ -187,6 +174,45 @@ export class Board {
     // reset the hasmoved states for next updateBoard() call
     this.loop2d((r,c) => {
       this.pulses[r][c].hasmoved = false;
+    });
+
+    // the rules of the tiles/pieces are defined here
+    this.loop2d((r,c) => {
+      let tilepair = this.cells[r][c].tile.tilepair;
+
+      if (typeof tilepair !== 'undefined' && this.pulses[r][c].dir) {
+
+        for (let i in tilepair) {
+          // change pulse direction
+          if (tilepair[i] == 'N' || tilepair[i] == 'S' ||
+              tilepair[i] == 'W' || tilepair[i] == 'E') {
+            this.pulses[r][c].dir = tilepair[i];
+          }
+          // instruments
+          let synth = new Tone.Synth().toMaster();
+
+          switch (tilepair[i]) {
+            case 'A1':
+              synth.triggerAttackRelease('A1', '8n');
+              break;
+            case 'A2':
+              synth.triggerAttackRelease('A2', '8n');
+              break;
+            case 'A3':
+              synth.triggerAttackRelease('A3', '8n');
+              break;
+            case 'A4':
+              synth.triggerAttackRelease('A4', '8n');
+              break;
+            case 'A5':
+              synth.triggerAttackRelease('A5', '8n');
+              break;
+            case 'A6':
+              synth.triggerAttackRelease('C6', '8n');
+              break;
+          }
+        }
+      }
     });
 
     this.drawBoard();
