@@ -55,19 +55,21 @@
 
     game.setupBoard();
     // position tiles -- addTile(r, c, new Tile(tile1, tile2, orientation))
-    // tiles:
-    // directions: N, S, W, E
-    // colors: C1-C6
-    // audio: A1-A6
+    // tiles: N, S, W, E, A1-A6, C1-C6
+    // red pulse
     game.addTile(0, 0, new Tile('S', 'C1'));
     game.addTile(4, 0, new Tile('A6', 'E', 'h')); // h arg is for optional orientation (yet to implement)
     game.addTile(4, 4, new Tile('A5', ' ')); // h arg is for optional orientation (yet to implement)
     game.addTile(4, 5, new Tile('A6', ' ')); // h arg is for optional orientation (yet to implement)
     game.addTile(4, 8, new Tile('N', ' '));
     game.addTile(0, 8, new Tile('W', ' '));
-
+    // green pulse
     game.addTile(2, 5, new Tile('E', 'C2'));
     game.addTile(2, 9, new Tile('A1', 'W'));
+    // blue pulse
+    game.addTile(2, 2, new Tile('N', 'C3'));
+    game.addTile(0, 10, new Tile('S', 'C3'));
+    game.addTile(5, 11, new Tile('W', 'C4'));
   </script>
 
 </body>
