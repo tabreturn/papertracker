@@ -25,14 +25,6 @@
   </div>
 
   <script src="Tone.js"></script>
-  <script>
-    // https://github.com/Tonejs/Tone.js
-    //create a synth and connect it to the master output (your speakers)
-    var synth = new Tone.Synth().toMaster();
-    //play a middle 'C' for the duration of an 8th note
-    synth.triggerAttackRelease("C4", "8n");
-  </script>
-
   <script src="Tile.js" type="module"></script>
   <script src="Board.js" type="module"></script>
 
@@ -54,7 +46,7 @@
     // step button
     document.getElementById('step').addEventListener('click', () => {
       game.updateBoard();
-      console.log(game);
+      //console.log(game);
     });
     // start button
     document.getElementById('start').addEventListener('click', () => {
@@ -69,12 +61,13 @@
     // audio: A1-A6
     game.addTile(0, 0, new Tile('S', 'C1'));
     game.addTile(4, 0, new Tile('A6', 'E', 'h')); // h arg is for optional orientation (yet to implement)
+    game.addTile(4, 4, new Tile('A5', ' ')); // h arg is for optional orientation (yet to implement)
+    game.addTile(4, 5, new Tile('A6', ' ')); // h arg is for optional orientation (yet to implement)
     game.addTile(4, 8, new Tile('N', ' '));
     game.addTile(0, 8, new Tile('W', ' '));
 
     game.addTile(2, 5, new Tile('E', 'C2'));
     game.addTile(2, 9, new Tile('A1', 'W'));
-    //game.addTile(1, 6, new Tile('W', 'C2'));
   </script>
 
 </body>
