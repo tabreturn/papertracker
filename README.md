@@ -29,6 +29,7 @@ An educational platform for engaging 14–140 year-olds with music, technology, 
   * ~~add column & row numbers?~~
   * add tile collision rule
   * responsive?
+  * step (and step backward?) key input
   * ...
 * client-photo submission
 * server-side grid and tile detection
