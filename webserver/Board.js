@@ -26,14 +26,19 @@ export class Board {
   setupBoard() {
 
     let board = document.getElementById('board');
-
-    document.getElementById('board').style.height = this.rows*this.size + 'px';
-    document.getElementById('board').style.width = this.cols*this.size + 'px';
+    board.style.height = this.rows*this.size + 'px';
+    board.style.width = this.cols*this.size + 'px';
 
     for (let r=0; r<this.rows; r++) {
       // populate cells and pulses arrays
       this.pulses.push([]);
       this.cells.push([]);
+      // add row labels
+      let label = document.createElement('div');
+      label.className = 'label';
+      label.innerHTML = r;
+      document.querySelectorAll('.ylabels')[0].appendChild(label);
+      document.querySelectorAll('.ylabels')[1].appendChild(label.cloneNode(true));
 
       for (let c=0; c<this.cols; c++) {
 
@@ -58,7 +63,21 @@ export class Board {
         board.appendChild(cell);
       }
     }
+    // add col labels
+    let xlabels = document.querySelectorAll('.xlabels');
+
+    for (let c=0; c<this.cols; c++) {
+      let label = document.createElement('div');
+      label.className = 'label';
+      label.innerHTML = c;
+      xlabels[0].appendChild(label);
+      xlabels[1].appendChild(label.cloneNode(true));
+    }
     // some css grid magic (a 1fr for each row and column)
+    xlabels[0].style.gridTemplateColumns = '1fr '.repeat(this.cols);
+    xlabels[1].style.gridTemplateColumns = '1fr '.repeat(this.cols);
+    document.getElementById('frame').style.gridTemplateColumns = `1fr ${this.size*this.cols}px 1fr`;
+    board.style.gridTemplateColumns = '1fr '.repeat(this.cols);
     board.style.gridTemplateRows = '1fr '.repeat(this.rows);
     board.style.gridTemplateColumns = '1fr '.repeat(this.cols);
   }
