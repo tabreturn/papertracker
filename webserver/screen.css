@@ -1,4 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
+
 body {
+  font-family: 'Nunito', sans-serif;
   font-size: 18px;
   text-align: center;
 }
@@ -9,8 +12,37 @@ button {
   margin-bottom: 8px;
 }
 
+#frame {
+  display: grid;
+}
+
+#frame .xlabels,
+#frame .ylabels {
+  color: rgb(85,23,167, 0.75);
+  font-size: 0.8em;
+}
+
+#frame .xlabels {
+  display: grid;
+  padding: 1.3em 0;
+}
+
+#frame .ylabels {
+  display: grid;
+  height: 100%;
+}
+
+#frame .ylabels .label {
+  align-items: center;
+  display: flex;
+  padding: 0 1.8em;
+}
+#frame .ylabels.left .label {
+  justify-content: flex-end;
+}
+
 #board {
-  border: 8px solid rgb(85,23,167);
+  outline: 8px solid rgb(85,23,167);
   display: grid;
   margin: auto;
 }
