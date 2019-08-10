@@ -26,8 +26,9 @@ An educational platform for engaging 14–140 year-olds with music, technology, 
   * ~~remove pulse if it passes the border~~
   * ~~add sounds ([tonejs integration?](https://tonejs.github.io/))~~
   * ~~wingding / font-awesome / sprite solution~~
-  * add column & row numbers?
+  * ~~add column & row numbers?~~
   * add tile collision rule
+  * responsive?
   * ...
 * client-photo submission
 * server-side grid and tile detection
