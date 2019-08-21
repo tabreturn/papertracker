@@ -178,7 +178,7 @@ export class Board {
     // check if tileaudio is a sample or tone
     switch (tileaudio[0]) {
       case 'sample':
-        new Audio(tileaudio[1]).play();
+        document.getElementById(tileaudio[1]).play();
         break;
       case 'tone':
         let synth = new Tone.Synth().toMaster();

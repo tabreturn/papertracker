@@ -15,9 +15,11 @@ export class Tile {
     this.orientation = orientation;
     this.tilepair = [tile1, tile2];
     this.tileicons = [tile1, tile2]; // these values are overwritten in the foreach below
-    this.tileaudio = [null, null]; // these values are overwritten in the foreach below
+    this.tileaudio = ['null, null'];
 
     [tile1, tile2].forEach(function(v, i) {
+      let id = v + Date.now();
+
       switch (v) {
         // directions
         case 'N': this.tileicons[i] = '<i class="fas fa-arrow-alt-circle-up"></i>'; break;
@@ -34,11 +36,13 @@ export class Tile {
         // audio
         case 'A1':
           this.tileicons[i] = '<img src="samples/88550-hi-hat.svg">';
-          this.tileaudio[i] = ['sample', 'samples/209873_3797507-lq.mp3'];
+          this.tileaudio[i] = ['sample', id];
+          this.preloadSample('samples/209873_3797507-lq.mp3', id)
           break;
         case 'A2':
           this.tileicons[i] = '<i class="fas fa-drum"></i>';
-          this.tileaudio[i] = ['sample', 'samples/232014_736471-lq.mp3'];
+          this.tileaudio[i] = ['sample', id];
+          this.preloadSample('samples/232014_736471-lq.mp3', id)
           break;
         case 'A3':
           this.tileicons[i] = '🎷';
@@ -58,6 +62,21 @@ export class Tile {
           break;
       }
     }, this);
+  }
 
+  /**
+   * Preload an audio sample by adding it as an <audio> element.
+   *
+   * @param {string} sample The audio file path.
+   * @param {string} id The audio element id.
+   */
+  preloadSample(sample, id) {
+    let audio = document.createElement('audio');
+    let source = document.createElement('source');
+    source.src = sample;
+    audio.appendChild(source);
+    audio.id = id;
+    audio.setAttribute('preload', 'auto');
+    document.body.appendChild(audio);
   }
 }
