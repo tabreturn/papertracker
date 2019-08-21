@@ -30,6 +30,7 @@ An educational platform for engaging 14–140 year-olds with music, technology, 
   * add tile collision rule
   * responsive?
   * step (and step backward?) key input
+  * preload audio samples
   * ...
 * client-photo submission
 * server-side grid and tile detection

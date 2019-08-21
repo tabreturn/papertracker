@@ -104,7 +104,7 @@ export class Board {
    * @param {number} c The column address.
    * @param {Tile} tile A tile object.
    */
-  addTile(r, c, tile) {
+  addTile(c, r, tile) {
     // add tile to cells array
     this.cells[r][c].tile = tile;
 
@@ -170,6 +170,24 @@ export class Board {
   }
 
   /**
+   * Plays the tile audio associated in the tile definition.
+   *
+   * @param {array} tileaudio Tile audio array, containing type, and sample/tone info.
+   */
+  playTile(tileaudio) {
+    // check if tileaudio is a sample or tone
+    switch (tileaudio[0]) {
+      case 'sample':
+        new Audio(tileaudio[1]).play();
+        break;
+      case 'tone':
+        let synth = new Tone.Synth().toMaster();
+        synth.triggerAttackRelease(tileaudio[1], tileaudio[2]);
+        break;
+    }
+  }
+
+  /**
    * Advance the state of all the cells in the cell array a single step.
    */
   updateBoard() {
@@ -218,6 +236,7 @@ export class Board {
     // the rules of the tiles/pieces are defined here
     this.loop2d((r,c) => {
       let tilepair = this.cells[r][c].tile.tilepair;
+      let tileaudio = this.cells[r][c].tile.tileaudio;
 
       if (typeof tilepair !== 'undefined' && this.pulses[r][c].dir) {
 
@@ -228,27 +247,8 @@ export class Board {
             this.pulses[r][c].dir = tilepair[i];
           }
           // instruments
-          let synth = new Tone.Synth().toMaster();
-
-          switch (tilepair[i]) {
-            case 'A1':
-              synth.triggerAttackRelease('A1', '8n');
-              break;
-            case 'A2':
-              synth.triggerAttackRelease('A2', '8n');
-              break;
-            case 'A3':
-              synth.triggerAttackRelease('A3', '8n');
-              break;
-            case 'A4':
-              synth.triggerAttackRelease('A4', '8n');
-              break;
-            case 'A5':
-              synth.triggerAttackRelease('A5', '8n');
-              break;
-            case 'A6':
-              synth.triggerAttackRelease('C6', '8n');
-              break;
+          if (tilepair[i].charAt(0) == 'A') {
+            this.playTile(tileaudio[i]);
           }
         }
       }

@@ -15,6 +15,7 @@ export class Tile {
     this.orientation = orientation;
     this.tilepair = [tile1, tile2];
     this.tileicons = [tile1, tile2]; // these values are overwritten in the foreach below
+    this.tileaudio = [null, null]; // these values are overwritten in the foreach below
 
     [tile1, tile2].forEach(function(v, i) {
       switch (v) {
@@ -31,12 +32,30 @@ export class Tile {
         case 'C5': this.tileicons[i] = '#00FFFF'; break;
         case 'C6': this.tileicons[i] = '#FF00FF'; break;
         // audio
-        case 'A1': this.tileicons[i] = '🎹'; break;
-        case 'A2': this.tileicons[i] = '🎻'; break;
-        case 'A3': this.tileicons[i] = '🎷'; break;
-        case 'A4': this.tileicons[i] = '🎺'; break;
-        case 'A5': this.tileicons[i] = '<i class="fas fa-guitar"></i>'; break;
-        case 'A6': this.tileicons[i] = '<i class="fas fa-drum"></i>'; break;
+        case 'A1':
+          this.tileicons[i] = '<img src="samples/88550-hi-hat.svg">';
+          this.tileaudio[i] = ['sample', 'samples/209873_3797507-lq.mp3'];
+          break;
+        case 'A2':
+          this.tileicons[i] = '<i class="fas fa-drum"></i>';
+          this.tileaudio[i] = ['sample', 'samples/232014_736471-lq.mp3'];
+          break;
+        case 'A3':
+          this.tileicons[i] = '🎷';
+          this.tileaudio[i] = ['tone', 'A3', '8n'];
+          break;
+        case 'A4':
+          this.tileicons[i] = '🎺';
+          this.tileaudio[i] = ['tone', 'A4', '8n'];
+          break;
+        case 'A5':
+          this.tileicons[i] = '🎹';
+          this.tileaudio[i] = ['tone', 'A5', '8n'];
+          break;
+        case 'A6':
+          this.tileicons[i] = '🎹';
+          this.tileaudio[i] = ['tone', 'A6', '8n'];
+          break;
       }
     }, this);
 
