@@ -44,7 +44,13 @@ button {
 #board {
   outline: 8px solid rgb(85,23,167);
   display: grid;
+  font-size: 17px;
   margin: auto;
+}
+
+#board img {
+  max-height: 20px;
+  max-width: 20px;
 }
 
 #board .cell {

@@ -27,10 +27,11 @@ An educational platform for engaging 14–140 year-olds with music, technology, 
   * ~~add sounds ([tonejs integration?](https://tonejs.github.io/))~~
   * ~~wingding / font-awesome / sprite solution~~
   * ~~add column & row numbers?~~
-  * add tile collision rule
+  * add tile collision rule(s)
   * responsive?
   * step (and step backward?) key input
-  * preload audio samples
+  * ~~preload audio samples~~
+  * fix tone stutter (after multiple plays)
   * ...
 * client-photo submission
 * server-side grid and tile detection
