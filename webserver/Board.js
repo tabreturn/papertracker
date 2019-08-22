@@ -178,7 +178,9 @@ export class Board {
     // check if tileaudio is a sample or tone
     switch (tileaudio[0]) {
       case 'sample':
-        document.getElementById(tileaudio[1]).play();
+        let sample = document.getElementById(tileaudio[1])
+        sample.currentTime = 0 // without this, js won't play same audio file in rapid succession (fix later)
+        sample.play();
         break;
       case 'tone':
         let synth = new Tone.Synth().toMaster();
