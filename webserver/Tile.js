@@ -22,14 +22,14 @@ export class Tile {
 
       switch (v) {
         // directions
-        case 'N': this.tileicons[i] = '<i class="fas fa-arrow-alt-circle-up"></i>'; break;
-        case 'S': this.tileicons[i] = '<i class="fas fa-arrow-alt-circle-down"></i>'; break;
-        case 'W': this.tileicons[i] = '<i class="fas fa-arrow-alt-circle-left"></i>'; break;
-        case 'E': this.tileicons[i] = '<i class="fas fa-arrow-alt-circle-right"></i>'; break;
+        case 'N': this.tileicons[i] = '<i class="fas fa-arrow-up"></i>'; break;
+        case 'S': this.tileicons[i] = '<i class="fas fa-arrow-down"></i>'; break;
+        case 'W': this.tileicons[i] = '<i class="fas fa-arrow-left"></i>'; break;
+        case 'E': this.tileicons[i] = '<i class="fas fa-arrow-right"></i>'; break;
         // colors
-        case 'C1': this.tileicons[i] = '#FF0000'; break;
-        case 'C2': this.tileicons[i] = '#00FF00'; break;
-        case 'C3': this.tileicons[i] = '#0000FF'; break;
+        case 'CC': this.tileicons[i] = '#00FFFF'; break;
+        case 'CM': this.tileicons[i] = '#FF00FF'; break;
+        case 'CY': this.tileicons[i] = '#FFFF00'; break;
         case 'C4': this.tileicons[i] = '#FFFF00'; break;
         case 'C5': this.tileicons[i] = '#00FFFF'; break;
         case 'C6': this.tileicons[i] = '#FF00FF'; break;

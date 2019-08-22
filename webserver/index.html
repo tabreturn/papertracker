@@ -86,21 +86,23 @@
 
     game.setupBoard();
     // position tiles -- addTile(c, r, new Tile(tile1, tile2, orientation))
-    // tiles: N, S, W, E, A1-A6, C1-C6
-    // red pulse
-    game.addTile(0, 0, new Tile('S', 'C1'));
+    // tiles: N/S/W/E, A__, CC/CM/CY
+    // cyan pulse
+    /*
+    game.addTile(0, 0, new Tile('S', 'CC'));
     game.addTile(0, 4, new Tile('AS1', 'E', 'h')); // h arg is for optional orientation (yet to implement)
     game.addTile(4, 4, new Tile('AH', ' ')); // h arg is for optional orientation (yet to implement)
     game.addTile(5, 4, new Tile('AK1', ' ')); // h arg is for optional orientation (yet to implement)
     game.addTile(8, 4, new Tile('N', ' '));
     game.addTile(8, 0, new Tile('W', ' '));
-    // green pulse
-    game.addTile(5, 2, new Tile('E', 'C2'));
+    // magenta pulse
+    game.addTile(5, 2, new Tile('E', 'CM'));
     game.addTile(8, 2, new Tile('AK2', ' '));
     game.addTile(9, 2, new Tile('AK2', 'W'));
-    // blue pulse
-    game.addTile(10, 0, new Tile('S', 'C3'));
-    game.addTile(11, 5, new Tile('W', 'C4'));
+    // yellow pulses
+    game.addTile(10, 0, new Tile('S', 'CY'));
+    game.addTile(11, 5, new Tile('W', 'CY'));
+    */
   </script>
 
 </body>
