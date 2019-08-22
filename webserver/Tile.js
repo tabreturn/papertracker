@@ -34,27 +34,30 @@ export class Tile {
         case 'C5': this.tileicons[i] = '#00FFFF'; break;
         case 'C6': this.tileicons[i] = '#FF00FF'; break;
         // audio
-        case 'A1':
-          this.tileicons[i] = '<img src="samples/88550-hi-hat.svg">';
+        case 'AH':
+          this.tileicons[i] = '<img src="samples/hi-hat-svgrepo-com.svg">';
           this.tileaudio[i] = ['sample', id];
-          this.preloadSample('samples/209873_3797507-lq.mp3', id)
+          this.preloadSample('samples/hihat.mp3', id)
           break;
-        case 'A2':
-          this.tileicons[i] = '<i class="fas fa-drum"></i>';
+        case 'AS1':
+          this.tileicons[i] = '<img src="samples/keyboard-music-and-multimedia-svgrepo-com.svg">';
           this.tileaudio[i] = ['sample', id];
-          this.preloadSample('samples/232014_736471-lq.mp3', id)
+          this.preloadSample('samples/stab1.mp3', id)
           break;
-        case 'A3':
-          this.tileicons[i] = '🎷';
-          this.tileaudio[i] = ['tone', 'A3', '8n'];
+        case 'AS2':
+          this.tileicons[i] = '<img src="samples/keyboard-music-and-multimedia-svgrepo-com.svg">';
+          this.tileaudio[i] = ['sample', id];
+          this.preloadSample('samples/stab2.mp3', id)
           break;
-        case 'A4':
-          this.tileicons[i] = '🎺';
-          this.tileaudio[i] = ['tone', 'A4', '8n'];
+        case 'AK1':
+          this.tileicons[i] = '<img src="samples/bass-drum-svgrepo-com.svg">';
+          this.tileaudio[i] = ['sample', id];
+          this.preloadSample('samples/kick1.mp3', id)
           break;
-        case 'A5':
-          this.tileicons[i] = '🎹';
-          this.tileaudio[i] = ['tone', 'A5', '8n'];
+        case 'AK2':
+          this.tileicons[i] = '<img src="samples/bass-drum-svgrepo-com.svg">';
+          this.tileaudio[i] = ['sample', id];
+          this.preloadSample('samples/kick2.mp3', id)
           break;
         case 'A6':
           this.tileicons[i] = '🎹';

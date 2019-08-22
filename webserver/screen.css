@@ -18,7 +18,7 @@ button {
 
 #frame .xlabels,
 #frame .ylabels {
-  color: rgb(85,23,167, 0.75);
+  color: rgba(85,23,167, 0.75);
   font-size: 0.8em;
 }
 
@@ -69,5 +69,5 @@ button {
 }
 
 #board .cell .tile1 {
-  border-right: 1px dashed rgb(85,23,167, 0.25);
+  border-right: 1px dashed rgba(85,23,167, 0.25);
 }
