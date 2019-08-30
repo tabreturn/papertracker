@@ -1,7 +1,7 @@
 import cv2
 import cv2.aruco as aruco
 
-arucodict = aruco.Dictionary_get(aruco.DICT_4X4_250)
+arucodict = aruco.Dictionary_get(aruco.DICT_5X5_250)
 
 for i in range(50):
     marker = aruco.drawMarker(arucodict, i, 1000)
