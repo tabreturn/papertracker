@@ -11,5 +11,3 @@ webserver/*.py[cod]
 webserver/*$py.class
 webserver/env
 webserver/node_modules
-
-webserver/opencv/marker_generator/*.png
