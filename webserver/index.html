@@ -14,7 +14,7 @@
 
   <button type="button" id="reload" onclick="location.reload();">reload</button>
   <button type="button" id="step">step</button>
-  <button type="button" id="start" >start</button>
+  <button type="button" id="start">start</button>
 
   <div id="frame">
 
@@ -57,16 +57,22 @@
 
 
   <!-- aruco test -->
+  <img id="testimg" src="opencv/test.jpg" width="200" />
+  <canvas id="canvas" style="outline:1px solid red" width="800" height="450"></canvas>
+  <script>
+
+  </script>
   <script src="js-aruco/cv.js"></script>
   <script src="js-aruco/aruco.js"></script>
-  <script src="Aruco.js"></script>
-  <img src="opencv/marker_generator/marker0.png" width="200" />
-  <center>
-    <div style="margin: 10px;"><strong>-= Augmented Reality Marker Detector =-</strong></div>
-    <video id="video" autoplay="true" style="display:none;"></video>
-    <canvas id="canvas" style="width:640px; height:480px;"></canvas>
-    <div style="margin: 15px;"><strong>Powered by <a href="http://code.google.com/p/js-aruco/">js-aruco</a></strong></div>
-  </center>
+  <script src="Aruco.js" type="module"></script>
+  <script type="module">
+    import {Aruco} from './Aruco.js';
+    let canvas = document.getElementById('canvas');
+    let context = canvas.getContext('2d');
+    let img = document.getElementById('testimg');
+    context.drawImage(img, 0, 0, canvas.offsetWidth, canvas.offsetHeight);
+    let x = new Aruco(context);
+  </script>
 
   <script src="Tone.js"></script>
   <script src="Tile.js" type="module"></script>

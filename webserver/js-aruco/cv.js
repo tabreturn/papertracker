@@ -44,10 +44,10 @@ CV.grayscale = function(imageSrc, imageDst){
     dst[j ++] =
       (src[i] * 0.299 + src[i + 1] * 0.587 + src[i + 2] * 0.114 + 0.5) & 0xff;
   }
-  
+
   imageDst.width = imageSrc.width;
   imageDst.height = imageSrc.height;
-  
+
   return imageDst;
 };
 
@@ -84,7 +84,7 @@ CV.adaptiveThreshold = function(imageSrc, imageDst, kernelSize, threshold){
 
   imageDst.width = imageSrc.width;
   imageDst.height = imageSrc.height;
-  
+
   return imageDst;
 };
 
@@ -96,7 +96,7 @@ CV.otsu = function(imageSrc){
   for (i = 0; i < 256; ++ i){
     hist[i] = 0;
   }
-  
+
   for (i = 0; i < len; ++ i){
     hist[ src[i] ] ++;
   }
@@ -108,18 +108,18 @@ CV.otsu = function(imageSrc){
   for (i = 0; i < 256; ++ i){
     wB += hist[i];
     if (0 !== wB){
-    
+
       wF = len - wB;
       if (0 === wF){
         break;
       }
 
       sumB += hist[i] * i;
-      
+
       mu = (sumB / wB) - ( (sum - sumB) / wF );
 
       between = wB * wF * mu * mu;
-      
+
       if (between > max){
         max = between;
         threshold = i;
@@ -160,10 +160,10 @@ CV.stackBoxBlur = function(imageSrc, imageDst, kernelSize){
 
   for (y = 0; y < height; ++ y){
     start = pos;
-    
+
     color = src[pos];
     sum = radius * color;
-    
+
     stack = stackStart;
     for (i = 0; i < radius; ++ i){
       stack.color = color;
@@ -174,15 +174,15 @@ CV.stackBoxBlur = function(imageSrc, imageDst, kernelSize){
       sum += stack.color;
       stack = stack.next;
     }
-  
+
     stack = stackStart;
     for (x = 0; x < width; ++ x){
       dst[pos ++] = (sum * mult) >>> shift;
-      
+
       p = x + radius;
       p = start + (p < widthMinus1? p: widthMinus1);
       sum -= stack.color - src[p];
-      
+
       stack.color = src[p];
       stack = stack.next;
     }
@@ -191,10 +191,10 @@ CV.stackBoxBlur = function(imageSrc, imageDst, kernelSize){
   for (x = 0; x < width; ++ x){
     pos = x;
     start = pos + width;
-    
+
     color = dst[pos];
     sum = radius * color;
-    
+
     stack = stackStart;
     for (i = 0; i < radius; ++ i){
       stack.color = color;
@@ -204,21 +204,21 @@ CV.stackBoxBlur = function(imageSrc, imageDst, kernelSize){
       stack.color = dst[start];
       sum += stack.color;
       stack = stack.next;
-      
+
       start += width;
     }
-    
+
     stack = stackStart;
     for (y = 0; y < height; ++ y){
       dst[pos] = (sum * mult) >>> shift;
-      
+
       p = y + radius;
       p = x + ( (p < heightMinus1? p: heightMinus1) * width );
       sum -= stack.color - dst[p];
-      
+
       stack.color = dst[p];
       stack = stack.next;
-      
+
       pos += width;
     }
   }
@@ -231,7 +231,7 @@ CV.gaussianBlur = function(imageSrc, imageDst, imageMean, kernelSize){
 
   imageDst.width = imageSrc.width;
   imageDst.height = imageSrc.height;
-  
+
   imageMean.width = imageSrc.width;
   imageMean.height = imageSrc.height;
 
@@ -246,12 +246,12 @@ CV.gaussianBlurFilter = function(imageSrc, imageDst, kernel, horizontal){
       height = imageSrc.height, width = imageSrc.width,
       pos = 0, limit = kernel.length >> 1,
       cur, value, i, j, k;
-      
+
   for (i = 0; i < height; ++ i){
-    
+
     for (j = 0; j < width; ++ j){
       value = 0.0;
-    
+
       for (k = -limit; k <= limit; ++ k){
 
         if (horizontal){
@@ -274,7 +274,7 @@ CV.gaussianBlurFilter = function(imageSrc, imageDst, kernel, horizontal){
 
         value += kernel[limit + k] * src[cur];
       }
-    
+
       dst[pos ++] = horizontal? value: (value + 0.5) & 0xff;
     }
   }
@@ -304,7 +304,7 @@ CV.gaussianKernel = function(kernelSize){
     sum = 1 / sum;
     for (i = 0; i < kernelSize; ++ i){
       kernel[i] *= sum;
-    }  
+    }
   }
 
   return kernel;
@@ -313,7 +313,7 @@ CV.gaussianKernel = function(kernelSize){
 CV.findContours = function(imageSrc, binary){
   var width = imageSrc.width, height = imageSrc.height, contours = [],
       src, deltas, pos, pix, nbd, outer, hole, i, j;
-  
+
   src = CV.binaryBorder(imageSrc, binary);
 
   deltas = CV.neighborhoodDeltas(width + 2);
@@ -322,7 +322,7 @@ CV.findContours = function(imageSrc, binary){
   nbd = 1;
 
   for (i = 0; i < height; ++ i, pos += 2){
-  
+
     for (j = 0; j < width; ++ j, ++ pos){
       pix = src[pos];
 
@@ -338,12 +338,12 @@ CV.findContours = function(imageSrc, binary){
 
         if (outer || hole){
           ++ nbd;
-          
+
           contours.push( CV.borderFollowing(src, pos, nbd, {x: j, y: i}, hole, deltas) );
         }
       }
     }
-  }  
+  }
 
   return contours;
 };
@@ -352,7 +352,7 @@ CV.borderFollowing = function(src, pos, nbd, point, hole, deltas){
   var contour = [], pos1, pos3, pos4, s, s_end, s_prev;
 
   contour.hole = hole;
-      
+
   s = s_end = hole? 0: 4;
   do{
     s = (s - 1) & 7;
@@ -361,7 +361,7 @@ CV.borderFollowing = function(src, pos, nbd, point, hole, deltas){
       break;
     }
   }while(s !== s_end);
-  
+
   if (s === s_end){
     src[pos] = -nbd;
     contour.push( {x: point.x, y: point.y} );
@@ -372,13 +372,13 @@ CV.borderFollowing = function(src, pos, nbd, point, hole, deltas){
 
     while(true){
       s_end = s;
-    
+
       do{
         pos4 = pos3 + deltas[++ s];
       }while(src[pos4] === 0);
-      
+
       s &= 7;
-      
+
       if ( ( (s - 1) >>> 0) < (s_end >>> 0) ){
         src[pos3] = -nbd;
       }
@@ -387,7 +387,7 @@ CV.borderFollowing = function(src, pos, nbd, point, hole, deltas){
       }
 
       contour.push( {x: point.x, y: point.y} );
-      
+
       s_prev = s;
 
       point.x += CV.neighborhood[s][0];
@@ -396,7 +396,7 @@ CV.borderFollowing = function(src, pos, nbd, point, hole, deltas){
       if ( (pos4 === pos) && (pos3 === pos1) ){
         break;
       }
-      
+
       pos3 = pos4;
       s = (s + 4) & 7;
     }
@@ -405,16 +405,16 @@ CV.borderFollowing = function(src, pos, nbd, point, hole, deltas){
   return contour;
 };
 
-CV.neighborhood = 
+CV.neighborhood =
   [ [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0], [-1, 1], [0, 1], [1, 1] ];
 
 CV.neighborhoodDeltas = function(width){
   var deltas = [], len = CV.neighborhood.length, i = 0;
-  
+
   for (; i < len; ++ i){
     deltas[i] = CV.neighborhood[i][0] + (CV.neighborhood[i][1] * width);
   }
-  
+
   return deltas.concat(deltas);
 };
 
@@ -424,22 +424,22 @@ CV.approxPolyDP = function(contour, epsilon){
       poly = [], stack = [], len = contour.length,
       pt, start_pt, end_pt, dist, max_dist, le_eps,
       dx, dy, i, j, k;
-  
+
   epsilon *= epsilon;
-  
+
   k = 0;
-  
+
   for (i = 0; i < 3; ++ i){
     max_dist = 0;
-    
+
     k = (k + right_slice.start_index) % len;
     start_pt = contour[k];
     if (++ k === len) {k = 0;}
-  
+
     for (j = 1; j < len; ++ j){
       pt = contour[k];
       if (++ k === len) {k = 0;}
-    
+
       dx = pt.x - start_pt.x;
       dy = pt.y - start_pt.y;
       dist = dx * dx + dy * dy;
@@ -457,37 +457,37 @@ CV.approxPolyDP = function(contour, epsilon){
   }else{
     slice.start_index = k;
     slice.end_index = (right_slice.start_index += slice.start_index);
-  
+
     right_slice.start_index -= right_slice.start_index >= len? len: 0;
     right_slice.end_index = slice.start_index;
     if (right_slice.end_index < right_slice.start_index){
       right_slice.end_index += len;
     }
-    
+
     stack.push( {start_index: right_slice.start_index, end_index: right_slice.end_index} );
     stack.push( {start_index: slice.start_index, end_index: slice.end_index} );
   }
 
   while(stack.length !== 0){
     slice = stack.pop();
-    
+
     end_pt = contour[slice.end_index % len];
     start_pt = contour[k = slice.start_index % len];
     if (++ k === len) {k = 0;}
-    
+
     if (slice.end_index <= slice.start_index + 1){
       le_eps = true;
-    
+
     }else{
       max_dist = 0;
 
       dx = end_pt.x - start_pt.x;
       dy = end_pt.y - start_pt.y;
-      
+
       for (i = slice.start_index + 1; i < slice.end_index; ++ i){
         pt = contour[k];
         if (++ k === len) {k = 0;}
-        
+
         dist = Math.abs( (pt.y - start_pt.y) * dx - (pt.x - start_pt.x) * dy);
 
         if (dist > max_dist){
@@ -495,10 +495,10 @@ CV.approxPolyDP = function(contour, epsilon){
           right_slice.start_index = i;
         }
       }
-      
+
       le_eps = max_dist * max_dist <= epsilon * (dx * dx + dy * dy);
     }
-    
+
     if (le_eps){
       poly.push( {x: start_pt.x, y: start_pt.y} );
 
@@ -510,7 +510,7 @@ CV.approxPolyDP = function(contour, epsilon){
       stack.push( {start_index: slice.start_index, end_index: slice.end_index} );
     }
   }
-  
+
   return poly;
 };
 
@@ -520,13 +520,13 @@ CV.warp = function(imageSrc, imageDst, contour, warpSize){
       pos = 0,
       sx1, sx2, dx1, dx2, sy1, sy2, dy1, dy2, p1, p2, p3, p4,
       m, r, s, t, u, v, w, x, y, i, j;
-  
+
   m = CV.getPerspectiveTransform(contour, warpSize - 1);
 
   r = m[8];
   s = m[2];
   t = m[5];
-  
+
   for (i = 0; i < warpSize; ++ i){
     r += m[7];
     s += m[1];
@@ -535,7 +535,7 @@ CV.warp = function(imageSrc, imageDst, contour, warpSize){
     u = r;
     v = s;
     w = t;
-    
+
     for (j = 0; j < warpSize; ++ j){
       u += m[6];
       v += m[0];
@@ -557,7 +557,7 @@ CV.warp = function(imageSrc, imageDst, contour, warpSize){
       p1 = p2 = sy1 * width;
       p3 = p4 = sy2 * width;
 
-      dst[pos ++] = 
+      dst[pos ++] =
         (dy2 * (dx2 * src[p1 + sx1] + dx1 * src[p2 + sx2]) +
          dy1 * (dx2 * src[p3 + sx1] + dx1 * src[p4 + sx2]) ) & 0xff;
 
@@ -572,23 +572,23 @@ CV.warp = function(imageSrc, imageDst, contour, warpSize){
 
 CV.getPerspectiveTransform = function(src, size){
   var rq = CV.square2quad(src);
-  
+
   rq[0] /= size;
   rq[1] /= size;
   rq[3] /= size;
   rq[4] /= size;
   rq[6] /= size;
   rq[7] /= size;
-  
+
   return rq;
 };
 
 CV.square2quad = function(src){
   var sq = [], px, py, dx1, dx2, dy1, dy2, den;
-  
+
   px = src[0].x - src[1].x + src[2].x - src[3].x;
   py = src[0].y - src[1].y + src[2].y - src[3].y;
-  
+
   if (0 === px && 0 === py){
     sq[0] = src[1].x - src[0].x;
     sq[1] = src[2].x - src[1].x;
@@ -606,7 +606,7 @@ CV.square2quad = function(src){
     dy1 = src[1].y - src[2].y;
     dy2 = src[3].y - src[2].y;
     den = dx1 * dy2 - dx2 * dy1;
-  
+
     sq[6] = (px * dy2 - dx2 * py) / den;
     sq[7] = (dx1 * py - px * dy1) / den;
     sq[8] = 1;
@@ -664,7 +664,7 @@ CV.perimeter = function(poly){
   for (; i < len; j = i ++){
     dx = poly[i].x - poly[j].x;
     dy = poly[i].y - poly[j].y;
-    
+
     p += Math.sqrt(dx * dx + dy * dy) ;
   }
 
@@ -672,7 +672,7 @@ CV.perimeter = function(poly){
 };
 
 CV.minEdgeLength = function(poly){
-  var len = poly.length, i = 0, j = len - 1, 
+  var len = poly.length, i = 0, j = len - 1,
       min = Infinity, d, dx, dy;
 
   for (; i < len; j = i ++){
@@ -685,7 +685,7 @@ CV.minEdgeLength = function(poly){
       min = d;
     }
   }
-  
+
   return Math.sqrt(min);
 };
 
@@ -694,16 +694,16 @@ CV.countNonZero = function(imageSrc, square){
       pos = square.x + (square.y * imageSrc.width),
       span = imageSrc.width - width,
       nz = 0, i, j;
-  
+
   for (i = 0; i < height; ++ i){
 
     for (j = 0; j < width; ++ j){
-    
+
       if ( 0 !== src[pos ++] ){
         ++ nz;
       }
     }
-    
+
     pos += span;
   }
 
@@ -720,17 +720,17 @@ CV.binaryBorder = function(imageSrc, dst){
 
   for (i = 0; i < height; ++ i){
     dst[posDst ++] = 0;
-    
+
     for (j = 0; j < width; ++ j){
       dst[posDst ++] = (0 === src[posSrc ++]? 0: 1);
     }
-    
+
     dst[posDst ++] = 0;
   }
 
   for (j = -2; j < width; ++ j){
     dst[posDst ++] = 0;
   }
-  
+
   return dst;
 };
