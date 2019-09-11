@@ -6,7 +6,7 @@
 ehthumbs.db
 Thumbs.db
 
-webserver/__pycache__/
+webserver/__pycache__
 webserver/*.py[cod]
 webserver/*$py.class
 webserver/env
