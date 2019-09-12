@@ -33,6 +33,7 @@ An educational platform for engaging 14–140 year-olds with music, technology, 
   * ~~preload audio samples~~
   * fix tone stutter (after multiple plays)
   * ...
+* ~~scaffold flask~~
 * client-photo submission
 * server-side grid and tile detection
 * ...
