@@ -21,14 +21,14 @@ export class Aruco {
     navigator.mediaDevices.getUserMedia({video: true}).
       then((stream) => {video.srcObject = stream});
 
-    requestAnimationFrame(() => { this.tick() });
+    requestAnimationFrame(() => { this.tick()﻿ });
   }
 
   /**
    * Detect the aruco markers and draw them to the canvas. Run repeatedly for video.
    */
   tick() {
-    requestAnimationFrame(() => { this.tick() });
+    requestAnimationFrame(() => { this.tick()﻿ });
 
     let detector = new AR.Detector();
 
