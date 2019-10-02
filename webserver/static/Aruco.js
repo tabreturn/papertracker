@@ -18,8 +18,9 @@ export class Aruco {
     this.canvas = document.getElementById(canvasid);
     this.context = canvas.getContext('2d');
     // access the webcam
-    navigator.mediaDevices.getUserMedia({video: true}).
-      then((stream) => {video.srcObject = stream});
+    navigator.mediaDevices.getUserMedia({ audio:false, video:true }).
+      then((stream) => { video.srcObject = stream }).
+      catch((error) => { console.log(error.message, error.name) });
 
     requestAnimationFrame(() => { this.tick() });
   }
