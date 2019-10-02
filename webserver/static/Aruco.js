@@ -22,7 +22,8 @@ export class Aruco {
       then((stream) => { video.srcObject = stream }).
       catch(() => {
         navigator.mediaDevices.getUserMedia({ audio:false, video:true }).
-          then((stream) => { video.srcObject = stream })
+          then((stream) => { video.srcObject = stream }).
+          catch((error) => { console.log(error) });
       });
 
     requestAnimationFrame(() => { this.tick() });
