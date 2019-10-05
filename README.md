@@ -6,15 +6,15 @@ An educational platform for engaging 14–140 year-olds with music, technology, 
 
 ## Step 1: Place Tiles
 
-<img src="step_1.gif" width="400" />
+<img src="step_1.gif" width="500" />
 
 ## Step 2: Take Photo
 
-![](step_2.gif)
+<img src="step_2.gif" width="500" />
 
 ## Step 3: Simulation
 
-![](step_3.gif)
+<img src="step_3.gif" width="500" />
 
 ---
 
