@@ -11,7 +11,6 @@ export class Tile {
      @param {string} orientation='v' An h or v for horizontal or vertical (does nothing yet).
    */
   constructor(tile1, tile2, orientation='v') {
-
     this.orientation = orientation;
     this.tilepair = [tile1, tile2];
     this.tileicons = [tile1, tile2]; // these values are overwritten in the foreach below
@@ -22,44 +21,44 @@ export class Tile {
 
       switch (v) {
         // directions
-        case 'N': this.tileicons[i] = '<i class="fas fa-arrow-up"></i>'; break;
-        case 'S': this.tileicons[i] = '<i class="fas fa-arrow-down"></i>'; break;
-        case 'W': this.tileicons[i] = '<i class="fas fa-arrow-left"></i>'; break;
-        case 'E': this.tileicons[i] = '<i class="fas fa-arrow-right"></i>'; break;
+        case 'N': case 10: this.tilepair[i] = 'N'; this.tileicons[i] = '<i class="fas fa-arrow-up"></i>'; break;
+        case 'S': case 11: this.tilepair[i] = 'S'; this.tileicons[i] = '<i class="fas fa-arrow-down"></i>'; break;
+        case 'W': case 12: this.tilepair[i] = 'W'; this.tileicons[i] = '<i class="fas fa-arrow-left"></i>'; break;
+        case 'E': case 13: this.tilepair[i] = 'E'; this.tileicons[i] = '<i class="fas fa-arrow-right"></i>'; break;
         // colors
-        case 'CC': this.tileicons[i] = '#00FFFF'; break;
-        case 'CM': this.tileicons[i] = '#FF00FF'; break;
-        case 'CY': this.tileicons[i] = '#FFFF00'; break;
-        case 'C4': this.tileicons[i] = '#FFFF00'; break;
-        case 'C5': this.tileicons[i] = '#00FFFF'; break;
-        case 'C6': this.tileicons[i] = '#FF00FF'; break;
+        case 'CC': case 14: this.tileicons[i] = '#00FFFF'; break;
+        case 'CM': case 15: this.tileicons[i] = '#FF00FF'; break;
+        case 'CY': case 16: this.tileicons[i] = '#FFFF00'; break;
+        case 'C4': case 17: this.tileicons[i] = '#FFFF00'; break;
+        case 'C5': case 18: this.tileicons[i] = '#00FFFF'; break;
+        case 'C6': case 19: this.tileicons[i] = '#FF00FF'; break;
         // audio
-        case 'AH':
-          this.tileicons[i] = '<img src="samples/hi-hat-svgrepo-com.svg">';
+        case 'AH': case 20:
+          this.tileicons[i] = '<img src="static/samples/hi-hat-svgrepo-com.svg">';
           this.tileaudio[i] = ['sample', id];
-          this.preloadSample('samples/hihat.mp3', id)
+          this.preloadSample('static/samples/hihat.mp3', id)
           break;
-        case 'AS1':
-          this.tileicons[i] = '<img src="samples/keyboard-music-and-multimedia-svgrepo-com.svg">';
+        case 'AS1': case 21:
+          this.tileicons[i] = '<img src="static/samples/keyboard-music-and-multimedia-svgrepo-com.svg">';
           this.tileaudio[i] = ['sample', id];
-          this.preloadSample('samples/stab1.mp3', id)
+          this.preloadSample('static/samples/stab1.mp3', id)
           break;
-        case 'AS2':
-          this.tileicons[i] = '<img src="samples/keyboard-music-and-multimedia-svgrepo-com.svg">';
+        case 'AS2': case 22:
+          this.tileicons[i] = '<img src="static/samples/keyboard-music-and-multimedia-svgrepo-com.svg">';
           this.tileaudio[i] = ['sample', id];
-          this.preloadSample('samples/stab2.mp3', id)
+          this.preloadSample('static/samples/stab2.mp3', id)
           break;
-        case 'AK1':
-          this.tileicons[i] = '<img src="samples/bass-drum-svgrepo-com.svg">';
+        case 'AK1': case 23:
+          this.tileicons[i] = '<img src="static/samples/bass-drum-svgrepo-com.svg">';
           this.tileaudio[i] = ['sample', id];
-          this.preloadSample('samples/kick1.mp3', id)
+          this.preloadSample('static/samples/kick1.mp3', id)
           break;
-        case 'AK2':
-          this.tileicons[i] = '<img src="samples/bass-drum-svgrepo-com.svg">';
+        case 'AK2': case 24:
+          this.tileicons[i] = '<img src="static/samples/bass-drum-svgrepo-com.svg">';
           this.tileaudio[i] = ['sample', id];
-          this.preloadSample('samples/kick2.mp3', id)
+          this.preloadSample('static/samples/kick2.mp3', id)
           break;
-        case 'A6':
+        case 'A6': case 25:
           this.tileicons[i] = '🎹';
           this.tileaudio[i] = ['tone', 'A6', '8n'];
           break;

@@ -17,6 +17,7 @@ export class Aruco {
     video = document.getElementById('video');
     this.canvas = document.getElementById(canvasid);
     this.context = canvas.getContext('2d');
+    this.tiles = [];
     // access the webcam
     navigator.mediaDevices.getUserMedia({ audio:false, video:{facingMode:{exact:'environment'}} }).
       then((stream) => { video.srcObject = stream }).
@@ -100,7 +101,10 @@ export class Aruco {
         y = Math.min(y, corner.y);
       }
 
-      this.context.strokeText(markers[i].id, x, y)
+      this.context.strokeText(markers[i].id, x, y);
+      this.tiles.push(markers[i].id);
+      // remove duplicate values in tile array
+      this.tiles = Array.from(new Set(this.tiles));
     }
   }
 }
