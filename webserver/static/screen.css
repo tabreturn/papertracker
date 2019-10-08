@@ -12,52 +12,24 @@ button {
   margin-bottom: 8px;
 }
 
-#frame {
-  display: grid;
-}
-
-#frame .xlabels,
-#frame .ylabels {
-  color: rgba(85,23,167, 0.75);
-  font-size: 0.8em;
-}
-
-#frame .xlabels {
-  display: grid;
-  padding: 1.3em 0;
-}
-
-#frame .ylabels {
-  display: grid;
-  height: 100%;
-}
-
-#frame .ylabels .label {
-  align-items: center;
-  display: flex;
-  padding: 0 1.8em;
-}
-#frame .ylabels.left .label {
-  justify-content: flex-end;
-}
-
 #board {
-  outline: 8px solid rgb(85,23,167);
+  outline: 5px solid rgb(85,23,167);
   display: grid;
-  font-size: 17px;
+  font-size: 12px;
   margin: auto;
 }
 
 #board img {
   max-height: 20px;
   max-width: 20px;
+  width: 90%;
 }
 
 #board .cell {
   align-items: center;
+  border: 1px solid rgb(85,23,167);
   display: grid;
   grid-template-columns: 1fr 1fr;
-  border: 1px solid rgb(85,23,167);
 }
 
 #board .cell .tile1,
@@ -70,4 +42,13 @@ button {
 
 #board .cell .tile1 {
   border-right: 1px dashed rgba(85,23,167, 0.25);
+}
+
+@media (min-width: 600px) {
+
+  #board {
+    outline-width: 8px;
+    font-size: 17px;
+  }
+
 }

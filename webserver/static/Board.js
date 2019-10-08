@@ -11,11 +11,10 @@ export class Board {
      @param {number} cols=12 Number of columns in the grid.
      @param {number} speed=5 Game speed.
    */
-  constructor(size=50, rows=9, cols=12, speed=5) {
+  constructor(rows=9, cols=12, speed=5) {
     // config variables
     this.cells = [];  // this array contains only immovable items (tiles)
     this.pulses = []; // this array contains only movable items (pulses)
-    this.size = size;
     this.rows = rows;
     this.cols = cols;
     this.speed = speed;
@@ -25,21 +24,18 @@ export class Board {
    * Populate the cells and pulses arrays, and fill the board with visible cells.
    */
   setupBoard() {
-
     let board = document.getElementById('board');
-    board.style.height = this.rows*this.size + 'px';
-    board.style.width = this.cols*this.size + 'px';
+    // css for scaling
+    let aspectratio = this.rows / this.cols;
+    board.style.width = '90vw';
+    board.style.height = 90*aspectratio+'vw';
+    board.style.maxWidth = '900px';
+    board.style.maxHeight = 900*aspectratio+'px';
 
     for (let r=0; r<this.rows; r++) {
       // populate cells and pulses arrays
       this.pulses.push([]);
       this.cells.push([]);
-      // add row labels
-      let label = document.createElement('div');
-      label.className = 'label';
-      label.innerHTML = r;
-      document.querySelectorAll('.ylabels')[0].appendChild(label);
-      document.querySelectorAll('.ylabels')[1].appendChild(label.cloneNode(true));
 
       for (let c=0; c<this.cols; c++) {
 
@@ -64,20 +60,7 @@ export class Board {
         board.appendChild(cell);
       }
     }
-    // add col labels
-    let xlabels = document.querySelectorAll('.xlabels');
-
-    for (let c=0; c<this.cols; c++) {
-      let label = document.createElement('div');
-      label.className = 'label';
-      label.innerHTML = c;
-      xlabels[0].appendChild(label);
-      xlabels[1].appendChild(label.cloneNode(true));
-    }
     // some css grid magic (a 1fr for each row and column)
-    xlabels[0].style.gridTemplateColumns = '1fr '.repeat(this.cols);
-    xlabels[1].style.gridTemplateColumns = '1fr '.repeat(this.cols);
-    document.getElementById('frame').style.gridTemplateColumns = `1fr ${this.size*this.cols}px 1fr`;
     board.style.gridTemplateColumns = '1fr '.repeat(this.cols);
     board.style.gridTemplateRows = '1fr '.repeat(this.rows);
     board.style.gridTemplateColumns = '1fr '.repeat(this.cols);

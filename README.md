@@ -32,7 +32,6 @@ An educational platform for engaging 14–140 year-olds with music, technology, 
 
 * client-side board simulation
   * add tile collision rule(s)
-  * responsive?
   * step (and step backward?) key input
   * fix tone stutter (after multiple plays)
   * ...

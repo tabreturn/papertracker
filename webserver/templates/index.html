@@ -16,46 +16,16 @@
   <button type="button" id="step">step</button>
   <button type="button" id="start">start</button>
 
-  <div id="frame">
-
-    <div></div>
-    <div class="xlabels">
-        <!-- applied in js
-        <div>i</div>
-        -->
+  <div id="board">
+    <!-- applied in js
+    <div class="cell">
+      <div class="tile1"></div>
+      <div class="tile2"></div>
     </div>
-    <div></div>
-
-    <div class="ylabels left">
-      <!-- applied in js
-      <div>i</div>
-      -->
-    </div>
-    <div id="board">
-      <!-- applied in js
-      <div class="cell">
-        <div class="tile1"></div>
-        <div class="tile2"></div>
-      </div>
-      -->
-    </div>
-    <div class="ylabels right">
-      <!-- applied in js
-      <div>i</div>
-      -->
-    </div>
-
-    <div></div>
-    <div class="xlabels">
-      <!-- applied in js
-      <div>i</div>
-      -->
-    </div>
-    <div></div>
-
+    -->
   </div>
 
-  <canvas id="canvas" style="outline:1px solid red" width="200"></canvas>
+  <p><canvas id="canvas" style="outline:1px solid red" width="200"></canvas></p>
   <button type="button" id="snap">snap</button>
   <script src="./static/js-aruco/cv.js"></script>
   <script src="./static/js-aruco/aruco.js"></script>
@@ -74,7 +44,7 @@
     let devmode = 1;
 
     if (devmode) {
-      var game = new Board(60, 6, 12, 5); // Board(cell-size, rows, cols, speed)
+      var game = new Board(6, 12, 5); // Board(rows, cols, speed)
       window.game = game;
       window.Tile = Tile;
     }
@@ -107,7 +77,6 @@
     // yellow pulses
     game.addTile(10, 0, new Tile('S', 'CY'));
     game.addTile(11, 5, new Tile('W', 'CY'));
-    
 
     // step button
     document.getElementById('step').addEventListener('click', () => {
