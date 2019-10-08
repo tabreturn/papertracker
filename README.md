@@ -32,9 +32,10 @@ An educational platform for engaging 14–140 year-olds with music, technology, 
 
 * client-side board simulation
   * add tile collision rule(s)
+  * step button to stop running simulation
   * step (and step backward?) key input
   * fix tone stutter (after multiple plays)
   * ...
-* client-photo submission
+* client-photo submission (ui)
 * server-side grid and tile detection
 * ...
