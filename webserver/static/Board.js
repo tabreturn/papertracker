@@ -27,10 +27,10 @@ export class Board {
     let board = document.getElementById('board');
     // css for scaling
     let aspectratio = this.rows / this.cols;
-    board.style.width = '90vw';
-    board.style.height = 90*aspectratio+'vw';
-    board.style.maxWidth = '900px';
-    board.style.maxHeight = 900*aspectratio+'px';
+    board.style.width = '80vw';
+    board.style.height = 80*aspectratio+'vw';
+    board.style.maxWidth = '800px';
+    board.style.maxHeight = 800*aspectratio+'px';
 
     for (let r=0; r<this.rows; r++) {
       // populate cells and pulses arrays
