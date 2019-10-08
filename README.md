@@ -35,7 +35,6 @@ An educational platform for engaging 14–140 year-olds with music, technology, 
   * responsive?
   * step (and step backward?) key input
   * fix tone stutter (after multiple plays)
-  * fix flashing icons (chrome)
   * ...
 * client-photo submission
 * server-side grid and tile detection

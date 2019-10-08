@@ -19,6 +19,7 @@ export class Board {
     this.rows = rows;
     this.cols = cols;
     this.speed = speed;
+    this.step = 0;
   }
   /**
    * Populate the cells and pulses arrays, and fill the board with visible cells.
@@ -142,7 +143,7 @@ export class Board {
           if (tileicons[i].charAt(0) == '#') {
             cell.querySelectorAll(elem)[0].style.backgroundColor = tileicons[i];
           }
-          else {
+          else if (this.step == 0) {
             cell.querySelectorAll(elem)[0].innerHTML = tileicons[i];
           }
         }
@@ -256,6 +257,7 @@ export class Board {
       }
     });
 
+    this.step ++;
     this.drawBoard();
   }
 }
