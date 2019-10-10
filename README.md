@@ -34,11 +34,12 @@ An educational platform for engaging 14–140 year-olds with music, technology, 
 
 ## features:
 
-- [] add tile collision rule(s)
-- [] step button to stop running simulation
-- [] step (and step backward?) key input
-- [] server-side grid and tile detection
+- [x] theme
+- [ ] add tile collision rule(s)
+- [ ] step button to stop running simulation
+- [ ] step (and step backward?) key input
+- [ ] server-side grid and tile detection
 
 ## bugs:
 
-- [] fix tone stutter (after multiple plays)
+- [ ] tone stutter (after multiple plays)
