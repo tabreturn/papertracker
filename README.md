@@ -4,15 +4,19 @@ Gamified music &amp; tech teaching tool
 
 An educational platform for engaging 14–140 year-olds with music, technology, and game design. The focus is on providing entertaining challenges inexpensively, that promote creative problem solving, collaborative work, and programming using visual apparatus.
 
-## Step 1: Place Tiles
+[demo](https://papertracker.cmp.ac.nz/)
+
+---
+
+## step 1: place tiles
 
 <img src="step_1.gif" width="500" />
 
-## Step 2: Take Photo
+## step 2: take photo
 
 <img src="step_2.gif" width="500" />
 
-## Step 3: Simulation
+## step 3: simulation
 
 <img src="step_3.gif" width="500" />
 
@@ -28,14 +32,13 @@ An educational platform for engaging 14–140 year-olds with music, technology, 
 * run the server: `flask run`
 * open website in browser: `http://localhost:5000`
 
-## to-do:
+## features:
 
-* client-side board simulation
-  * add tile collision rule(s)
-  * step button to stop running simulation
-  * step (and step backward?) key input
-  * fix tone stutter (after multiple plays)
-  * ...
-* client-photo submission (ui)
-* server-side grid and tile detection
-* ...
+- [] add tile collision rule(s)
+- [] step button to stop running simulation
+- [] step (and step backward?) key input
+- [] server-side grid and tile detection
+
+## bugs:
+
+- [] fix tone stutter (after multiple plays)
