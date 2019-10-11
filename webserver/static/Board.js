@@ -24,9 +24,9 @@ export class Board {
    * Populate the cells and pulses arrays, and fill the board with visible cells.
    */
   setupBoard() {
-    let board = document.getElementById('board');
+    const board = document.getElementById('board');
     // css for scaling
-    let aspectratio = this.rows / this.cols;
+    const aspectratio = this.rows / this.cols;
     board.style.width = '80vw';
     board.style.height = 80*aspectratio+'vw';
     board.style.maxWidth = '800px';
@@ -49,11 +49,11 @@ export class Board {
           tile: {}
         });
         // add empty cell divs (with two empty half-tile divs in each)
-        let cell = document.createElement('div');
+        const cell = document.createElement('div');
         cell.className = 'cell';
-        let tile1 = document.createElement('div');
+        const tile1 = document.createElement('div');
         tile1.className = 'tile1';
-        let tile2 = document.createElement('div');
+        const tile2 = document.createElement('div');
         tile2.className = 'tile2';
         cell.appendChild(tile1);
         cell.appendChild(tile2);
@@ -92,7 +92,7 @@ export class Board {
     // add tile to cells array
     this.cells[r][c].tile = tile;
 
-    let tileicons = this.cells[r][c].tile.tileicons;
+    const tileicons = this.cells[r][c].tile.tileicons;
     // add the starting position of any pulse to the pulses array
     for (let [key, value] of Object.entries(tileicons)) {
       // check for an arrow-color tile combo
@@ -115,13 +115,13 @@ export class Board {
   drawBoard() {
 
     this.loop2d((r,c) => {
-      let cell = document.querySelectorAll('#board .cell')[(r*this.cols)+c];
-      let tileicons = this.cells[r][c].tile.tileicons;
+      const cell = document.querySelectorAll('#board .cell')[(r*this.cols)+c];
+      const tileicons = this.cells[r][c].tile.tileicons;
 
       if (typeof tileicons !== 'undefined') {
         // draw a symbol, or draw a background color if the symbol begins with #
         for (let i in tileicons) {
-          let elem = '.tile'+(parseInt(i)+1);
+          const elem = '.tile'+(parseInt(i)+1);
 
           if (tileicons[i].charAt(0) == '#') {
             cell.querySelectorAll(elem)[0].style.backgroundColor = tileicons[i];
@@ -162,12 +162,12 @@ export class Board {
     // check if tileaudio is a sample or tone
     switch (tileaudio[0]) {
       case 'sample':
-        let sample = document.getElementById(tileaudio[1])
+        const sample = document.getElementById(tileaudio[1])
         sample.currentTime = 0 // without this, js won't play same audio file in rapid succession (fix later)
         sample.play();
         break;
       case 'tone':
-        let synth = new Tone.Synth().toMaster();
+        const synth = new Tone.Synth().toMaster();
         synth.triggerAttackRelease(tileaudio[1], tileaudio[2]);
         break;
     }
@@ -221,8 +221,8 @@ export class Board {
 
     // the rules of the tiles/pieces are defined here
     this.loop2d((r,c) => {
-      let tilepair = this.cells[r][c].tile.tilepair;
-      let tileaudio = this.cells[r][c].tile.tileaudio;
+      const tilepair = this.cells[r][c].tile.tilepair;
+      const tileaudio = this.cells[r][c].tile.tileaudio;
 
       if (typeof tilepair !== 'undefined' && this.pulses[r][c].dir) {
 

@@ -44,23 +44,23 @@ export class Aruco {
   tick() {
     requestAnimationFrame(() => { this.tick() });
 
-    let detector = new AR.Detector();
+    const detector = new AR.Detector();
     // use testimg over video if the element exists
     if (document.getElementById('testimg')) {
-      let testimg = document.getElementById('testimg');
+      const testimg = document.getElementById('testimg');
       this.context.drawImage(testimg, 0, 0, testimg.width, testimg.height);
-      let markers = detector.detect(this.context.getImageData(0, 0, testimg.width, testimg.height));
+      const markers = detector.detect(this.context.getImageData(0, 0, testimg.width, testimg.height));
       this.drawCorners(markers);
       this.drawId(markers);
     }
     // else use camera/webcam feed
     else if (video.readyState === video.HAVE_ENOUGH_DATA) {
       // draw the frame first
-      let cw = canvas.width;
-      let ch = canvas.height;
+      const cw = canvas.width;
+      const ch = canvas.height;
       this.context.drawImage(video, 0, 0, cw, ch);
       // then the markers
-      let markers = detector.detect(this.context.getImageData(0, 0, cw, ch));
+      const markers = detector.detect(this.context.getImageData(0, 0, cw, ch));
       this.drawCorners(markers);
       this.drawId(markers);
     }
@@ -101,7 +101,7 @@ export class Aruco {
    * @param {array} markers Array containing the marker id and coordinate data.
    */
   drawId(markers){
-    let corners, corner, x, y, i, j;
+    let corners, corner, x, y;
 
     this.context.strokeStyle = "blue";
     this.context.lineWidth = 1;

@@ -17,7 +17,7 @@ export class Tile {
     this.tileaudio = ['null, null'];
 
     [tile1, tile2].forEach(function(v, i) {
-      let id = v + Date.now();
+      const id = v + Date.now();
 
       switch (v) {
         // directions
@@ -73,8 +73,8 @@ export class Tile {
    * @param {string} id The audio element id.
    */
   preloadSample(sample, id) {
-    let audio = document.createElement('audio');
-    let source = document.createElement('source');
+    const audio = document.createElement('audio');
+    const source = document.createElement('source');
     source.src = sample;
     audio.appendChild(source);
     audio.id = id;

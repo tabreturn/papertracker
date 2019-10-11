@@ -2,8 +2,8 @@ import {Aruco} from './Aruco.js';
 import {Tile}  from './Tile.js';
 import {Board} from './Board.js';
 
-let detect = new Aruco('canvas');
-let devmode = 1;
+const detect = new Aruco('canvas');
+const devmode = 1;
 
 if (devmode) {
   var game = new Board(6, 12, 5); // Board(rows, cols, speed)
@@ -32,9 +32,21 @@ document.getElementById('reload').addEventListener('click', () => {
 });
 // snap button
 document.getElementById('snap').addEventListener('click', () => {
-  detect.tiles.forEach((tile) => {
+  const file = document.getElementById('photo');
+  const data = new FormData();
+  data.append('image', file.files[0]);
+  data.append('time', Date.now());
+
+  fetch('/snap', {
+    method: 'PUT',
+    body: data
+  })
+  .then( response => console.log(response) )
+  .catch( error => console.log(error) );
+
+  /*detect.tiles.forEach((tile) => {
     game.addTile(0, 0, new Tile(11, 'CC'));
-  });
+  });*/
 });
 
 // add some test tiles
