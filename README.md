@@ -36,9 +36,10 @@ An educational platform for engaging 14–140 year-olds with music, technology, 
 
 - [x] theme
 - [ ] add tile collision rule(s)
-- [ ] step button to stop running simulation
+- [ ] json load for demo (so that phone updates the 'server' preview)
+- [ ] step button should stop running simulation
 - [ ] step (and step backward?) key input
-- [ ] server-side grid and tile detection
+- [ ] server-side grid and tile detection?
 
 ## bugs:
 
