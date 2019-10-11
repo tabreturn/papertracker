@@ -12,6 +12,8 @@
 
 <body>
 
+  <div id="scanlines"></div>
+
   <div id="controls">
     <button type="button" id="start">start</button>
     <button type="button" id="step">step</button>
@@ -32,8 +34,8 @@
 
   <script src="./static/js-aruco/cv.js"></script>
   <script src="./static/js-aruco/aruco.js"></script>
-  <script src="./static/Aruco.js" type="module"></script>
   <script src="./static/Tone.js"></script>
+  <script src="./static/Aruco.js" type="module"></script>
   <script src="./static/Tile.js" type="module"></script>
   <script src="./static/Board.js" type="module"></script>
 
@@ -91,6 +93,7 @@
       window.setInterval(() => game.updateBoard(), 1000/game.speed);
       e.srcElement.classList.add('active');
     });
+    
   </script>
 
 </body>

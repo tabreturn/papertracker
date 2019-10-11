@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
+@import url('https://fonts.googleapis.com/css?family=VT323');
 
 :root {
    /* darkest to lightest */
@@ -10,23 +10,37 @@
 
 body {
   background-color: var(--swatch1);
-  font-family: 'Nunito', sans-serif;
+  background-image: url('bg.png');
+  background-position: center top;
+  background-size: 1000px;
+  font-family: 'VT323', monospace;
   font-size: 18px;
   margin: 0.5em;
   text-align: center;
 }
 
 button {
-  box-shadow: 0 2px 1px 2px rgba(0,0,0, 0.1);
-  background: linear-gradient(to bottom, var(--swatch2) 0%, var(--swatch1) 220%);
-  background-color: #637aad;
+  /*box-shadow: 0 2px 1px 2px rgba(0,0,0, 0.1);*/
+  background-color: var(--swatch2);
   border: #000;
   color: var(--swatch4);
   cursor: pointer;
   display: inline-block;
-  font-family: 'Nunito', sans-serif;
-  font-size: 16px;
+  font-family: 'VT323', monospace;
+  font-size: 22px;
   padding: 6px 12px;
+}
+
+#scanlines {
+  background-image: url('scanline.svg');
+  background-size: 4px;
+  /*background-image: url('grid.png'); background-size: 11.35px 22px;*/
+  height: 100%;
+  left: 0;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
 #board {
@@ -37,7 +51,7 @@ button {
   display: grid;
   font-size: 12px;
   margin: auto;
-  outline: 8px solid var(--swatch4);
+  outline: 10px solid var(--swatch4);
 }
 
 #board img {
@@ -63,12 +77,11 @@ button {
 }
 
 #board .cell .tile1 {
-  border-right: 1px dotted var(--swatch3);
+  /*border-right: 1px dotted var(--swatch3);*/
 }
 
 #controls {
   margin-bottom: 20px;
-  margin-top: 15px;
 }
 
 #controls .active {
@@ -79,7 +92,6 @@ button {
 
   #board {
     border-width: 2px;
-    outline-width: 12px;
     font-size: 17px;
   }
 
