@@ -35,8 +35,7 @@ document.getElementById('snap').addEventListener('click', () => {
   const file = document.getElementById('photo');
   const data = new FormData();
   data.append('image', file.files[0]);
-  data.append('time', Date.now());
-
+  
   fetch('/snap', {
     method: 'PUT',
     body: data

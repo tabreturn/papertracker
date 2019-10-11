@@ -11,3 +11,4 @@ webserver/*.py[cod]
 webserver/*$py.class
 webserver/env
 webserver/static/opencv/result.jpg
+webserver/static/tmp
