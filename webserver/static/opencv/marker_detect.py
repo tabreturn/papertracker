@@ -7,7 +7,7 @@ params = aruco.DetectorParameters_create()
 corners, ids, rejectedpoints = aruco.detectMarkers(photo, arucodict, parameters=params)
 
 aruco.drawDetectedMarkers(photo, corners, ids)
-#aruco.drawDetectedMarkers(photo, rejectedpoints, borderColor=(100, 0, 240))
+aruco.drawDetectedMarkers(photo, rejectedpoints, borderColor=(100, 0, 240))
 
-cv2.imshow('result', photo);
+cv2.imwrite('result.jpg', photo);
 cv2.waitKey(0);

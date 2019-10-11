@@ -19,10 +19,18 @@ export class Aruco {
     this.context = canvas.getContext('2d');
     this.tiles = [];
     // access the webcam
-    navigator.mediaDevices.getUserMedia({ audio:false, video:{facingMode:{exact:'environment'}} }).
+    const constraints = {
+       audio: false,
+       video: {
+         facingMode: { exact: 'environment' },
+         width: { min: 1280 },
+         height: { min: 720 }
+       }
+    }
+    navigator.mediaDevices.getUserMedia(constraints).
       then((stream) => { video.srcObject = stream }).
       catch(() => {
-        navigator.mediaDevices.getUserMedia({ audio:false, video:true }).
+        navigator.mediaDevices.getUserMedia({ video:true }).
           then((stream) => { video.srcObject = stream }).
           catch((error) => { console.log(error) });
       });
@@ -37,8 +45,16 @@ export class Aruco {
     requestAnimationFrame(() => { this.tick() });
 
     let detector = new AR.Detector();
-
-    if (video.readyState === video.HAVE_ENOUGH_DATA) {
+    // use testimg over video if the element exists
+    if (document.getElementById('testimg')) {
+      let testimg = document.getElementById('testimg');
+      this.context.drawImage(testimg, 0, 0, testimg.width, testimg.height);
+      let markers = detector.detect(this.context.getImageData(0, 0, testimg.width, testimg.height));
+      this.drawCorners(markers);
+      this.drawId(markers);
+    }
+    // else use camera/webcam feed
+    else if (video.readyState === video.HAVE_ENOUGH_DATA) {
       // draw the frame first
       let cw = canvas.width;
       let ch = canvas.height;
