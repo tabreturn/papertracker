@@ -20,25 +20,25 @@
 
       <div id="app">
 
-        <div id="board" class="frame">
+        <div id="snap" class="frame">
+          <video id="video" autoplay="true"></video>
+          <div class="ui">
+            <button type="button" id="snap1">snap a pic</button>
+            <button type="button" id="snap2" class="hide">snap another angle</button>
+          </div>
+        </div>
+
+        <div id="board" class="frame hide">
           <div class="ui">
             <div class="controls">
               <button type="button" id="start">start</button>
               <button type="button" id="step">step</button>
-              <button type="button" id="reload">reload</button>
+              <button type="button" id="reload">re-snap</button>
             </div>
           </div>
         </div>
 
-        <div id="photo" class="frame" style="display:none">
-          <video id="video" autoplay="true"></video>
-          <div class="ui">
-            <button type="button" id="snap">snap</button>
-          </div>
-        </div>
-
         <div id="version">··~*\\ papertracker alpha //*~··</div>
-
       </div>
 
       <canvas id="canvas" style="display:none"></canvas>

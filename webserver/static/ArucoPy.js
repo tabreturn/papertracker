@@ -43,6 +43,7 @@ export class ArucoPy {
     photocanvas.setAttribute('id', 'photocanvas');
     photocanvas.setAttribute('width', this.video.videoWidth);
     photocanvas.setAttribute('height', this.video.videoHeight);
+    photocanvas.style.display = 'none';
     document.body.appendChild(photocanvas);
     photocanvas = document.getElementById('photocanvas');
     const context = photocanvas.getContext('2d');

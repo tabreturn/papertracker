@@ -33,7 +33,9 @@ body {
 
 button {
   background-color: var(--swatch2);
-  border: 1px solid var(--swatch0);
+  border: 2px solid var(--swatch0);
+  border-left-color: var(--swatch3);
+  border-top-color: var(--swatch3);
   color: var(--swatch4);
   cursor: pointer;
   display: inline-block;
@@ -68,6 +70,10 @@ button {
   outline: 8px solid var(--swatch1);
 }
 
+.hide {
+  display: none !important;
+}
+
 #version {
   color: var(--swatch3);
   font-size: 0.75em;
@@ -79,17 +85,17 @@ button {
 /* video & photo
 –––––––––––––––––––––––––––––––––––––––––––––––––---------------------------– */
 
-#photo {
+#snap {
   align-items: center;
   display: flex;
   justify-content: center;
 }
 
-#photo .ui {
+#snap .ui {
   position: absolute;
 }
 
-#video {
+#snap video {
   border: 1px solid var(--swatch3);
   display: block;
   font-size: inherit;
@@ -157,7 +163,6 @@ background-color: red;
 
 @media (min-width: 600px) {
 
-  button,
   #board,
   #board .cell {
     border-width: 2px;

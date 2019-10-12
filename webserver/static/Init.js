@@ -16,27 +16,44 @@ else {
 
 game.setupBoard();
 
-// start button
+// photo buttons
+
+document.getElementById('snap1').addEventListener('click', (e) => {
+  detect.snap();
+  e.target.classList.add('hide');
+  document.getElementById('snap2').classList.remove('hide');
+});
+
+document.getElementById('snap2').addEventListener('click', (e) => {
+  detect.snap();
+  e.target.style.display = 'none';
+  document.getElementById('snap').classList.add('hide');
+  document.getElementById('board').classList.remove('hide');
+});
+
+// board buttons
+
 document.getElementById('start').addEventListener('click', (e) => {
   window.setInterval(() => game.updateBoard(), 1000/game.speed);
   e.srcElement.classList.add('active');
 });
-// step button
+
 document.getElementById('step').addEventListener('click', () => {
   game.updateBoard();
   //console.log(game);
 });
-// reload button
+
 document.getElementById('reload').addEventListener('click', () => {
   location.reload();
 });
-// snap button
-document.getElementById('snap').addEventListener('click', () => {
-  detect.snap();
-  /*detect.tiles.forEach((tile) => {
-    game.addTile(0, 0, new Tile(11, 'CC'));
-  });*/
-});
+
+
+/*detect.tiles.forEach((tile) => {
+  game.addTile(0, 0, new Tile(11, 'CC'));
+});*/
+
+
+
 
 // add some test tiles
 game.addTile(0, 0, new Tile('S', 'CC'));
