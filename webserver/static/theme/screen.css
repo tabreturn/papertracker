@@ -86,7 +86,8 @@ button {
 }
 
 #controls .active {
-  background: linear-gradient(to bottom, var(--swatch1) 0%, var(--swatch2) 220%);
+  /*background: linear-gradient(to bottom, var(--swatch1) 0%, var(--swatch2) 220%);*/
+  background-color: var(--swatch1);
 }
 
 @media (min-width: 600px) {
