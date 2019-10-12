@@ -22,7 +22,7 @@ const snap0 = document.getElementById('snap0');
 const snap1 = document.getElementById('snap1');
 const snap2 = document.getElementById('snap2');
 
-snap0.addEventListener('click', (e) => {
+snap0.addEventListener('click', () => {
   const doc = window.document;
   const docel = doc.documentElement;
   const requestFullScreen = doc.documentElement.requestFullscreen;
