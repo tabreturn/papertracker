@@ -23,9 +23,14 @@ const snap1 = document.getElementById('snap1');
 const snap2 = document.getElementById('snap2');
 
 snap0.addEventListener('touchend', (e) => {
-  document.body.requestFullscreen();
   e.target.classList.add('hide');
   snap1.classList.remove('hide');
+  try {
+    document.body.requestFullscreen();
+  }
+  catch (e) {
+    alert(e);
+  }
 });
 
 if (window.screen.width > 960) {
