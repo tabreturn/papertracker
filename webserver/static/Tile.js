@@ -21,10 +21,10 @@ export class Tile {
 
       switch (v) {
         // directions
-        case 'N': case 10: this.tilepair[i] = 'N'; this.tileicons[i] = '<i class="fas fa-arrow-up"></i>'; break;
-        case 'S': case 11: this.tilepair[i] = 'S'; this.tileicons[i] = '<i class="fas fa-arrow-down"></i>'; break;
-        case 'W': case 12: this.tilepair[i] = 'W'; this.tileicons[i] = '<i class="fas fa-arrow-left"></i>'; break;
-        case 'E': case 13: this.tilepair[i] = 'E'; this.tileicons[i] = '<i class="fas fa-arrow-right"></i>'; break;
+        case 'N': case 10: this.tilepair[i] = 'N'; this.tileicons[i] = '↑'; break; // for font-awesome use <i class="fas fa-arrow-down"></i>
+        case 'S': case 11: this.tilepair[i] = 'S'; this.tileicons[i] = '↓'; break;
+        case 'W': case 12: this.tilepair[i] = 'W'; this.tileicons[i] = '←'; break;
+        case 'E': case 13: this.tilepair[i] = 'E'; this.tileicons[i] = '→'; break;
         // colors
         case 'CC': case 14: this.tileicons[i] = '#00FFFF'; break;
         case 'CM': case 15: this.tileicons[i] = '#FF00FF'; break;
@@ -34,27 +34,27 @@ export class Tile {
         case 'C6': case 19: this.tileicons[i] = '#FF00FF'; break;
         // audio
         case 'AH': case 20:
-          this.tileicons[i] = '<img src="static/samples/hi-hat-svgrepo-com.svg">';
+          this.tileicons[i] = 'ѻ'; // for an image use '<img src="static/samples/hi-hat-svgrepo-com.svg">';
           this.tileaudio[i] = ['sample', id];
           this.preloadSample('static/samples/hihat.mp3', id)
           break;
         case 'AS1': case 21:
-          this.tileicons[i] = '<img src="static/samples/keyboard-music-and-multimedia-svgrepo-com.svg">';
+          this.tileicons[i] = 'k';
           this.tileaudio[i] = ['sample', id];
           this.preloadSample('static/samples/stab1.mp3', id)
           break;
         case 'AS2': case 22:
-          this.tileicons[i] = '<img src="static/samples/keyboard-music-and-multimedia-svgrepo-com.svg">';
+          this.tileicons[i] = 'K';
           this.tileaudio[i] = ['sample', id];
           this.preloadSample('static/samples/stab2.mp3', id)
           break;
         case 'AK1': case 23:
-          this.tileicons[i] = '<img src="static/samples/bass-drum-svgrepo-com.svg">';
+          this.tileicons[i] = 'Ô';
           this.tileaudio[i] = ['sample', id];
           this.preloadSample('static/samples/kick1.mp3', id)
           break;
         case 'AK2': case 24:
-          this.tileicons[i] = '<img src="static/samples/bass-drum-svgrepo-com.svg">';
+          this.tileicons[i] = 'Ö';
           this.tileaudio[i] = ['sample', id];
           this.preloadSample('static/samples/kick2.mp3', id)
           break;

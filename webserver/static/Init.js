@@ -1,8 +1,8 @@
-import {Aruco} from './Aruco.js';
+import {ArucoPy} from './ArucoPy.js'; // for js, use ArucoJS
 import {Tile}  from './Tile.js';
 import {Board} from './Board.js';
 
-const detect = new Aruco('canvas');
+const detect = new ArucoPy('canvas');
 const devmode = 1;
 
 if (devmode) {
@@ -35,7 +35,7 @@ document.getElementById('snap').addEventListener('click', () => {
   const file = document.getElementById('photo');
   const data = new FormData();
   data.append('image', file.files[0]);
-  
+
   fetch('/snap', {
     method: 'PUT',
     body: data

@@ -5,8 +5,8 @@
     <meta charset="utf-8" />
     <title>papertracker</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="icon" type="image/gif" href="{{ url_for('static', filename='favicon.gif') }}" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='screen.css') }}" />
+    <link rel="icon" type="image/gif" href="{{ url_for('static', filename='theme/favicon.gif') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='theme/screen.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='fontawesome/css/all.min.css') }}" />
   </head>
 
@@ -22,21 +22,13 @@
 
     <div id="board"></div>
 
-    <p>
-      <!-- uncomment img to switch from webcam to test image -->
-      <img src="static/opencv/test.jpg" id="testimg" />
-      <canvas id="canvas" width="1280" height="720"></canvas>
-    </p>
+    <canvas id="canvas" width="1280" height="720"></canvas>
 
-    <input type="file" id="photo" /> 
+    <input type="file" id="photo" />
     <button type="button" id="snap">snap</button>
 
     <script src="./static/js-aruco/cv.js"></script>
     <script src="./static/js-aruco/aruco.js"></script>
-    <script src="./static/Tone.js"></script>
-    <script src="./static/Aruco.js" type="module"></script>
-    <script src="./static/Tile.js" type="module"></script>
-    <script src="./static/Board.js" type="module"></script>
     <script src="./static/Init.js" type="module"></script>
 
   </body>

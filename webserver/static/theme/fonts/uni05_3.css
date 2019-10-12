@@ -1,0 +1,18 @@
+/**
+ * Uni Fonts by Craig Kroeger.
+ * http://www.miniml.com/fonts/index.html
+ */
+
+@font-face {
+  font-family: 'uni0553';
+  font-style: normal;
+  font-weight: 400;
+  src: url('uni0553-webfont.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'uni0563';
+  font-style: normal;
+  font-weight: 400;
+  src: url('uni0563-webfont.woff') format('woff');
+}
