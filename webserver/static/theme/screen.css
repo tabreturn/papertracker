@@ -76,8 +76,7 @@ button {
 
 #version {
   color: var(--swatch3);
-  font-size: 0.75em;
-  margin-top: 20px;
+  margin-top: 15px;
   opacity: 0.6;
   text-align: center;
 }
@@ -175,7 +174,4 @@ background-color: red;
   #scanlines {
     background-size: 3.5px;
   }
-
-  #version {
-    font-size: inherit;
 }
