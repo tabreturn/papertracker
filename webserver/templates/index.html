@@ -14,22 +14,40 @@
 
     <div id="scanlines"></div>
 
-    <div id="controls">
-      <button type="button" id="start">start</button>
-      <button type="button" id="step">step</button>
-      <button type="button" id="reload">reload</button>
+    <div id="wrapper">
+
+      <input type="file" id="photo" style="display:none" />
+
+      <div id="app">
+
+        <div id="board" class="frame">
+          <div class="ui">
+            <div class="controls">
+              <button type="button" id="start">start</button>
+              <button type="button" id="step">step</button>
+              <button type="button" id="reload">reload</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="photo" class="frame" style="display:none">
+          <video id="video" autoplay="true"></video>
+          <div class="ui">
+            <button type="button" id="snap">snap</button>
+          </div>
+        </div>
+
+        <div id="version">··~*\\ papertracker alpha //*~··</div>
+
+      </div>
+
+      <canvas id="canvas" style="display:none"></canvas>
+
+      <script src="./static/js-aruco/cv.js"></script>
+      <script src="./static/js-aruco/aruco.js"></script>
+      <script src="./static/Init.js" type="module"></script>
+
     </div>
-
-    <div id="board"></div>
-
-    <canvas id="canvas" width="1280" height="720"></canvas>
-
-    <input type="file" id="photo" />
-    <button type="button" id="snap">snap</button>
-
-    <script src="./static/js-aruco/cv.js"></script>
-    <script src="./static/js-aruco/aruco.js"></script>
-    <script src="./static/Init.js" type="module"></script>
 
   </body>
 </html>

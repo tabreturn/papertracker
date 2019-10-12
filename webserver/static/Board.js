@@ -1,5 +1,7 @@
 /**
  * Board module for drawing and controlling the board (and cells and pulses arrays).
+ * Tone sounds require the Tone.js library:
+ * <script src="./static/Tone.js"></script>
  * @module Board
  */
 
@@ -166,7 +168,7 @@ export class Board {
         sample.currentTime = 0 // without this, js won't play same audio file in rapid succession (fix later)
         sample.play();
         break;
-      case 'tone':
+      case 'tone': // tone sounds require the Tone.js library
         const synth = new Tone.Synth().toMaster();
         synth.triggerAttackRelease(tileaudio[1], tileaudio[2]);
         break;

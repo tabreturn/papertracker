@@ -2,7 +2,7 @@ import {ArucoPy} from './ArucoPy.js'; // for js, use ArucoJS
 import {Tile}  from './Tile.js';
 import {Board} from './Board.js';
 
-const detect = new ArucoPy('canvas');
+const detect = new ArucoPy('video', '/snap');
 const devmode = 1;
 
 if (devmode) {
@@ -32,17 +32,7 @@ document.getElementById('reload').addEventListener('click', () => {
 });
 // snap button
 document.getElementById('snap').addEventListener('click', () => {
-  const file = document.getElementById('photo');
-  const data = new FormData();
-  data.append('image', file.files[0]);
-
-  fetch('/snap', {
-    method: 'PUT',
-    body: data
-  })
-  .then( response => console.log(response) )
-  .catch( error => console.log(error) );
-
+  detect.snap();
   /*detect.tiles.forEach((tile) => {
     game.addTile(0, 0, new Tile(11, 'CC'));
   });*/

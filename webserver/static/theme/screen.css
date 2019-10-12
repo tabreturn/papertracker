@@ -1,5 +1,8 @@
 @import url('fonts/uni05_3.css');
 
+/* swatches
+–––––––––––––––––––––––––––––––––––––––––––––––––---------------------------– */
+
 :root {
    /* darkest to lightest */
   --swatch0: #081523;
@@ -9,19 +12,26 @@
   --swatch4: #F9FAFA;
 }
 
+/* tags & page setup
+–––––––––––––––––––––––––––––––––––––––––––––––––---------------------------– */
+
+body,
+html {
+  height: 100%;
+  margin: 0;
+}
+
 body {
   background-color: var(--swatch0);
   background-image: url('bg.png');
-  background-position: center top;
+  background-position: center;
+  background-repeat: repeat-x;
   background-size: 1100px;
   font-family: 'uni0553', monospace;
-  font-size: 70%;
-  margin: 0.5em;
-  text-align: center;
+  font-size: 100%;
 }
 
 button {
-  /*box-shadow: 0 2px 1px 2px rgba(0,0,0, 0.1);*/
   background-color: var(--swatch2);
   border: 1px solid var(--swatch0);
   color: var(--swatch4);
@@ -29,7 +39,7 @@ button {
   display: inline-block;
   font-family: inherit;
   font-size: 0.9em;
-  padding-bottom: 0.75%;
+  padding: 0 10px 5px 10px;
 }
 
 #scanlines {
@@ -41,18 +51,65 @@ button {
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 99;
 }
+
+#wrapper {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+}
+
+/* embellishments
+–––––––––––––––––––––––––––––––––––––––––––––––––---------------------------– */
+
+.frame {
+  outline: 8px solid var(--swatch1);
+}
+
+#version {
+  color: var(--swatch3);
+  font-size: 0.75em;
+  margin-top: 20px;
+  opacity: 0.6;
+  text-align: center;
+}
+
+/* video & photo
+–––––––––––––––––––––––––––––––––––––––––––––––––---------------------------– */
+
+#photo {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+#photo .ui {
+  position: absolute;
+}
+
+#video {
+  border: 1px solid var(--swatch3);
+  display: block;
+  font-size: inherit;
+  margin: auto;
+  max-width: 800px;
+  max-height: 250px;
+}
+
+/* game board
+–––––––––––––––––––––––––––––––––––––––––––––––––---------------------------– */
 
 #board {
   background-color: var(--swatch4);
   border-left: 1px solid var(--swatch3);
   border-top: 1px solid var(--swatch3);
-  box-shadow: 0 3px 5px 10px rgba(0,0,0, 0.2);
   color: var(--swatch0);
   display: grid;
-  font-size: inherit;
+  font-size: 80%;
   margin: auto;
-  outline: 8px solid var(--swatch1);
+  position: relative;
 }
 
 #board img {
@@ -81,20 +138,24 @@ button {
   /*border-right: 1px dotted var(--swatch3);*/
 }
 
-#controls {
-  margin-bottom: 20px;
+#board .ui {
+background-color: red;
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  margin-right: auto;
+  position: absolute;
 }
 
-#controls .active {
-  /*background: linear-gradient(to bottom, var(--swatch1) 0%, var(--swatch2) 220%);*/
+#board .ui .controls .active {
   background-color: var(--swatch1);
 }
 
-@media (min-width: 600px) {
+/* media queries
+–––––––––––––––––––––––––––––––––––––––––––––––––---------------------------– */
 
-  body {
-    font-size: 1.4em;
-  }
+@media (min-width: 600px) {
 
   button,
   #board,
@@ -102,7 +163,14 @@ button {
     border-width: 2px;
   }
 
+  #board {
+    font-size: 1.2em;
+  }
+
   #scanlines {
     background-size: 3.5px;
   }
+
+  #version {
+    font-size: inherit;
 }
