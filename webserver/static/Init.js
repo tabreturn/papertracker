@@ -28,7 +28,7 @@ snap0.addEventListener('touchend', (e) => {
   snap1.classList.remove('hide');
 });
 
-if (window.screen.width > 600) {
+if (window.screen.width > 960) {
   document.getElementById('snap0').classList.add('hide');
   snap1.classList.remove('hide');
 }
