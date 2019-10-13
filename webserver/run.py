@@ -25,8 +25,7 @@ def snap():
 
     if int(count) == 2:
         coords = DetectTiles(['snap1', 'snap2'], 'static/tmp/')
-        #coords.arucoDetect()
-        return jsonify('coords')
+        return jsonify(coords.arucoDetect())
 
     return jsonify('2 images required')
 

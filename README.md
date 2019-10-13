@@ -35,7 +35,8 @@ An educational platform for engaging 14–140 year-olds with music, technology, 
 ## features:
 
 - [x] theme
-- [ ] opencv detect from 2 images
+- [x] opencv detect from 2 images
+- [x] opencv detect tile grid coordinates
 - [ ] flask to tile coordinates
 - [ ] place tiles (after above point)
 - [ ] working 'step' buttons (app proceeds though each step)

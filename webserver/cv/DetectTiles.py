@@ -19,4 +19,4 @@ class DetectTiles:
             aruco.drawDetectedMarkers(img, rejectedpoints, borderColor=(100, 0, 240))
             cv2.imwrite(('{}/{}-result.png').format(self.outdir, snap), img)
 
-        return 'coords'
+        return ids.tolist()
