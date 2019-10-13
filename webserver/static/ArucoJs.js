@@ -1,5 +1,8 @@
 /**
- * INCOMPLETE -- OPENCV FAR MORE ADEPT AND RELIABLE
+ * WARNING: Unfinished!
+ * USING ArucoPy.js instead!
+ * (OpenCV far more accurate and reliable)
+ *
  * Aruco module for detecting markers in images using client-side JavaScript.
  * To use an image instead of a camera feed, add this image tag:
  * <img src="static/opencv/test.jpg" id="testimg" />

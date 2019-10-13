@@ -1,4 +1,4 @@
-import {ArucoPy} from './ArucoPy.js'; // for js, use ArucoJS
+import {ArucoPy} from './ArucoPy.js';
 import {Tile}  from './Tile.js';
 import {Board} from './Board.js';
 
@@ -25,15 +25,10 @@ const snap2 = document.getElementById('snap2');
 snap0.addEventListener('touchend', (e) => {
   e.target.classList.add('hide');
   snap1.classList.remove('hide');
-  try {
-    document.body.requestFullscreen();
-  }
-  catch (e) {
-    alert(e);
-  }
+  document.body.requestFullscreen();
 });
 
-if (window.screen.width > 960) {
+if (window.screen.width > 950 || window.fullScreen) {
   document.getElementById('snap0').classList.add('hide');
   snap1.classList.remove('hide');
 }
