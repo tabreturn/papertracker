@@ -33,12 +33,12 @@ export class ArucoJs {
          height: { min: 720 }
        }
     }
-    navigator.mediaDevices.getUserMedia(constraints).
-      then((stream) => { video.srcObject = stream }).
-      catch(() => {
-        navigator.mediaDevices.getUserMedia({ video:true }).
-          then((stream) => { video.srcObject = stream }).
-          catch((error) => { console.log(error) });
+    navigator.mediaDevices.getUserMedia(constraints)
+      .then((stream) => { video.srcObject = stream })
+      .catch(() => {
+        navigator.mediaDevices.getUserMedia({ video:true })
+          .then((stream) => { video.srcObject = stream })
+          .catch((error) => { console.log(error) });
       });
 
     requestAnimationFrame(() => { this.tick() });

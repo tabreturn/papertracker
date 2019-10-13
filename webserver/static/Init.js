@@ -34,13 +34,14 @@ if (window.screen.width > 950 || window.fullScreen) {
 }
 
 snap1.addEventListener('click', (e) => {
-  detect.snap();
+  detect.snap(1);
+  snap0.classList.add('hide');
   e.target.classList.add('hide');
   snap2.classList.remove('hide');
 });
 
 snap2.addEventListener('click', (e) => {
-  detect.snap();
+  detect.snap(2);
   e.target.style.display = 'none';
   document.getElementById('snap').classList.add('hide');
   document.getElementById('board').classList.remove('hide');
@@ -66,10 +67,6 @@ document.getElementById('reload').addEventListener('click', () => {
 /*detect.tiles.forEach((tile) => {
   game.addTile(0, 0, new Tile(11, 'CC'));
 });*/
-
-
-
-
 // add some test tiles
 game.addTile(0, 0, new Tile('S', 'CC'));
 game.addTile(0, 4, new Tile('AS1', 'E', 'h')); // h arg is for optional orientation (yet to implement)

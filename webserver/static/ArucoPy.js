@@ -21,12 +21,12 @@ export class ArucoPy {
          height: { min: 720 }
        }
     }
-    navigator.mediaDevices.getUserMedia(constraints).
-      then((stream) => { video.srcObject = stream; video.play() }).
-      catch(() => {
-        navigator.mediaDevices.getUserMedia({ video:true }).
-          then((stream) => { video.srcObject = stream }).
-          catch((error) => { alert(error) });
+    navigator.mediaDevices.getUserMedia(constraints)
+      .then((stream) => { video.srcObject = stream; video.play() })
+      .catch(() => {
+        navigator.mediaDevices.getUserMedia({ video:true })
+          .then((stream) => { video.srcObject = stream })
+          .catch((error) => { alert(error) });
       });
   }
 
@@ -34,26 +34,29 @@ export class ArucoPy {
    * Send canvas image data to a REST endpoint.
    * @param {string} photocanvas ID attribute for the canvas to submit as an image.
    * @param {string} resturl Endpoint to which the image is to be submitted.
+   * @param {number} count For submitting multiple photos.
    * @param {string} method ['PUT'] HTTP request method.
    */
-  submit(photocanvas, resturl, method='PUT') {
+  submit(photocanvas, resturl, count, method='PUT') {
     const canvas = document.getElementById(photocanvas);
-    const data = new FormData();
-    data.append('imageBase64', canvas.toDataURL());
+    const formdata = new FormData();
+    formdata.append('imageBase64', canvas.toDataURL());
+    formdata.append('count', count);
 
     fetch('/snap', {
       method: method,
-      body: data
-    }).
-      then (response => console.log(response)).
-      catch (error => console.log(error));
+      body: formdata
+    })
+      .then(response => response.json())
+      .then(json => console.log(json))
   }
 
   /**
    * Take a photograph and submit it to the back-end.
-   * @param {function} submitfunc [this.submit] Function for submitting.
+   * @param {function} submitfunc [this.submit] Function for submitting to endpoint.
+   * @param {number} count For submitting multiple photos.
    */
-  snap(submitfunc=this.submit) {
+  snap(count, submitfunc=this.submit) {
     // add invisible canvas for photo data
     let photocanvas = document.createElement('canvas');
     photocanvas.setAttribute('id', 'photocanvas');
@@ -65,6 +68,6 @@ export class ArucoPy {
     // draw photo to canvas
     const context = photocanvas.getContext('2d');
     context.drawImage(this.video, 0, 0, this.video.videoWidth, this.video.videoHeight);
-    submitfunc('photocanvas', this.resturl);
+    submitfunc('photocanvas', this.resturl, count);
   }
 }

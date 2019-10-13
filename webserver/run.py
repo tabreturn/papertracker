@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request
+from flask import Flask, jsonify, render_template, request
+from cv.DetectTiles import DetectTiles
 import base64
 import cv2
 import cv2.aruco as aruco
@@ -16,16 +17,18 @@ def snap():
     # convert base64 string to binary image
     b64string = request.values['imageBase64'].split(',')[1]
     b64image = np.fromstring(base64.b64decode(b64string), np.uint8)
-    # detect markers
+    # save image(s)
+    count = request.values['count']
+    filename = ('{}/snap{}.png').format(app.config['UPLOADS'], count)
     snap = cv2.imdecode(b64image, cv2.IMREAD_COLOR)
-    arucodict = aruco.Dictionary_get(aruco.DICT_ARUCO_ORIGINAL)
-    params = aruco.DetectorParameters_create()
-    corners, ids, rejectedpoints = aruco.detectMarkers(snap, arucodict, parameters=params)
-    aruco.drawDetectedMarkers(snap, corners, ids)
-    aruco.drawDetectedMarkers(snap, rejectedpoints, borderColor=(100, 0, 240))
-    # save result
-    cv2.imwrite(app.config['UPLOADS']+'/result.jpg', snap);
-    return 'done'
+    cv2.imwrite(filename, snap)
+
+    if int(count) == 2:
+        coords = DetectTiles(['snap1', 'snap2'], 'static/tmp/')
+        #coords.arucoDetect()
+        return jsonify('coords')
+
+    return jsonify('2 images required')
 
 if __name__ == '__main__':
     app.run()
