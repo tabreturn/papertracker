@@ -1,5 +1,5 @@
-from flask import Flask, jsonify, render_template, request
 from cv.DetectTiles import DetectTiles
+from flask import Flask, jsonify, render_template, request
 import base64
 import cv2
 import cv2.aruco as aruco
