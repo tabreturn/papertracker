@@ -46,6 +46,7 @@ An educational platform for engaging 14–140 year-olds with music, technology, 
 - [ ] step button should stop running simulation
 - [ ] step (and step backward?) key input
 - [ ] server-side grid and tile detection?
+- [ ] splash/instruction screen?
 
 ## bugs:
 
