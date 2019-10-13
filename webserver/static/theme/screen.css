@@ -45,8 +45,7 @@ button {
 }
 
 #scanlines {
-  background-image: url('scanline.svg');
-  background-size: 2.5px;
+  background-image: url('scanline.png');
   height: 100%;
   left: 0;
   pointer-events: none;
@@ -169,9 +168,5 @@ background-color: red;
 
   #board {
     font-size: 1.2em;
-  }
-
-  #scanlines {
-    background-size: 3.5px;
   }
 }
