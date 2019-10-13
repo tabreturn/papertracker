@@ -24,7 +24,7 @@ html {
 body {
   background-color: var(--swatch0);
   background-image: url('bg.png');
-  background-position: center 55%;
+  background-position: center 45%;
   background-repeat: repeat-x;
   background-size: 1100px;
   font-family: 'uni0553', monospace;
