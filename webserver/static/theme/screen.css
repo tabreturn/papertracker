@@ -40,12 +40,13 @@ button {
   cursor: pointer;
   display: inline-block;
   font-family: inherit;
-  font-size: 0.9em;
+  font-size: 1rem;
   padding: 0 10px 5px 10px;
 }
 
 #scanlines {
   background-image: url('scanline.png');
+  background-size: 4px;
   height: 100%;
   left: 0;
   pointer-events: none;
@@ -75,6 +76,7 @@ button {
 
 #version {
   color: var(--swatch3);
+  font-size: 1rem;
   margin-top: 15px;
   opacity: 0.6;
   text-align: center;
@@ -94,7 +96,7 @@ button {
 }
 
 #snap video {
-  border: 1px solid var(--swatch3);
+  border: 2px solid var(--swatch3);
   display: block;
   font-size: inherit;
   margin: auto;
@@ -107,11 +109,10 @@ button {
 
 #board {
   background-color: var(--swatch4);
-  border-left: 1px solid var(--swatch3);
-  border-top: 1px solid var(--swatch3);
+  border-left: 2px solid var(--swatch3);
+  border-top: 2px solid var(--swatch3);
   color: var(--swatch0);
   display: grid;
-  font-size: 80%;
   margin: auto;
   position: relative;
 }
@@ -124,8 +125,8 @@ button {
 
 #board .cell {
   align-items: center;
-  border-bottom: 1px solid var(--swatch3);
-  border-right: 1px solid var(--swatch3);
+  border-bottom: 2px solid var(--swatch3);
+  border-right: 2px solid var(--swatch3);
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
@@ -134,7 +135,6 @@ button {
 #board .cell .tile2 {
   align-items: center;
   display: flex;
-  height: 100%;
   justify-content: center;
 }
 
@@ -143,13 +143,14 @@ button {
 }
 
 #board .ui {
-background-color: red;
+  background-color: rgba(0,0,0,0.5);
   align-items: center;
   display: flex;
   height: 100%;
   justify-content: center;
   margin-right: auto;
   position: absolute;
+  width: 100%;
 }
 
 #board .ui .controls .active {
@@ -160,11 +161,6 @@ background-color: red;
 –––––––––––––––––––––––––––––––––––––––––––––––––---------------------------– */
 
 @media (min-width: 600px) {
-
-  #board,
-  #board .cell {
-    border-width: 2px;
-  }
 
   #board {
     font-size: 1.2em;
