@@ -10,6 +10,7 @@
   --swatch2: #6400C5;
   --swatch3: #6D8A9E;
   --swatch4: #F9FAFA;
+  --focus: #FA0;
 }
 
 /* tags & page setup
@@ -85,6 +86,14 @@ h1 {
 
 /* embellishments
 –––––––––––––––––––––––––––––––––––––––––––––––––---------------------------– */
+
+*:focus {
+  outline: 2px solid var(--focus);
+}
+
+::selection {
+  background-color: var(--focus);
+}
 
 .frame {
   outline: 8px solid var(--swatch1);
