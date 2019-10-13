@@ -120,7 +120,8 @@ h1 {
   display: block;
   font-size: inherit;
   margin: auto;
-  width: 50vw;
+  width: 45vw;
+  max-width: 500px;
 }
 
 /* game board
