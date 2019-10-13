@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8" />
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/gif" href="{{ url_for('static', filename='theme/favicon.gif') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='theme/screen.css') }}" />
+  </head>
+
+  <body>
+
+    <div id="scanlines"></div>
+
+    <div id="wrapper">
+      <div id="app">
+
+        {% block content %}
+        content
+        {% endblock %}
+
+        <div id="version">··~*\\ papertracker alpha //*~··</div>
+      </div>
+    </div>
+
+  </body>
+</html>

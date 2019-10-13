@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %} papertracker {% endblock %}
+
+{% block content %}
+<div id="snap" class="frame">
+  <video id="video" autoplay="true"></video>
+  <div class="ui">
+    <button type="button" id="snap0">[ ] go fullscreen</button>
+    <button type="button" id="snap1">snap a pic</button>
+    <button type="button" id="snap2" class="hide">&hellip; snap another angle &hellip;</button>
+  </div>
+</div>
+
+<div id="board" class="frame hide">
+  <div class="ui">
+    <div class="controls">
+      <button type="button" id="start">&gt; start</button>
+      <button type="button" id="step">&gt;| step</button>
+      <button type="button" id="reload">X re-snap</button>
+    </div>
+  </div>
+</div>
+
+<script src="./static/js-aruco/cv.js"></script>
+<script src="./static/js-aruco/aruco.js"></script>
+<script src="./static/Init.js" type="module"></script>
+{% endblock %}

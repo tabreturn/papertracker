@@ -24,7 +24,7 @@ html {
 body {
   background-color: var(--swatch0);
   background-image: url('bg.png');
-  background-position: center;
+  background-position: center 55%;
   background-repeat: repeat-x;
   background-size: 1100px;
   font-family: 'uni0553', monospace;
@@ -44,6 +44,14 @@ button {
   padding: 0 10px 5px 10px;
 }
 
+h1 {
+  color: var(--swatch4);
+  font-family: 'uni0563';
+  margin: 0;
+  padding-bottom: 0.3em;
+  text-transform: uppercase;
+}
+
 #scanlines {
   background-image: url('scanline.png');
   background-size: 4px;
@@ -61,6 +69,18 @@ button {
   display: flex;
   height: 100%;
   justify-content: center;
+}
+
+/* splash page
+–––––––––––––––––––––––––––––––––––––––––––––––––---------------------------– */
+
+#instructions {
+  color: var(--swatch4);
+  text-align: center;
+}
+
+#instructions p {
+  margin: 0.2em;
 }
 
 /* embellishments

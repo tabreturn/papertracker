@@ -9,8 +9,12 @@ app = Flask(__name__)
 app.config['UPLOADS'] = 'static/tmp'
 
 @app.route('/')
-def index():
-    return render_template('index.html')
+def splash():
+    return render_template('splash.html')
+
+@app.route('/papertracker')
+def papertracker():
+    return render_template('papertracker.html')
 
 @app.route('/snap', methods=['PUT'])
 def snap():
