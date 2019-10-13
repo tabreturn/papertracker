@@ -35,6 +35,9 @@ An educational platform for engaging 14–140 year-olds with music, technology, 
 ## features:
 
 - [x] theme
+- [ ] opencv detect from 2 images
+- [ ] working 'step' buttons (app proceeds though each step)
+- [ ] mobile interface testing & enhancements
 - [ ] add tile collision rule(s)
 - [ ] json load for demo (so that phone updates the 'server' preview)
 - [ ] step button should stop running simulation
