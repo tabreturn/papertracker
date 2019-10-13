@@ -25,7 +25,7 @@ const snap2 = document.getElementById('snap2');
 snap0.addEventListener('touchend', (e) => {
   e.target.classList.add('hide');
   snap1.classList.remove('hide');
-  document.body.requestFullscreen();
+  document.documentElement.requestFullscreen();
 });
 
 if (window.screen.width > 950 || window.fullScreen) {

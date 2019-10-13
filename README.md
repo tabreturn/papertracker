@@ -56,5 +56,5 @@ An educational platform for engaging 14–140 year-olds with music, technology, 
  - [ ] camera and fullscreen should be prompted on splash/instructions page
  - [ ] re-snap button must not reload the page
 - [x] style focus outline (orange 2px?)
-- [ ] background disappears on full-screen
+- [x] background disappears on full-screen
 - [ ] tone stutter (after multiple plays)
