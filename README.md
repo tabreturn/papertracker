@@ -50,7 +50,7 @@ An educational platform for engaging 14–140 year-olds with music, technology, 
 
 ## bugs:
 
-- [ ] photo preview wider, i.e. for tablet (viewport units?)
+- [x] photo preview wider, i.e. for tablet (viewport units?)
 - [ ] background/ansi text to have 'upward fade' (in addition to 'melt')
 - [ ] convert to single page app
  - [ ] camera and fullscreen should be prompted on splash/instructions page
