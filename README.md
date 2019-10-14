@@ -24,13 +24,14 @@ An educational platform for engaging 14–140 year-olds with music, technology, 
 
 ## run
 
-* create virtual environment: `python -m venv env`
-* activate virtual environment: `source env/bin/activate`
-* install flask packages: `pip install flask`
-* set environment variables: `export FLASK_APP=run.py`
-* for debug mode: `export FLASK_DEBUG=1`
-* run the server: `flask run`
-* open website in browser: `http://localhost:5000`
+1. cd to *webserver* directory
+2. create virtual environment: `python -m venv env`
+3. activate virtual environment: `source env/bin/activate`
+4. install packages: `pip install -r requirements.txt`
+5. set environment variables: `export FLASK_APP=run.py`
+6. for flask debug mode: `export FLASK_DEBUG=1`
+7. run the server: `flask run`
+8. open website in browser: `http://localhost:5000`
 
 ## features:
 
