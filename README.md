@@ -33,7 +33,7 @@ An educational platform for engaging 14–140 year-olds with music, technology, 
 7. run the server: `flask run`
 8. open website in browser: `http://localhost:5000`
 
-## features:
+## features
 
 - [x] theme
 - [x] opencv detect from 2 images
@@ -49,7 +49,7 @@ An educational platform for engaging 14–140 year-olds with music, technology, 
 - [ ] server-side grid and tile detection?
 - [ ] splash/instruction screen?
 
-## bugs:
+## bugs
 
 - [x] photo preview wider, i.e. for tablet (viewport units?)
 - [x] background/ansi text to have 'upward fade' (in addition to 'melt')
