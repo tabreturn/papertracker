@@ -52,6 +52,16 @@ export class ArucoPy {
   }
 
   /**
+   * ... .
+   * @param {...} ... ....
+   */
+  placeTiles() {
+    //detect.tiles.forEach((tile) => {
+    //  game.addTile(0, 0, new Tile(11, 'CC'));
+    //});
+  }
+
+  /**
    * Take a photograph and submit it to the back-end.
    * @param {function} submitfunc [this.submit] Function for submitting to endpoint.
    * @param {number} count For submitting multiple photos.

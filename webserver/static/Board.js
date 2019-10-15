@@ -8,15 +8,17 @@
 export class Board {
   /**
    * Create a new board; ordinarily, just one board is required.
-   * @param {number} size=50 Width/height of each cell in pixels.
+   * @param {string} id The id attribute for the board container element.
+     @param {number} size=50 Width/height of each cell in pixels.
      @param {number} rows=9 Number of rows in the grid.
      @param {number} cols=12 Number of columns in the grid.
      @param {number} speed=5 Game speed.
    */
-  constructor(rows=9, cols=12, speed=5) {
+  constructor(id, rows=9, cols=12, speed=5) {
     // config variables
     this.cells = [];  // this array contains only immovable items (tiles)
     this.pulses = []; // this array contains only movable items (pulses)
+    this.id = id;
     this.rows = rows;
     this.cols = cols;
     this.speed = speed;
@@ -26,7 +28,7 @@ export class Board {
    * Populate the cells and pulses arrays, and fill the board with visible cells.
    */
   setupBoard() {
-    const board = document.getElementById('board');
+    const board = document.getElementById(this.id);
     // css for scaling
     const aspectratio = this.rows / this.cols;
     board.style.width = '80vw';

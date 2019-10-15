@@ -9,10 +9,6 @@ app = Flask(__name__)
 app.config['UPLOADS'] = 'static/tmp'
 
 @app.route('/')
-def splash():
-    return render_template('splash.html')
-
-@app.route('/papertracker')
 def papertracker():
     return render_template('papertracker.html')
 
@@ -29,7 +25,8 @@ def snap():
 
     if int(count) == 2:
         coords = DetectTiles(['snap1', 'snap2'], 'static/tmp/')
-        return jsonify(coords.arucoDetect())
+        #return jsonify(coords.arucoDetect())
+        return jsonify('aruco coords')
 
     return jsonify('2 images required')
 

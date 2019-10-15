@@ -3,10 +3,21 @@
 {% block title %} papertracker {% endblock %}
 
 {% block content %}
-<div id="snap">
+<div id="instructions">
+  welcome to
+  <h1>paper<em>tracker</em></h1>
+  <p>place the tiles on the board, then:</p>
+  <p>01. take a photo of your board</p>
+  <p>02. take another photo of your board from another angle</p>
+  <p>03. play or step-through the simulation</p>
+  <br />
+  <button type="button" id="fullscreen">[ ] go fullscreen</button>
+  <button type="button" id="letsgo" class="hide">cool, let's go &gt;&gt;</button>
+</div>
+
+<div id="snap" class="hide">
   <video id="video" autoplay="true" class="frame"></video>
   <div class="ui">
-    <button type="button" id="snap0">[ ] go fullscreen</button>
     <button type="button" id="snap1">snap a pic</button>
     <button type="button" id="snap2" class="hide">&hellip; snap another angle &hellip;</button>
   </div>
@@ -17,12 +28,10 @@
     <div class="controls">
       <button type="button" id="start">&gt; start</button>
       <button type="button" id="step">&gt;| step</button>
-      <button type="button" id="reload">X re-snap</button>
+      <button type="button" id="resnap">X re-snap</button>
     </div>
   </div>
 </div>
 
-<script src="./static/js-aruco/cv.js"></script>
-<script src="./static/js-aruco/aruco.js"></script>
 <script src="./static/Init.js" type="module"></script>
 {% endblock %}

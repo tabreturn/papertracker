@@ -35,27 +35,18 @@ An educational platform for engaging 14–140 year-olds with music, technology, 
 
 ## features
 
-- [x] theme
-- [x] opencv detect from 2 images
-- [x] opencv detect tile grid coordinates
-- [ ] flask to tile coordinates
-- [ ] place tiles (after above point)
-- [ ] working 'step' buttons (app proceeds though each step)
-- [ ] mobile interface testing & enhancements
-- [ ] add tile collision rule(s)
-- [ ] json load for demo (so that phone updates the 'server' preview)
-- [ ] step button should stop running simulation
-- [ ] step (and step backward?) key input
+- [ ] opencv detect tile grid coordinates
+- [ ] flask to return tile coordinates
+- [ ] place tiles (after above step)
+- [ ] add pulse collision rule(s)
+- [ ] monitor interface (to observe what the user sees on their phone)
 - [ ] server-side grid and tile detection?
-- [ ] splash/instruction screen?
+- [ ] during simulation, option to step (and step backward?)
+- [ ] orientable arrow tile
 
 ## bugs
 
-- [x] photo preview wider, i.e. for tablet (viewport units?)
-- [x] background/ansi text to have 'upward fade' (in addition to 'melt')
-- [ ] convert to single page app
+- [x] convert to single page app
  - [ ] camera and fullscreen should be prompted on splash/instructions page
- - [ ] re-snap button must not reload the page
-- [x] style focus outline (orange 2px?)
-- [x] background disappears on full-screen
+ - [x] re-snap button must not reload the page
 - [ ] tone stutter (after multiple plays)
