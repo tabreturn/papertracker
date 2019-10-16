@@ -6,8 +6,10 @@ arucodict = aruco.Dictionary_get(aruco.DICT_ARUCO_ORIGINAL)
 params = aruco.DetectorParameters_create()
 corners, ids, rejectedpoints = aruco.detectMarkers(photo, arucodict, parameters=params)
 
-aruco.drawDetectedMarkers(photo, corners, ids)
+## aruco.drawDetectedMarkers(photo, corners, ids)
 aruco.drawDetectedMarkers(photo, rejectedpoints, borderColor=(100, 0, 240))
+
+print(len(corners))
 
 cv2.imwrite('result.png', photo)
 cv2.waitKey(0)
