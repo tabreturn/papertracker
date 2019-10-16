@@ -43,6 +43,7 @@ An educational platform for engaging 14–140 year-olds with music, technology, 
 - [ ] server-side grid and tile detection?
 - [ ] during simulation, option to step (and step backward?)
 - [ ] orientable arrow tile
+- [ ] cleaner config that specifies for both js and python
 
 ## bugs
 
