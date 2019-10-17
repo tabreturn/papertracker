@@ -4,6 +4,7 @@ import {Board} from './Board.js';
 const video = document.getElementById('video');
 const resturl = '/snap';
 const devmode = 1;
+const sessionid = Date.now();
 
 function spawnBoard() {
 
@@ -17,8 +18,6 @@ function spawnBoard() {
   }
   game.setupBoard();
 }
-
-const sessionid = Date.now();
 
 function snap(count) {
   // add invisible canvas for photo data
@@ -59,13 +58,13 @@ navigator.mediaDevices.getUserMedia(constraints)
       .catch((error) => { alert(error) });
   });
 
-// frames
+// content frames for the instructions/snap/board steps
 
 const fr_instructions = document.getElementById('instructions');
 const fr_snap = document.getElementById('snap');
 const fr_board = document.getElementById('board');
 
-// instruction buttons
+// instruction step buttons
 
 const bt_fullscreen = document.getElementById('fullscreen');
 const bt_letsgo = document.getElementById('letsgo');
@@ -86,7 +85,7 @@ bt_letsgo.addEventListener('click', () => {
   fr_snap.classList.remove('hide');
 });
 
-// photo buttons
+// photo step buttons
 
 const bt_snap1 = document.getElementById('snap1');
 const bt_snap2 = document.getElementById('snap2');
@@ -130,7 +129,7 @@ bt_snap2.addEventListener('click', () => {
     })
 });
 
-// board buttons
+// board step buttons
 
 var interval;
 const boardui = document.querySelector('#board .ui');
