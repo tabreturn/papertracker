@@ -27,9 +27,10 @@ def snap():
     if int(count) == 2:
         # detect tiles after two photos snapped
         coords1 = DetectTiles('test', 'cv/marker_test/') # uncomment for test image
-        print(sessionid+'-1')
         #coords1 = DetectTiles(sessionid+'-1', 'static/tmp/')
         #coords2 = DetectTiles(sessionid+'-2', 'static/tmp/')
+
+        print( coords1.arucoDetect() )
 
         return jsonify(coords1.arucoDetect())
 

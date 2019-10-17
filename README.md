@@ -44,6 +44,7 @@ An educational platform for engaging 14–140 year-olds with music, technology, 
 - [ ] during simulation, option to step (and step backward?)
 - [ ] orientable arrow tile
 - [ ] cleaner config that specifies for both js and python
+- [ ] simultaneous sessions (server prefixes images names?)
 
 ## bugs
 
@@ -51,6 +52,8 @@ An educational platform for engaging 14–140 year-olds with music, technology, 
  - [ ] camera and fullscreen should be prompted on splash/instructions page
  - [x] re-snap button must not reload the page
 - [ ] tone stutter (after multiple plays)
+- [ ] delay buttons and board until server response
+- [ ] audio preloader keeps adding new elements
 
 ---
 

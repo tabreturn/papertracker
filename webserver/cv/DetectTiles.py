@@ -101,6 +101,15 @@ class DetectTiles:
                     labels.append('N')
                     print('up arrow')
 
+            elif (ids[mobjects[i]]== 50):
+                # append label based on id
+                labels.append('cyan')
+            elif (ids[mobjects[i]]== 51):
+                # append label based on id
+                labels.append('magenta')
+            elif (ids[mobjects[i]]== 52):
+                # append label based on id
+                labels.append('yellow')
             elif (ids[mobjects[i]]== 70):
                 # append label based on id
                 labels.append('kick')
@@ -133,17 +142,17 @@ class DetectTiles:
             for y in range(len(ymidPoints)-1):
                 if(cy > ymidPoints[y]) and (cy < ymidPoints[y+1]):
                     rows.append(y+1)
+
             if (cy < ymidPoints[0]):
                 rows.append(1)
 
         ## check shape of rows, cols, and types
         if(len(rows) != len(cols)) or (len(labels) != len(cols)) or (len(labels) != len(rows)):
             print('dim error!!')
+            return('dim error!!')
         else:
-            {
+            return {
                 'column':cols,
                 'rows': rows,
                 'tile_type': labels
             }
-
-        return ids.tolist()
