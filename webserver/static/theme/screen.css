@@ -126,7 +126,13 @@ h1 {
 }
 
 #snap .ui {
+  background-image: url('loading.gif');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
   position: absolute;
+  min-height: 32px;
+  min-width: 32px;
 }
 
 #snap video {

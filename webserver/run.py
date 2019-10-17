@@ -17,17 +17,21 @@ def snap():
     # convert base64 string to binary image
     b64string = request.values['imageBase64'].split(',')[1]
     b64image = np.fromstring(base64.b64decode(b64string), np.uint8)
-    # save image(s)
+    # save image
+    session = request.values['session']
     count = request.values['count']
-    filename = ('{}/snap{}.png').format(app.config['UPLOADS'], count)
+    filename = ('{}/{}-{}.png').format(app.config['UPLOADS'], session, count)
     snap = cv2.imdecode(b64image, cv2.IMREAD_COLOR)
     cv2.imwrite(filename, snap)
 
     if int(count) == 2:
         # detect tiles after two photos snapped
-        #coords = DetectTiles(['test', 'test'], 'cv/marker_test/') # uncomment for test image
-        coords = DetectTiles(['snap1', 'snap2'], 'static/tmp/')
-        return jsonify(coords.arucoDetect())
+        coords1 = DetectTiles('test', 'cv/marker_test/') # uncomment for test image
+        print(session+'-1')
+        #coords1 = DetectTiles(session+'-1', 'static/tmp/')
+        #coords2 = DetectTiles(session+'-2', 'static/tmp/')
+
+        return jsonify(coords1.arucoDetect())
 
     return jsonify('2 images required')
 
