@@ -18,18 +18,18 @@ def snap():
     b64string = request.values['imageBase64'].split(',')[1]
     b64image = np.fromstring(base64.b64decode(b64string), np.uint8)
     # save image
-    session = request.values['session']
+    sessionid = request.values['sessionid']
     count = request.values['count']
-    filename = ('{}/{}-{}.png').format(app.config['UPLOADS'], session, count)
+    filename = ('{}/{}-{}.png').format(app.config['UPLOADS'], sessionid, count)
     snap = cv2.imdecode(b64image, cv2.IMREAD_COLOR)
     cv2.imwrite(filename, snap)
 
     if int(count) == 2:
         # detect tiles after two photos snapped
         coords1 = DetectTiles('test', 'cv/marker_test/') # uncomment for test image
-        print(session+'-1')
-        #coords1 = DetectTiles(session+'-1', 'static/tmp/')
-        #coords2 = DetectTiles(session+'-2', 'static/tmp/')
+        print(sessionid+'-1')
+        #coords1 = DetectTiles(sessionid+'-1', 'static/tmp/')
+        #coords2 = DetectTiles(sessionid+'-2', 'static/tmp/')
 
         return jsonify(coords1.arucoDetect())
 
