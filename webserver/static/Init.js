@@ -18,7 +18,7 @@ function spawnBoard() {
   game.setupBoard();
 }
 
-const session = Date.now();
+const sessionid = Date.now();
 
 function snap(count) {
   // add invisible canvas for photo data
@@ -32,9 +32,10 @@ function snap(count) {
   // draw photo to canvas
   const context = photocanvas.getContext('2d');
   context.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
+  photocanvas.parentNode.removeChild(photocanvas);
   // convert canvas to base64 image data
   const formdata = new FormData();
-  formdata.append('session', session);
+  formdata.append('sessionid', sessionid);
   formdata.append('imageBase64', photocanvas.toDataURL());
   formdata.append('count', count);
   return formdata;
