@@ -7,17 +7,17 @@ def tileConfig(marker):
     A list of marker-keyword mappings.
     Until a central configuration is devised, ensure that these values match
     those in Tile.js.
-    The arrow symbol is defined further down as marker 89.
+    The arrow symbol is defined further down as marker 49.
     '''
-    if   (marker == 60): return 'yellow'
-    elif (marker == 61): return 'magenta'
-    elif (marker == 62): return 'red'
-    elif (marker == 63): return 'green'
-    elif (marker == 31): return 'A_hat'
-    elif (marker == 32): return 'A_kick1'
-    elif (marker == 33): return 'A_kick2'
-    elif (marker == 41): return 'A_stab1'
-    elif (marker == 42): return 'A_stab2'
+    if   (marker == 35): return 'yellow'
+    elif (marker == 36): return 'magenta'
+    elif (marker == 37): return 'red'
+    elif (marker == 38): return 'green'
+    elif (marker == 40): return 'A_hat'
+    elif (marker == 41): return 'A_kick1'
+    elif (marker == 42): return 'A_kick2'
+    elif (marker == 43): return 'A_stab1'
+    elif (marker == 44): return 'A_stab2'
     return
 
 class DetectTiles:
@@ -30,7 +30,7 @@ class DetectTiles:
         self.outdir = outdir
 
     def arucoDetect(self):
-        arucodict = aruco.Dictionary_get(aruco.DICT_ARUCO_ORIGINAL)
+        arucodict = aruco.Dictionary_get(aruco.DICT_4X4_50)
         params = aruco.DetectorParameters_create()
 
         # read in image
@@ -99,7 +99,7 @@ class DetectTiles:
             ## check type of objects
             # this is an arrow object
             ## let's determine its orientation
-            if (ids[mobjects[i]] == 89):
+            if (ids[mobjects[i]] == 49):
                 if (sample[0][0][0] - sample [0][2][0]) > 0:
                     A = 1
                 else:
