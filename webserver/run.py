@@ -54,6 +54,9 @@ def aggregateCoords(coordlists):
 
         for tile in jsonlist:
             print(tile)
+            # UNFINISHED ..................
+            # .............................
+            # .............................
 
 @app.route('/snap', methods=['PUT'])
 def snap():
@@ -73,14 +76,15 @@ def snap():
 
     # detect tiles after two photos snapped
     if int(count) == 2:
-        coords1 = DetectTiles('test', 'cv/marker_test/') # uncomment for test image
-        coords2 = DetectTiles('test', 'cv/marker_test/') # uncomment for test image
-        result = aggregateCoords([coords1.arucoDetect(), coords1.arucoDetect()])
-        #coords1 = DetectTiles(sessionid+'-1', 'static/tmp/')
-        #coords2 = DetectTiles(sessionid+'-2', 'static/tmp/')
-
+        coords1 = DetectTiles(sessionid+'-1', app.config['UPLOADS'])
         result = coords1.arucoDetect()
-
+        '''
+        coords2 = DetectTiles(sessionid+'-2', app.config['UPLOADS'])
+        result = aggregateCoords([coords1.arucoDetect(), coords1.arucoDetect()])
+        '''
+        #coords1 = DetectTiles('test', 'cv/marker_test/') # uncomment for test image
+        #coords2 = DetectTiles('test', 'cv/marker_test/') # uncomment for test image
+        print(result)
         return jsonify(transformCVforJSON(result))
 
     return jsonify(['2 images required'])
