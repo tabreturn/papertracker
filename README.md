@@ -45,6 +45,7 @@ An educational platform for engaging 14–140 year-olds with music, technology, 
 - [ ] orientable arrow tile
 - [ ] universal config (for js, python, etc.)
 - [ ] simultaneous sessions (server prefixes images names?)
+- [ ] cache audio (service worker?)
 
 ## bugs
 
