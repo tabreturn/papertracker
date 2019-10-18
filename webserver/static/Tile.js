@@ -9,8 +9,8 @@ export class Tile {
   /**
    * Create a new half-tile piece. A game will comprise multiple such tiles.
    * @param {string} tile1 Optional first tile.
-     @param {string} tile2 Optional second tile.
-     @param {string} orientation='v' An h or v for horizontal or vertical (does nothing yet).
+   * @param {string} tile2 Optional second tile.
+   * @param {string} orientation='v' An h or v for horizontal or vertical (does nothing yet).
    */
   constructor(tile1, tile2, orientation='v') {
     this.orientation = orientation;

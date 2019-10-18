@@ -103,7 +103,7 @@ export class Board {
     // add the starting position of any pulse to the pulses array
     for (let [key, value] of Object.entries(tileicons)) {
       // check for an arrow-color tile combo
-      if (tileicons[0].charAt(0) == '#') {
+      if (tileicons[0].charAt(0) === '#') {
         this.pulses[r][c].color = tileicons[0];
         this.pulses[r][c].dir = this.cells[r][c].tile.tilepair[1];
       }
@@ -130,7 +130,7 @@ export class Board {
         for (let i in tileicons) {
           const elem = '.tile'+(parseInt(i)+1);
 
-          if (tileicons[i].charAt(0) != '#' && this.step == 0) {
+          if (tileicons[i].charAt(0) !== '#' && this.step === 0) {
             cell.querySelectorAll(elem)[0].innerHTML = tileicons[i];
           }
         }
@@ -232,12 +232,12 @@ export class Board {
 
         for (let i in tilepair) {
           // change pulse direction
-          if (tilepair[i] == 'N' || tilepair[i] == 'S' ||
-              tilepair[i] == 'W' || tilepair[i] == 'E') {
+          if (tilepair[i] === 'N' || tilepair[i] === 'S' ||
+              tilepair[i] === 'W' || tilepair[i] === 'E') {
             this.pulses[r][c].dir = tilepair[i];
           }
           // instruments
-          if (tilepair[i].charAt(0) == 'A') {
+          if (tilepair[i].charAt(0) === 'A') {
             this.playTile(tileaudio[i]);
           }
         }

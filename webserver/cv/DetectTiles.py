@@ -2,8 +2,27 @@ import cv2
 import cv2.aruco as aruco
 import numpy
 
+def tileConfig(marker):
+    '''
+    A list of marker-keyword mappings.
+    Until a central configuration is devised, ensure that these values match
+    those in Tile.js.
+    The arrow symbol is defined further down as marker 89.
+    '''
+    if   (marker == 51): return 'cyan'
+    elif (marker == 52): return 'magenta'
+    elif (marker == 53): return 'yellow'
+    elif (marker == 60): return 'hat'
+    elif (marker == 61): return 'stab1'
+    elif (marker == 62): return 'stab2'
+    elif (marker == 63): return 'kick1'
+    elif (marker == 64): return 'kick2'
+    return
+
 class DetectTiles:
-    '''Detects tile grid coordinates.'''
+    '''
+    Detects the tile grid coordinates.
+    '''
 
     def __init__(self, snap, outdir):
         self.snap = snap
@@ -13,8 +32,10 @@ class DetectTiles:
         arucodict = aruco.Dictionary_get(aruco.DICT_ARUCO_ORIGINAL)
         params = aruco.DetectorParameters_create()
 
+        # read in image
         img = cv2.imread(('{}/{}.png').format(self.outdir, self.snap))
         corners, ids, rejectedpoints = aruco.detectMarkers(img, arucodict, parameters=params)
+        # draw detected markers and save new result image
         aruco.drawDetectedMarkers(img, corners, ids)
         aruco.drawDetectedMarkers(img, rejectedpoints, borderColor=(100, 0, 240))
         cv2.imwrite(('{}/{}-result.png').format(self.outdir, self.snap), img)
@@ -98,14 +119,8 @@ class DetectTiles:
                     labels.append('E')
 
             ## object configs
-            elif (ids[mobjects[i]] == 51): labels.append('cyan')
-            elif (ids[mobjects[i]] == 52): labels.append('magenta')
-            elif (ids[mobjects[i]] == 53): labels.append('yellow')
-            elif (ids[mobjects[i]] == 60): labels.append('hat')
-            elif (ids[mobjects[i]] == 61): labels.append('stab1')
-            elif (ids[mobjects[i]] == 62): labels.append('stab2')
-            elif (ids[mobjects[i]] == 63): labels.append('kick1')
-            elif (ids[mobjects[i]] == 64): labels.append('kick2')
+            else:
+                labels.append( tileConfig(ids[mobjects[i]]) )
 
             if(cx < xmidPoints[0]):
                 cols.append(1)
@@ -127,7 +142,7 @@ class DetectTiles:
         ## check shape of rows, cols, and types
         if(len(rows) != len(cols)) or (len(labels) != len(cols)) or (len(labels) != len(rows)):
             print('dim error!!')
-            return('dim error!!')
+            return 'dim error!!'
         else:
             return {
                 'columns':cols,
