@@ -15,7 +15,7 @@ def papertracker():
     '''
     return render_template('papertracker.html')
 
-def transformCVtoJS(cvlist):
+def transformCVforJSON(cvlist):
     '''
     Transform the CV data to front-end compatible JSON:
     [col, row, ['tile1', 'tile2']]
@@ -41,7 +41,19 @@ def transformCVtoJS(cvlist):
             ]
             tilelist.append(cell)
 
-    return jsonify(tilelist)
+    return tilelist
+
+def aggregateCoords(coordlists):
+    '''
+    Combine tile detection data from multiple snaps.
+    '''
+    tiles = []
+
+    for tilelist in coordlists:
+        jsonlist = transformCVforJSON(tilelist)
+
+        for tile in jsonlist:
+            print(tile)
 
 @app.route('/snap', methods=['PUT'])
 def snap():
@@ -60,14 +72,20 @@ def snap():
     cv2.imwrite(filename, snap)
 
     # detect tiles after two photos snapped
+    '''
     if int(count) == 2:
         coords1 = DetectTiles('test', 'cv/marker_test/') # uncomment for test image
+        coords2 = DetectTiles('test', 'cv/marker_test/') # uncomment for test image
+        result = aggregateCoords([coords1.arucoDetect(), coords1.arucoDetect()])
         #coords1 = DetectTiles(sessionid+'-1', 'static/tmp/')
         #coords2 = DetectTiles(sessionid+'-2', 'static/tmp/')
-        result = coords1.arucoDetect()
-        return transformCVtoJS(result)
 
-    return jsonify('2 images required')
+
+        result = coords1.arucoDetect()
+
+        return jsonify(transformCVforJSON(result))
+    '''
+    return jsonify(['2 images required'])
 
 if __name__ == '__main__':
     app.run()
