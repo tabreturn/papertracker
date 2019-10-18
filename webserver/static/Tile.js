@@ -32,27 +32,28 @@ export class Tile {
         case 'magenta': this.tileicons[i] = '#FF00FF'; break;
         case 'yellow':  this.tileicons[i] = '#FFFF00'; break;
         // audio
-        case 'hat':
+        // audio tiles must begin with an A_
+        case 'A_hat':
           this.tileicons[i] = 'ѻ'; // for an image use '<img src="static/samples/hi-hat-svgrepo-com.svg">';
           this.tileaudio[i] = ['sample', id];
           this.preloadSample('static/samples/hihat.mp3', id)
           break;
-        case 'stab1':
+        case 'A_stab1':
           this.tileicons[i] = 'k';
           this.tileaudio[i] = ['sample', id];
           this.preloadSample('static/samples/stab1.mp3', id)
           break;
-        case 'stab2':
+        case 'A_stab2':
           this.tileicons[i] = 'K';
           this.tileaudio[i] = ['sample', id];
           this.preloadSample('static/samples/stab2.mp3', id)
           break;
-        case 'kick1':
+        case 'A_kick1':
           this.tileicons[i] = 'Ô';
           this.tileaudio[i] = ['sample', id];
           this.preloadSample('static/samples/kick1.mp3', id)
           break;
-        case 'kick2':
+        case 'A_kick2':
           this.tileicons[i] = 'Ö';
           this.tileaudio[i] = ['sample', id];
           this.preloadSample('static/samples/kick2.mp3', id)

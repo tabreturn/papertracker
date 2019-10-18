@@ -12,11 +12,11 @@ def tileConfig(marker):
     if   (marker == 51): return 'cyan'
     elif (marker == 52): return 'magenta'
     elif (marker == 53): return 'yellow'
-    elif (marker == 60): return 'hat'
-    elif (marker == 61): return 'stab1'
-    elif (marker == 62): return 'stab2'
-    elif (marker == 63): return 'kick1'
-    elif (marker == 64): return 'kick2'
+    elif (marker == 60): return 'A_hat'
+    elif (marker == 61): return 'A_stab1'
+    elif (marker == 62): return 'A_stab2'
+    elif (marker == 63): return 'A_kick1'
+    elif (marker == 64): return 'A_kick2'
     return
 
 class DetectTiles:

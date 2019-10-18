@@ -236,8 +236,8 @@ export class Board {
               tilepair[i] === 'W' || tilepair[i] === 'E') {
             this.pulses[r][c].dir = tilepair[i];
           }
-          // instruments
-          if (tilepair[i].charAt(0) === 'A') {
+          // play any instruments
+          if (tilepair[i].substring(0, 2) === 'A_') {
             this.playTile(tileaudio[i]);
           }
         }
