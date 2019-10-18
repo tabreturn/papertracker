@@ -93,7 +93,7 @@ const bt_snap1 = document.getElementById('snap1');
 bt_snap1.addEventListener('click', () => {
   let imagedata = snap(1);
   bt_snap1.classList.add('hide');
-  // submit first photo
+
   fetch('/snap', { method: 'PUT', body: imagedata })
     .then(response => response.json())
     .then(json => {
@@ -104,14 +104,24 @@ bt_snap1.addEventListener('click', () => {
 */
 
 const bt_snap2 = document.getElementById('snap2');
+const bt_snapagain = document.getElementById('snapagain');
 
-bt_snap2.addEventListener('click', () => {
-  let imagedata = snap(2);
-  bt_snap2.classList.add('hide');
-  // submit second photo
-  fetch('/snap', { method: 'PUT', body: imagedata })
-    .then(response => response.json())
-    .then(json => {
+[bt_snap2, bt_snapagain].forEach((elem) => {
+  elem.addEventListener('click', () => {
+    let imagedata = snap(2);
+    bt_snap2.classList.add('hide');
+    bt_snapagain.classList.add('hide');
+
+    fetch('/snap', { method: 'PUT', body: imagedata })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          bt_snapagain.classList.remove('hide');
+          throw new Error('something went wrong');
+        }
+    })
+    .then((json) => {
       console.log(json)
       fr_snap.classList.add('hide');
       fr_board.classList.remove('hide');
@@ -121,7 +131,11 @@ bt_snap2.addEventListener('click', () => {
       json.forEach((tile) => {
         game.addTile(tile[0], tile[1], new Tile(tile[2][0], tile[2][1]));
       });
+    })
+    .catch((error) => {
+      console.log(error)
     });
+  });
 });
 
 // board step buttons
