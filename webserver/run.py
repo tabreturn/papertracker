@@ -8,12 +8,42 @@ import numpy as np
 app = Flask(__name__)
 app.config.from_pyfile('config.py') # create this file on the server
 
+# routes
+
 @app.route('/')
 def papertracker():
     '''
     Landing page route.
     '''
     return render_template('papertracker.html')
+
+@app.route('/snap', methods=['PUT'])
+def snap():
+    '''
+    Photo sumbmission endpoint.
+    '''
+    # convert base64 string to binary image
+    b64string = request.values['imageBase64'].split(',')[1]
+    b64image = np.fromstring(base64.b64decode(b64string), np.uint8)
+
+    # save image
+    sessionid = request.values['sessionid']
+    count = request.values['count']
+    filename = ('{}/{}-{}.png').format(app.config['UPLOADS'], sessionid, count)
+    snap = cv2.imdecode(b64image, cv2.IMREAD_COLOR)
+    cv2.imwrite(filename, snap)
+
+    # detect tiles after x-many photos snapped
+    if int(count) == 2:
+        #coords = DetectTiles(sessionid+'-2', app.config['UPLOADS'])
+        coords = DetectTiles('test', 'cv/marker_test/') # uncomment for test image
+        result = coords.arucoDetect()
+        print(result)
+        return jsonify(transformCVforJSON(result))
+
+    return jsonify('another snap required')
+
+# utilities
 
 def transformCVforJSON(cvlist):
     '''
@@ -51,44 +81,5 @@ def aggregateCoords(coordlists):
 
     for tilelist in coordlists:
         jsonlist = transformCVforJSON(tilelist)
-
-        for tile in jsonlist:
-            print(tile)
-            # UNFINISHED ..................
-            # .............................
-            # .............................
-
-@app.route('/snap', methods=['PUT'])
-def snap():
-    '''
-    Photo sumbmission endpoint.
-    '''
-    # convert base64 string to binary image
-    b64string = request.values['imageBase64'].split(',')[1]
-    b64image = np.fromstring(base64.b64decode(b64string), np.uint8)
-
-    # save image
-    sessionid = request.values['sessionid']
-    count = request.values['count']
-    filename = ('{}/{}-{}.png').format(app.config['UPLOADS'], sessionid, count)
-    snap = cv2.imdecode(b64image, cv2.IMREAD_COLOR)
-    cv2.imwrite(filename, snap)
-
-    # detect tiles after two photos snapped
-    if int(count) == 2:
-        #coords1 = DetectTiles(sessionid+'-1', app.config['UPLOADS'])
-        #result = coords1.arucoDetect()
-        '''
-        coords2 = DetectTiles(sessionid+'-2', app.config['UPLOADS'])
-        result = aggregateCoords([coords1.arucoDetect(), coords1.arucoDetect()])
-        '''
-        coords1 = DetectTiles('test', 'cv/marker_test/') # uncomment for test image
-        coords2 = DetectTiles('test', 'cv/marker_test/') # uncomment for test image
-        result = coords1.arucoDetect()
-        print(result)
-        return jsonify(transformCVforJSON(result))
-
-    return jsonify(['2 images required'])
-
-if __name__ == '__main__':
-    app.run()
+        # UNFINISHED ..........................
+        # .....................................

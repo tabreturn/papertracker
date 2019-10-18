@@ -87,8 +87,8 @@ bt_letsgo.addEventListener('click', () => {
 
 // photo step buttons
 
+/* 2-SNAP MODE
 const bt_snap1 = document.getElementById('snap1');
-const bt_snap2 = document.getElementById('snap2');
 
 bt_snap1.addEventListener('click', () => {
   let imagedata = snap(1);
@@ -101,6 +101,9 @@ bt_snap1.addEventListener('click', () => {
       bt_snap2.classList.remove('hide');
     })
 });
+*/
+
+const bt_snap2 = document.getElementById('snap2');
 
 bt_snap2.addEventListener('click', () => {
   let imagedata = snap(2);
