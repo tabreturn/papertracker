@@ -9,14 +9,15 @@ def tileConfig(marker):
     those in Tile.js.
     The arrow symbol is defined further down as marker 89.
     '''
-    if   (marker == 51): return 'cyan'
-    elif (marker == 52): return 'magenta'
-    elif (marker == 53): return 'yellow'
-    elif (marker == 60): return 'A_hat'
-    elif (marker == 61): return 'A_stab1'
-    elif (marker == 62): return 'A_stab2'
-    elif (marker == 63): return 'A_kick1'
-    elif (marker == 64): return 'A_kick2'
+    if   (marker == 60): return 'yellow'
+    elif (marker == 61): return 'magenta'
+    elif (marker == 62): return 'red'
+    elif (marker == 63): return 'green'
+    elif (marker == 31): return 'A_hat'
+    elif (marker == 32): return 'A_kick1'
+    elif (marker == 33): return 'A_kick2'
+    elif (marker == 41): return 'A_stab1'
+    elif (marker == 42): return 'A_stab2'
     return
 
 class DetectTiles:
@@ -84,7 +85,7 @@ class DetectTiles:
 
         ## extract non-position markers
         for i in range(len(ids)):
-            if ids[i][0] > 50:
+            if ids[i][0] >= 31: # !!! used to be > 50 !!!
                 # extract indexes of musical objects and put into a list
                 mobjects.append(i)
 

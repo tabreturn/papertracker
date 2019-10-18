@@ -28,9 +28,10 @@ export class Tile {
         case 'W': this.tilepair[i] = 'W'; this.tileicons[i] = '←'; break;
         case 'E': this.tilepair[i] = 'E'; this.tileicons[i] = '→'; break;
         // colors
-        case 'cyan':    this.tileicons[i] = '#00FFFF'; break;
+        case 'red':     this.tileicons[i] = '#FF0000'; break;
         case 'magenta': this.tileicons[i] = '#FF00FF'; break;
         case 'yellow':  this.tileicons[i] = '#FFFF00'; break;
+        case 'green':   this.tileicons[i] = '#00FF00'; break;
         // audio
         // audio tiles must begin with an A_
         case 'A_hat':
