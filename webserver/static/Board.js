@@ -1,7 +1,7 @@
 /**
  * Board module for drawing and controlling the board (and cells and pulses arrays).
- * Tone sounds require the Tone.js library:
- * <script src="./static/Tone.js"></script>
+ * For Tone.js, uncomment the relevant line in templates/jslibs.html.
+ * For fontawesome, uncomment the relevant line in templates/jslibs.html.
  * @module Board
  */
 
@@ -88,11 +88,13 @@ export class Board {
   /**
    * Add a new half-tile to the cells and pulses arrays.
    *
-   * @param {number} r The row address.
-   * @param {number} c The column address.
+   * @param {number} r1 The row address beginning at 1.
+   * @param {number} c1 The column address beginning at 1.
    * @param {Tile} tile A tile object.
    */
-  addTile(c, r, tile) {
+  addTile(c1, r1, tile) {
+    let c = c1-1;
+    let r = r1-1;
     // add tile to cells array
     this.cells[r][c].tile = tile;
 

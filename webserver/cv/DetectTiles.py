@@ -89,45 +89,29 @@ class DetectTiles:
                     B = 0
 
                 if A == 1 and B == 1:
-                    labels.append('S')
-                    print('down arrow')
-                elif A == 1 and B == 0:
-                    labels.append('E')
-                    print('right arrow')
-                elif A == 0 and B == 1:
                     labels.append('W')
-                    print('left arrow')
-                elif A == 0 and B == 0:
+                elif A == 1 and B == 0:
+                    labels.append('S')
+                elif A == 0 and B == 1:
                     labels.append('N')
-                    print('up arrow')
+                elif A == 0 and B == 0:
+                    labels.append('E')
 
-            elif (ids[mobjects[i]]== 50):
-                # append label based on id
-                labels.append('cyan')
             elif (ids[mobjects[i]]== 51):
                 # append label based on id
-                labels.append('magenta')
+                labels.append('cyan')
             elif (ids[mobjects[i]]== 52):
+                # append label based on id
+                labels.append('magenta')
+            elif (ids[mobjects[i]]== 53):
                 # append label based on id
                 labels.append('yellow')
             elif (ids[mobjects[i]]== 70):
                 # append label based on id
-                labels.append('kick')
+                labels.append('kick1')
             elif (ids[mobjects[i]]== 71):
                 # append label based on id
                 labels.append('hat')
-            elif (ids[mobjects[i]]== 72):
-                # append label based on id
-                labels.append('clap')
-            elif (ids[mobjects[i]]== 73):
-                # append label based on id
-                labels.append('keys')
-            elif (ids[mobjects[i]]== 74):
-                # append label based on id
-                labels.append('bass')
-            elif (ids[mobjects[i]]== 75):
-                # append label based on id
-                labels.append('coin')
 
             if(cx < xmidPoints[0]):
                 cols.append(1)
@@ -152,7 +136,7 @@ class DetectTiles:
             return('dim error!!')
         else:
             return {
-                'column':cols,
+                'columns':cols,
                 'rows': rows,
-                'tile_type': labels
+                'labels': labels
             }

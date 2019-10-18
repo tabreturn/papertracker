@@ -1,5 +1,7 @@
 /**
  * Tile module for a single tile comprised of two half-tiles (which may be empty).
+ * For Tone.js, uncomment the relevant line in templates/jslibs.html.
+ * For fontawesome, uncomment the relevant line in templates/jslibs.html.
  * @module Tile
  */
 
@@ -26,12 +28,9 @@ export class Tile {
         case 'W': case 12: this.tilepair[i] = 'W'; this.tileicons[i] = '←'; break;
         case 'E': case 13: this.tilepair[i] = 'E'; this.tileicons[i] = '→'; break;
         // colors
-        case 'CC': case 14: this.tileicons[i] = '#00FFFF'; break;
-        case 'CM': case 15: this.tileicons[i] = '#FF00FF'; break;
-        case 'CY': case 16: this.tileicons[i] = '#FFFF00'; break;
-        case 'C4': case 17: this.tileicons[i] = '#FFFF00'; break;
-        case 'C5': case 18: this.tileicons[i] = '#00FFFF'; break;
-        case 'C6': case 19: this.tileicons[i] = '#FF00FF'; break;
+        case 'cyan':    case 14: this.tileicons[i] = '#00FFFF'; break;
+        case 'magenta': case 15: this.tileicons[i] = '#FF00FF'; break;
+        case 'yellow':  case 16: this.tileicons[i] = '#FFFF00'; break;
         // audio
         case 'AH': case 20:
           this.tileicons[i] = 'ѻ'; // for an image use '<img src="static/samples/hi-hat-svgrepo-com.svg">';
@@ -48,20 +47,22 @@ export class Tile {
           this.tileaudio[i] = ['sample', id];
           this.preloadSample('static/samples/stab2.mp3', id)
           break;
-        case 'AK1': case 23:
+        case 'kick1': case 23:
           this.tileicons[i] = 'Ô';
           this.tileaudio[i] = ['sample', id];
           this.preloadSample('static/samples/kick1.mp3', id)
           break;
-        case 'AK2': case 24:
+        case 'kick2': case 24:
           this.tileicons[i] = 'Ö';
           this.tileaudio[i] = ['sample', id];
           this.preloadSample('static/samples/kick2.mp3', id)
           break;
+        /* tone example -- requires Tone.js library
         case 'A6': case 25:
           this.tileicons[i] = '🎹';
           this.tileaudio[i] = ['tone', 'A6', '8n'];
           break;
+        */
       }
     }, this);
   }
