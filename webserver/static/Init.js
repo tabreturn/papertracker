@@ -162,8 +162,11 @@ document.getElementById('resnap').addEventListener('click', () => {
   clearInterval(interval);
   fr_board.classList.add('hide');
   fr_snap.classList.remove('hide');
+  /* 2-SNAP MODE
   bt_snap1.classList.remove('hide');
   bt_snap2.classList.add('hide');
+  */
+  bt_snap2.classList.remove('hide');
   // remove all of the board cells
   [].forEach.call(fr_board.querySelectorAll('.cell'), function(e) {
     e.parentNode.removeChild(e);
