@@ -30,9 +30,28 @@ def snap():
         #coords1 = DetectTiles(sessionid+'-1', 'static/tmp/')
         #coords2 = DetectTiles(sessionid+'-2', 'static/tmp/')
 
-        print( coords1.arucoDetect() )
+        result = coords1.arucoDetect()
+        tilelist = [] # tile list containing cells in the form: [col, row, ['tile1', 'tile2']]
 
-        return jsonify(coords1.arucoDetect())
+        for i in range(len(result['columns'])):
+            found = False
+
+            for tl in tilelist:
+                # search for existing duplidate
+                if tl[0]==result['columns'][i] and tl[1]==result['rows'][i]:
+                    # define second tile
+                    tl[2][1] = result['labels'][i]
+                    found = True
+            # append cell if no duplicate
+            if not found:
+                cell = [
+                  result['columns'][i],
+                  result['rows'][i],
+                  [result['labels'][i], ' ']
+                ]
+                tilelist.append(cell)
+
+        return jsonify(tilelist)
 
     return jsonify('2 images required')
 

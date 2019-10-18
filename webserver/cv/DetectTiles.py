@@ -97,21 +97,15 @@ class DetectTiles:
                 elif A == 0 and B == 0:
                     labels.append('E')
 
-            elif (ids[mobjects[i]]== 51):
-                # append label based on id
-                labels.append('cyan')
-            elif (ids[mobjects[i]]== 52):
-                # append label based on id
-                labels.append('magenta')
-            elif (ids[mobjects[i]]== 53):
-                # append label based on id
-                labels.append('yellow')
-            elif (ids[mobjects[i]]== 70):
-                # append label based on id
-                labels.append('kick1')
-            elif (ids[mobjects[i]]== 71):
-                # append label based on id
-                labels.append('hat')
+            ## object configs
+            elif (ids[mobjects[i]] == 51): labels.append('cyan')
+            elif (ids[mobjects[i]] == 52): labels.append('magenta')
+            elif (ids[mobjects[i]] == 53): labels.append('yellow')
+            elif (ids[mobjects[i]] == 60): labels.append('hat')
+            elif (ids[mobjects[i]] == 61): labels.append('stab1')
+            elif (ids[mobjects[i]] == 62): labels.append('stab2')
+            elif (ids[mobjects[i]] == 63): labels.append('kick1')
+            elif (ids[mobjects[i]] == 64): labels.append('kick2')
 
             if(cx < xmidPoints[0]):
                 cols.append(1)

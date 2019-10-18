@@ -9,7 +9,7 @@ const sessionid = Date.now();
 function spawnBoard() {
 
   if (devmode) {
-    var game = new Board('board', 6, 12, 5); // Board(rows, cols, speed)
+    var game = new Board('board', 5, 11, 5); // Board(rows, cols, speed)
     window.game = game;
     window.Tile = Tile;
   }
@@ -93,7 +93,7 @@ const bt_snap2 = document.getElementById('snap2');
 bt_snap1.addEventListener('click', () => {
   let imagedata = snap(1);
   bt_snap1.classList.add('hide');
-
+  // submit first photo
   fetch('/snap', { method: 'PUT', body: imagedata })
     .then(response => response.json())
     .then(json => {
@@ -105,28 +105,20 @@ bt_snap1.addEventListener('click', () => {
 bt_snap2.addEventListener('click', () => {
   let imagedata = snap(2);
   bt_snap2.classList.add('hide');
-
+  // submit second photo
   fetch('/snap', { method: 'PUT', body: imagedata })
     .then(response => response.json())
     .then(json => {
       console.log(json)
       fr_snap.classList.add('hide');
       fr_board.classList.remove('hide');
-
+      // populate board with empty cells
       spawnBoard();
-      // sample tiles
-      game.addTile(0, 0, new Tile('S', 'CC'));
-      game.addTile(0, 4, new Tile('AS1', 'E', 'h'));
-      game.addTile(4, 4, new Tile('AH', ' '));
-      game.addTile(5, 4, new Tile('AK1', ' '));
-      game.addTile(8, 4, new Tile('N', ' '));
-      game.addTile(8, 0, new Tile('W', ' '));
-      game.addTile(5, 2, new Tile('E', 'CM'));
-      game.addTile(8, 2, new Tile('AK2', ' '));
-      game.addTile(9, 2, new Tile('AK2', 'W'));
-      game.addTile(10, 0, new Tile('S', 'CY'));
-      game.addTile(11, 5, new Tile('W', 'CY'));
-    })
+      // add tiles to board
+      json.forEach((tile) => {
+        game.addTile(tile[0], tile[1], new Tile(tile[2][0], tile[2][1]));
+      });
+    });
 });
 
 // board step buttons

@@ -23,42 +23,42 @@ export class Tile {
 
       switch (v) {
         // directions
-        case 'N': case 10: this.tilepair[i] = 'N'; this.tileicons[i] = '↑'; break; // for font-awesome use <i class="fas fa-arrow-down"></i>
-        case 'S': case 11: this.tilepair[i] = 'S'; this.tileicons[i] = '↓'; break;
-        case 'W': case 12: this.tilepair[i] = 'W'; this.tileicons[i] = '←'; break;
-        case 'E': case 13: this.tilepair[i] = 'E'; this.tileicons[i] = '→'; break;
+        case 'N': this.tilepair[i] = 'N'; this.tileicons[i] = '↑'; break; // for font-awesome use <i class="fas fa-arrow-down"></i>
+        case 'S': this.tilepair[i] = 'S'; this.tileicons[i] = '↓'; break;
+        case 'W': this.tilepair[i] = 'W'; this.tileicons[i] = '←'; break;
+        case 'E': this.tilepair[i] = 'E'; this.tileicons[i] = '→'; break;
         // colors
-        case 'cyan':    case 14: this.tileicons[i] = '#00FFFF'; break;
-        case 'magenta': case 15: this.tileicons[i] = '#FF00FF'; break;
-        case 'yellow':  case 16: this.tileicons[i] = '#FFFF00'; break;
+        case 'cyan':    this.tileicons[i] = '#00FFFF'; break;
+        case 'magenta': this.tileicons[i] = '#FF00FF'; break;
+        case 'yellow':  this.tileicons[i] = '#FFFF00'; break;
         // audio
-        case 'AH': case 20:
+        case 'hat':
           this.tileicons[i] = 'ѻ'; // for an image use '<img src="static/samples/hi-hat-svgrepo-com.svg">';
           this.tileaudio[i] = ['sample', id];
           this.preloadSample('static/samples/hihat.mp3', id)
           break;
-        case 'AS1': case 21:
+        case 'stab1':
           this.tileicons[i] = 'k';
           this.tileaudio[i] = ['sample', id];
           this.preloadSample('static/samples/stab1.mp3', id)
           break;
-        case 'AS2': case 22:
+        case 'stab2':
           this.tileicons[i] = 'K';
           this.tileaudio[i] = ['sample', id];
           this.preloadSample('static/samples/stab2.mp3', id)
           break;
-        case 'kick1': case 23:
+        case 'kick1':
           this.tileicons[i] = 'Ô';
           this.tileaudio[i] = ['sample', id];
           this.preloadSample('static/samples/kick1.mp3', id)
           break;
-        case 'kick2': case 24:
+        case 'kick2':
           this.tileicons[i] = 'Ö';
           this.tileaudio[i] = ['sample', id];
           this.preloadSample('static/samples/kick2.mp3', id)
           break;
         /* tone example -- requires Tone.js library
-        case 'A6': case 25:
+        case 'A6':
           this.tileicons[i] = '🎹';
           this.tileaudio[i] = ['tone', 'A6', '8n'];
           break;

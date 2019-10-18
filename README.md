@@ -35,6 +35,7 @@ An educational platform for engaging 14–140 year-olds with music, technology, 
 
 ## features
 
+- [ ] === and !=== js comparative operators
 - [ ] opencv detect tile grid coordinates
 - [ ] flask to return tile coordinates
 - [ ] place tiles (after above step)
