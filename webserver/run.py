@@ -6,7 +6,7 @@ import cv2.aruco as aruco
 import numpy as np
 
 app = Flask(__name__)
-app.config['UPLOADS'] = 'static/tmp'
+app.config.from_pyfile('config.py') # create this file on the server
 
 @app.route('/')
 def papertracker():

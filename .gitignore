@@ -10,3 +10,4 @@ Thumbs.db
 webserver/*.py[cod]
 webserver/*$py.class
 webserver/env
+webserver/config.py
