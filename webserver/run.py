@@ -72,7 +72,6 @@ def snap():
     cv2.imwrite(filename, snap)
 
     # detect tiles after two photos snapped
-    '''
     if int(count) == 2:
         coords1 = DetectTiles('test', 'cv/marker_test/') # uncomment for test image
         coords2 = DetectTiles('test', 'cv/marker_test/') # uncomment for test image
@@ -80,11 +79,10 @@ def snap():
         #coords1 = DetectTiles(sessionid+'-1', 'static/tmp/')
         #coords2 = DetectTiles(sessionid+'-2', 'static/tmp/')
 
-
         result = coords1.arucoDetect()
 
         return jsonify(transformCVforJSON(result))
-    '''
+
     return jsonify(['2 images required'])
 
 if __name__ == '__main__':
