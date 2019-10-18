@@ -103,13 +103,12 @@ export class Board {
     // add the starting position of any pulse to the pulses array
     for (let [key, value] of Object.entries(tileicons)) {
       // check for an arrow-color tile combo
-      if (tileicons[0].charAt(0) == '#' && tileicons[0].charAt(0) != '↑') {
-        console.log(value)
-        this.pulses[r][c].color = 'red';
+      if (tileicons[0].charAt(0) == '#') {
+        this.pulses[r][c].color = tileicons[0];
         this.pulses[r][c].dir = this.cells[r][c].tile.tilepair[1];
       }
       else if (tileicons[1].charAt(0)) {
-        this.pulses[r][c].color = value;
+        this.pulses[r][c].color = tileicons[1];
         this.pulses[r][c].dir = this.cells[r][c].tile.tilepair[0];
       }
     }
@@ -131,10 +130,7 @@ export class Board {
         for (let i in tileicons) {
           const elem = '.tile'+(parseInt(i)+1);
 
-          if (tileicons[i].charAt(0) == '#') {
-            cell.querySelectorAll(elem)[0].parentElement.style.backgroundColor = tileicons[i]; // !! ADDED PARENTELEMENT !!!!!!!!!!!!!!!!
-          }
-          else if (this.step == 0) {
+          if (tileicons[i].charAt(0) != '#' && this.step == 0) {
             cell.querySelectorAll(elem)[0].innerHTML = tileicons[i];
           }
         }
