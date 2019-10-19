@@ -36,7 +36,7 @@ def snap():
     # detect tiles after x-many photos snapped
     if int(count) == 2:
         coords = DetectTiles(sessionid+'-2', app.config['UPLOADS'])
-        coords = DetectTiles('test', 'cv/marker_test/') # uncomment for test image
+        coords = DetectTiles('test', app.config['MARKERTEST']) # uncomment for test image
         result = coords.arucoDetect()
         print(result)
         return jsonify(transformCVforJSON(result))
