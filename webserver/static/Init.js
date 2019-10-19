@@ -118,22 +118,22 @@ const bt_snapagain = document.getElementById('snapagain');
           return response.json();
         } else {
           bt_snapagain.classList.remove('hide');
-          console.log(response);
+          throw new Error('something went wrong');
         }
     })
     .then((json) => {
+      console.log(json)
       fr_snap.classList.add('hide');
       fr_board.classList.remove('hide');
       // populate board with empty cells
       spawnBoard();
       // add tiles to board
       json.forEach((tile) => {
-        console.log(tile[0], tile[1], tile[2][0], tile[2][1])
         game.addTile(tile[0], tile[1], new Tile(tile[2][0], tile[2][1]));
       });
     })
     .catch((error) => {
-      alert(error)
+      console.log(error)
     });
   });
 });
