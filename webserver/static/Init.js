@@ -118,7 +118,7 @@ const bt_snapagain = document.getElementById('snapagain');
           return response.json();
         } else {
           bt_snapagain.classList.remove('hide');
-          throw new Error('something went wrong');
+          throw new Error('json error');
         }
     })
     .then((json) => {
@@ -129,6 +129,7 @@ const bt_snapagain = document.getElementById('snapagain');
       spawnBoard();
       // add tiles to board
       json.forEach((tile) => {
+        console.log(tile[0], tile[1], tile[2][0], tile[2][1]);
         game.addTile(tile[0], tile[1], new Tile(tile[2][0], tile[2][1]));
       });
     })
