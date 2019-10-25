@@ -16,6 +16,7 @@ function spawnBoard() {
   else {
     var game = new Board();
   }
+
   game.setupBoard();
 }
 
@@ -50,6 +51,7 @@ const constraints = {
      height: { min: 720 }
    }
 }
+
 navigator.mediaDevices.getUserMedia(constraints)
   .then((stream) => { video.srcObject = stream; video.play() })
   .catch(() => {
@@ -85,32 +87,16 @@ bt_letsgo.addEventListener('click', () => {
   fr_snap.classList.remove('hide');
 });
 
-// photo step buttons
+// snap/re-snap step buttons
 
-/* 2-SNAP MODE
-const bt_snap1 = document.getElementById('snap1');
-
-bt_snap1.addEventListener('click', () => {
-  let imagedata = snap(1);
-  bt_snap1.classList.add('hide');
-
-  fetch('/snap', { method: 'PUT', body: imagedata })
-    .then(response => response.json())
-    .then(json => {
-      console.log(json)
-      bt_snap2.classList.remove('hide');
-    })
-});
-*/
-
-const bt_snap2 = document.getElementById('snap2');
+const bt_snapfirst = document.getElementById('snapfirst');
 const bt_snapagain = document.getElementById('snapagain');
 
-[bt_snap2, bt_snapagain].forEach((elem) => {
+[bt_snapfirst, bt_snapagain].forEach((elem) => {
   elem.addEventListener('click', () => {
-    const imagedata = snap(2);
-    bt_snap2.classList.add('hide');
-    bt_snapagain.classList.add('hide');
+    const imagedata = snap(1);
+    bt_snapfirst.classList.add('hide');
+    bt_snapfirst.classList.add('hide');
 
     fetch('/snap', { method: 'PUT', body: imagedata })
       .then((response) => {
@@ -162,11 +148,6 @@ document.getElementById('resnap').addEventListener('click', () => {
   clearInterval(interval);
   fr_board.classList.add('hide');
   fr_snap.classList.remove('hide');
-  /* 2-SNAP MODE
-  bt_snap1.classList.remove('hide');
-  bt_snap2.classList.add('hide');
-  */
-  bt_snap2.classList.remove('hide');
   // remove all of the board cells
   [].forEach.call(fr_board.querySelectorAll('.cell'), function(e) {
     e.parentNode.removeChild(e);
