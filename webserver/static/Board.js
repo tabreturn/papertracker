@@ -98,12 +98,13 @@ export class Board {
 
     const tileicons = this.cells[r][c].tileicons;
     // add the starting position of any pulse to the pulses array
-    for (let [key, value] of Object.entries(tileicons)) {
-      // check for an arrow-color tile combo
-      if (tileicons[0].charAt(0) === '#') {
-        this.pulses[r][c].color = tileicons[0];
-        this.pulses[r][c].dir = this.cells[r][c].tilepair[1];
-      }
+    if (tileicons[0].charAt(0) === '#') {
+      this.pulses[r][c].color = tileicons[0];
+      this.pulses[r][c].dir = this.cells[r][c].tilepair[1];
+    }
+    else if (tileicons[1].charAt(0) === '#') {
+      this.pulses[r][c].color = tileicons[1];
+      this.pulses[r][c].dir = this.cells[r][c].tilepair[0];
     }
 
     // TODO: PRELOAD AUDIO SAMPLES INTO this.samples HERE <----------------------------------------------------------------------
