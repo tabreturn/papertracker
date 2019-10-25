@@ -8,14 +8,12 @@ def matchMarker(marker, tileconfig):
     The arrow symbol is always 49 (as defined further down).
     '''
     for k, v in tileconfig['colors'].items():
-        if marker == 35: print('YYYYYYYYYYYYYYYYYelloWWWWWWWWWWWWWWW')
-        if marker == 36: print('MMMMAGGGEEENNTAAAAAAAAAAAAAAA')
-        if marker == 37: print('RRRRRRRRRRRRREEEEEEEEDDDDD')
 
         if marker == v[0]:
             return k
 
     for k, v in tileconfig['instruments'].items():
+        
         if marker == v[0]:
             return k
 
