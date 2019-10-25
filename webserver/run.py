@@ -12,7 +12,7 @@ app.config.from_pyfile('config.py') # create this file on the server
 # load tile config json
 tileconfig = {}
 
-with open('static/config.js', 'r') as line:
+with open(app.config['TILEJSON'], 'r') as line:
 
     for i in range(8):
         next(line)
@@ -45,8 +45,8 @@ def snap():
 
     # detect tiles after x-many photos snapped
     if int(count) == 2:
-        #coords = DetectTiles(sessionid+'-2', app.config['UPLOADS'], tileconfig)
-        coords = DetectTiles('test', app.config['MARKERTEST'], tileconfig) # uncomment for test image
+        coords = DetectTiles(sessionid+'-2', app.config['UPLOADS'], tileconfig)
+        #coords = DetectTiles('test', app.config['MARKERTEST'], tileconfig) # uncomment for test image
         result = coords.arucoDetect()
         print(result)
         return jsonify(transformCVforJSON(result))
