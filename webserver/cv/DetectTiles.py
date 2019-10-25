@@ -50,7 +50,7 @@ class DetectTiles:
 
         ## this assumes the aruco ids for row indicators are 0-5, and columns are 20-30.
         for i in index:
-            if (ids[i][0] <= 5) and (ids[i][0] >= 0):
+            if (ids[i][0] <= 10) and (ids[i][0] >= 0):
                 ## index markers for y-axis (columns)
                 yaxis.append(i)
             if (ids[i][0] > 20) and (ids[i][0] < 31):

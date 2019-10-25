@@ -9,7 +9,7 @@ const sessionid = Date.now();
 function spawnBoard() {
 
   if (devmode) {
-    var game = new Board('board', 5, 11, 5); // Board(rows, cols, speed)
+    var game = new Board('board', 6, 10, 5); // Board(rows, cols, speed)
     window.game = game;
     window.Tile = Tile;
   }
