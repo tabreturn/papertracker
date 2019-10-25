@@ -40,8 +40,11 @@ An educational platform for engaging 14–140 year-olds with music, technology, 
 - [x] flask to return tile coordinates
 - [x] place tiles (after above step)
 - [x] re-snap option if invalid json data
+- [x] run mp3 samples on tone.js player
+- [ ] preload tone.js samples
+- [ ] preloader to wait for photo processing and samples preload before revealing board
 - [ ] (TEST) simultaneous sessions (server prefixes images names?)
-- [ ] aggregate first and second photo coordinates
+- [ ] aggregate first and second photo coordinates?
 - [ ] monitor interface (to observe what the user sees on their phone)
 - [ ] add pulse collision rule(s)
 
