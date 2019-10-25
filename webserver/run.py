@@ -38,7 +38,7 @@ def snap():
     b64image = np.fromstring(base64.b64decode(b64string), np.uint8)
 
     # save image
-    sessionid = request.values['sessionid']
+    sessionid = app.config['PREPEND'] + request.values['sessionid']
     count = request.values['count']
     filename = ('{}/{}-{}.png').format(app.config['UPLOADS'], sessionid, count)
     snap = cv2.imdecode(b64image, cv2.IMREAD_COLOR)
@@ -46,8 +46,8 @@ def snap():
 
     # detect tiles after x-many photos snapped
     if int(count) == 2:
-        coords = DetectTiles(sessionid+'-2', app.config['UPLOADS'], tileconfig)
-        #coords = DetectTiles('test', app.config['MARKERTEST'], tileconfig) # uncomment for test image
+        #coords = DetectTiles(sessionid+'-2', app.config['UPLOADS'], tileconfig)
+        coords = DetectTiles('test', app.config['MARKERTEST'], tileconfig) # uncomment for test image
         result = coords.arucoDetect()
         print(result)
         return jsonify(transformCVforJSON(result))
@@ -56,9 +56,8 @@ def snap():
 
 @app.route(app.config['LSTMPROUTE'])
 def lstmp():
-    dir = app.config['UPLOADS']
-    files = os.listdir(dir)
-    return render_template('lstmp.html', dir=dir, files=files[::-1])
+    files = os.listdir(app.config['UPLOADS'])
+    return render_template('lstmp.html', files=files[::-1])
 
 # utilities
 
