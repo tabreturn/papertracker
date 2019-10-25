@@ -2,32 +2,32 @@ import cv2
 import cv2.aruco as aruco
 import numpy
 
-def tileConfig(marker):
+def matchMarker(marker, tileconfig):
     '''
-    A list of marker-keyword mappings.
-    Until a central configuration is devised, ensure that these values match
-    those in Tile.js.
-    The arrow symbol is defined further down as marker 49.
+    Using the JSON tileconfig, match the marker number with a color/instrument.
+    The arrow symbol is always 49 (as defined further down).
     '''
-    if   (marker == 35): return 'yellow'
-    elif (marker == 36): return 'magenta'
-    elif (marker == 37): return 'red'
-    elif (marker == 38): return 'green'
-    elif (marker == 40): return 'A_hat'
-    elif (marker == 41): return 'A_kick1'
-    elif (marker == 42): return 'A_kick2'
-    elif (marker == 43): return 'A_stab1'
-    elif (marker == 44): return 'A_stab2'
-    return
+    for k, v in tileconfig['colors'].items():
+        if marker == 35: print('YYYYYYYYYYYYYYYYYelloWWWWWWWWWWWWWWW')
+        if marker == 36: print('MMMMAGGGEEENNTAAAAAAAAAAAAAAA')
+        if marker == 37: print('RRRRRRRRRRRRREEEEEEEEDDDDD')
+
+        if marker == v[0]:
+            return k
+
+    for k, v in tileconfig['instruments'].items():
+        if marker == v[0]:
+            return k
 
 class DetectTiles:
     '''
     Detects the tile grid coordinates.
     '''
 
-    def __init__(self, snap, outdir):
+    def __init__(self, snap, outdir, tileconfig):
         self.snap = snap
         self.outdir = outdir
+        self.tileconfig = tileconfig
 
     def arucoDetect(self):
         arucodict = aruco.Dictionary_get(aruco.DICT_4X4_50)
@@ -121,7 +121,7 @@ class DetectTiles:
 
             ## object configs
             else:
-                labels.append( tileConfig(ids[mobjects[i]]) )
+                labels.append( matchMarker(ids[mobjects[i]], self.tileconfig) )
 
             if(cx < xmidPoints[0]):
                 cols.append(1)
