@@ -12,11 +12,11 @@ app.config.from_pyfile('config.py') # create this file on the server
 # load tile config json
 tileconfig = {}
 
-with open(app.config['TILEJSON'], 'r') as line:
+with open(app.config['TILEJSON'], 'r', encoding='utf-8') as f:
 
     for i in range(8):
-        next(line)
-    tileconfig = json.load(line)
+        next(f)
+    tileconfig = json.load(f)
 
 # routes
 
