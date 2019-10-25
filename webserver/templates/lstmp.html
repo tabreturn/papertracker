@@ -3,6 +3,10 @@
 {% block title %} file listing {% endblock %}
 
 {% block content %}
+<style>
+  body { height: auto; margin-bottom: 1em }
+</style>
+
 <ul style="color:white">
   {% for file in files %}
   <li><a href="{{ dir }}/{{ file }}">{{ file }}</a></li>
