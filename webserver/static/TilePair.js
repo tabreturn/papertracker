@@ -18,7 +18,7 @@ export class TilePair {
     this.orientation = orientation;
     this.tilepair = [tile1, tile2];
     this.tileicons = [tile1, tile2]; // these values are overwritten in the foreach below
-    this.tileaudio = ['null, null'];
+    this.tileaudio = [' ', ' '];
 
     [tile1, tile2].forEach(function(v, i) {
 

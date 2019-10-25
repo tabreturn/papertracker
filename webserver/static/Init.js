@@ -152,8 +152,4 @@ document.getElementById('resnap').addEventListener('click', () => {
   [].forEach.call(fr_board.querySelectorAll('.cell'), function(e) {
     e.parentNode.removeChild(e);
   });
-  // remove all audio elements
-  document.querySelectorAll('audio').forEach((elem) => {
-    elem.parentNode.removeChild(elem);
-  });
 });

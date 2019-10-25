@@ -21,7 +21,7 @@ export class Board {
     this.cols = cols;
     this.speed = speed;
     this.step = 0;
-    this.samples = [] // preloaded audio samples
+    this.instruments = {} // preloaded instruments
   }
   /**
    * Populate the cells and pulses arrays, and fill the board with visible cells.
@@ -89,7 +89,6 @@ export class Board {
    * @param {TilePair} tile A tile-pair object.
    */
   addTilePair(c1, r1, tilepair) {
-
     // grid axes to begin at 1 and 1 (not zero, zero)
     const c = c1-1;
     const r = r1-1;
@@ -102,12 +101,24 @@ export class Board {
       this.pulses[r][c].color = tileicons[0];
       this.pulses[r][c].dir = this.cells[r][c].tilepair[1];
     }
-    else if (tileicons[1].charAt(0) === '#') {
+    if (tileicons[1].charAt(0) === '#') {
       this.pulses[r][c].color = tileicons[1];
       this.pulses[r][c].dir = this.cells[r][c].tilepair[0];
     }
 
-    // TODO: PRELOAD AUDIO SAMPLES INTO this.samples HERE <----------------------------------------------------------------------
+    const ta = tilepair.tileaudio;
+    const tp = tilepair.tilepair;
+    // preload instruments
+    for (let i=0; i<2; i++) {
+
+      if (ta[i][0] === 'sample') {
+        this.instruments[tp[i]] = new Tone.Player(ta[i][1]).toMaster();
+      }
+      // TODO: FIX SYNTH PLAYER  <----------------------------------------------------------------------
+      else if (ta[i][0] === 'tone') {
+        this.instruments[tp[i]] = new Tone.Synth(ta[i][1]).toMaster();
+      }
+    }
 
     this.drawBoard();
   }
@@ -145,34 +156,25 @@ export class Board {
      @return {boolean} If the pulse has overstepped boundary, then true
    */
   isOutOfBounds(row, col) {
+
     if (row >= this.rows || row < 0 ||
         col >= this.cols || col < 0) {
       return true;
     }
+    
     return false;
   }
 
   /**
    * Plays the tile audio associated in the tile definition.
    *
-   * @param {array} tileaudio Tile audio array, containing type, and sample/tone info.
+   * @param {string} tilesample The this.instruments key specifying the audio to play.
    */
-  playTile(tileaudio) {
-    // check if tileaudio is a sample or tone
-
-    // TODO: PLAY AUDIO SAMPLES FROM this.samples HERE <----------------------------------------------------------------------
-
-    switch (tileaudio[0]) {
-      case 'sample':
-        var player = new Tone.Player(tileaudio[1]).toMaster();
-        //play as soon as the buffer is loaded
-        player.autostart = true;
-        break;
-      case 'tone':
-        const synth = new Tone.Synth(tileaudio[1]).toMaster();
-        synth.triggerAttackRelease(tileaudio[2], tileaudio[3]);
-        break;
-    }
+  playTile(tilesample) {
+    this.instruments[tilesample].start()
+    // TODO: FIX SYNTH PLAYER  <----------------------------------------------------------------------
+    //const synth = new Tone.Synth(tileaudio[1]).toMaster();
+    //synth.triggerAttackRelease(tileaudio[2], tileaudio[3]);
   }
 
   /**
@@ -236,7 +238,7 @@ export class Board {
           }
           // play any instruments
           if (tilepair[i].substring(0, 2) === 'A_') {
-            this.playTile(tileaudio[i]);
+            this.playTile(tilepair[i]);
           }
         }
       }
