@@ -54,7 +54,7 @@ def snap():
 
     return jsonify('another snap required')
 
-@app.route('/lstmp')
+@app.route(app.config['LSTMPROUTE'])
 def lstmp():
     dir = app.config['UPLOADS']
     files = os.listdir(dir)
