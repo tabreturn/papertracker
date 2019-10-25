@@ -1,6 +1,5 @@
 /**
  * Board module for drawing and controlling the board (and cells and pulses arrays).
- * For Tone.js, uncomment the relevant line in templates/jslibs.html.
  * For fontawesome, uncomment the relevant line in templates/jslibs.html.
  * @module Board
  */
@@ -9,20 +8,20 @@ export class Board {
   /**
    * Create a new board; ordinarily, just one board is required.
    * @param {string} id The id attribute for the board container element.
-     @param {number} size=50 Width/height of each cell in pixels.
-     @param {number} rows=9 Number of rows in the grid.
-     @param {number} cols=12 Number of columns in the grid.
-     @param {number} speed=5 Game speed.
+   * @param {number} rows=5 Number of rows in the grid.
+   * @param {number} cols=11 Number of columns in the grid.
+   * @param {number} speed=5 Game speed.
    */
-  constructor(id, rows=9, cols=12, speed=5) {
+  constructor(id, rows=5, cols=11, speed=5) {
     // config variables
-    this.cells = [];  // this array contains only immovable items (tiles)
+    this.cells = [];  // this array contains only immovable items (tile-pairs)
     this.pulses = []; // this array contains only movable items (pulses)
     this.id = id;
     this.rows = rows;
     this.cols = cols;
     this.speed = speed;
     this.step = 0;
+    this.samples = [] // preloaded audio samples
   }
   /**
    * Populate the cells and pulses arrays, and fill the board with visible cells.
@@ -48,10 +47,7 @@ export class Board {
           dir: null,
           hasmoved: false
         });
-
-        this.cells[r].push({
-          tile: {}
-        });
+        this.cells[r].push({});
         // add empty cell divs (with two empty half-tile divs in each)
         const cell = document.createElement('div');
         cell.className = 'cell';
@@ -86,32 +82,31 @@ export class Board {
   }
 
   /**
-   * Add a new half-tile to the cells and pulses arrays.
+   * Add a new tile-pair to the cells and pulses arrays.
    *
    * @param {number} r1 The row address beginning at 1.
    * @param {number} c1 The column address beginning at 1.
-   * @param {Tile} tile A tile object.
+   * @param {TilePair} tile A tile-pair object.
    */
-  addTile(c1, r1, tile) {
-    // grid axes to begin at 1 and 1 (not zero)
-    let c = c1-1;
-    let r = r1-1;
-    // add tile to cells array
-    this.cells[r][c].tile = tile;
+  addTilePair(c1, r1, tilepair) {
 
-    const tileicons = this.cells[r][c].tile.tileicons;
+    // grid axes to begin at 1 and 1 (not zero, zero)
+    const c = c1-1;
+    const r = r1-1;
+    // add tile-pair to cells array
+    this.cells[r][c] = tilepair;
+
+    const tileicons = this.cells[r][c].tileicons;
     // add the starting position of any pulse to the pulses array
     for (let [key, value] of Object.entries(tileicons)) {
       // check for an arrow-color tile combo
       if (tileicons[0].charAt(0) === '#') {
         this.pulses[r][c].color = tileicons[0];
-        this.pulses[r][c].dir = this.cells[r][c].tile.tilepair[1];
-      }
-      else if (tileicons[1].charAt(0)) {
-        this.pulses[r][c].color = tileicons[1];
-        this.pulses[r][c].dir = this.cells[r][c].tile.tilepair[0];
+        this.pulses[r][c].dir = this.cells[r][c].tilepair[1];
       }
     }
+
+    // TODO: PRELOAD AUDIO SAMPLES INTO this.samples HERE <----------------------------------------------------------------------
 
     this.drawBoard();
   }
@@ -123,7 +118,7 @@ export class Board {
 
     this.loop2d((r,c) => {
       const cell = document.querySelectorAll('#board .cell')[(r*this.cols)+c];
-      const tileicons = this.cells[r][c].tile.tileicons;
+      const tileicons = this.cells[r][c].tileicons;
 
       if (typeof tileicons !== 'undefined') {
         // draw a symbol, or draw a background color if the symbol begins with #
@@ -149,7 +144,6 @@ export class Board {
      @return {boolean} If the pulse has overstepped boundary, then true
    */
   isOutOfBounds(row, col) {
-    // remove overstepped tile
     if (row >= this.rows || row < 0 ||
         col >= this.cols || col < 0) {
       return true;
@@ -164,15 +158,18 @@ export class Board {
    */
   playTile(tileaudio) {
     // check if tileaudio is a sample or tone
+
+    // TODO: PLAY AUDIO SAMPLES FROM this.samples HERE <----------------------------------------------------------------------
+
     switch (tileaudio[0]) {
       case 'sample':
-        const sample = document.getElementById(tileaudio[1])
-        sample.currentTime = 0 // without this, js won't play same audio file in rapid succession (fix later)
-        sample.play();
+        var player = new Tone.Player(tileaudio[1]).toMaster();
+        //play as soon as the buffer is loaded
+        player.autostart = true;
         break;
-      case 'tone': // tone sounds require the Tone.js library
-        const synth = new Tone.Synth().toMaster();
-        synth.triggerAttackRelease(tileaudio[1], tileaudio[2]);
+      case 'tone':
+        const synth = new Tone.Synth(tileaudio[1]).toMaster();
+        synth.triggerAttackRelease(tileaudio[2], tileaudio[3]);
         break;
     }
   }
@@ -225,8 +222,8 @@ export class Board {
 
     // the rules of the tiles/pieces are defined here
     this.loop2d((r,c) => {
-      const tilepair = this.cells[r][c].tile.tilepair;
-      const tileaudio = this.cells[r][c].tile.tileaudio;
+      const tilepair = this.cells[r][c].tilepair;
+      const tileaudio = this.cells[r][c].tileaudio;
 
       if (typeof tilepair !== 'undefined' && this.pulses[r][c].dir) {
 

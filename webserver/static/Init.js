@@ -1,4 +1,4 @@
-import {Tile}  from './Tile.js';
+import {TilePair}  from './TilePair.js';
 import {Board} from './Board.js';
 
 const video = document.getElementById('video');
@@ -11,7 +11,7 @@ function spawnBoard() {
   if (devmode) {
     var game = new Board('board', 6, 10, 5); // Board(rows, cols, speed)
     window.game = game;
-    window.Tile = Tile;
+    window.TilePair = TilePair;
   }
   else {
     var game = new Board();
@@ -108,7 +108,7 @@ const bt_snapagain = document.getElementById('snapagain');
 
 [bt_snap2, bt_snapagain].forEach((elem) => {
   elem.addEventListener('click', () => {
-    let imagedata = snap(2);
+    const imagedata = snap(2);
     bt_snap2.classList.add('hide');
     bt_snapagain.classList.add('hide');
 
@@ -129,8 +129,7 @@ const bt_snapagain = document.getElementById('snapagain');
       spawnBoard();
       // add tiles to board
       json.forEach((tile) => {
-        console.log(tile[0], tile[1], tile[2][0], tile[2][1]);
-        game.addTile(tile[0], tile[1], new Tile(tile[2][0], tile[2][1]));
+        game.addTilePair(tile[0], tile[1], new TilePair(tile[2][0], tile[2][1]));
       });
     })
     .catch((error) => {
