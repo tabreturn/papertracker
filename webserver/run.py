@@ -56,7 +56,7 @@ def snap():
 
 @app.route('/lstmp')
 def lstmp():
-    dir = app.config['TMPDIR']
+    dir = app.config['UPLOADS']
     files = os.listdir(dir)
     return render_template('lstmp.html', dir=dir, files=files[::-1])
 
