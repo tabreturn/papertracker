@@ -5,6 +5,7 @@ import cv2
 import cv2.aruco as aruco
 import json
 import numpy as np
+import os
 
 app = Flask(__name__)
 app.config.from_pyfile('config.py') # create this file on the server
@@ -52,6 +53,12 @@ def snap():
         return jsonify(transformCVforJSON(result))
 
     return jsonify('another snap required')
+
+@app.route('/lstmp')
+def lstmp():
+    dir = app.config['TMPDIR']
+    files = os.listdir(dir)
+    return render_template('lstmp.html', dir=dir, files=files[::-1])
 
 # utilities
 

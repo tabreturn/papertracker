@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %} file listing {% endblock %}
+
+{% block content %}
+<ul style="color:white">
+  {% for file in files %}
+  <li><a href="{{ path }}/{{ file }}">{{ file }}</a></li>
+  {% endfor %}
+</ul>
+{% endblock %}
