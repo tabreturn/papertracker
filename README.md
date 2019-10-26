@@ -25,7 +25,7 @@ An educational platform for engaging 14–140 year-olds with music, technology, 
 ## run
 
 1. cd to *webserver* directory
-2. copy/rename the `config_sample.py` file to `config.py`
+2. copy/rename the *config_sample.py* file to *config.py*
 3. create virtual environment: `python -m venv env`
 4. activate virtual environment: `source env/bin/activate`
 5. install packages: `pip install -r requirements.txt`
