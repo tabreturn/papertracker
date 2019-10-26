@@ -4,7 +4,7 @@
 
 An educational platform for engaging 14–140 year-olds with music, technology, and game design. The focus is on providing entertaining challenges inexpensively, that promote creative problem solving, collaborative work, and programming using visual apparatus.
 
-[>> live demo](https://papertracker.cmp.ac.nz/)
+[live demo](https://papertracker.cmp.ac.nz/)
 
 ---
 
@@ -34,7 +34,9 @@ An educational platform for engaging 14–140 year-olds with music, technology, 
 8. run the server: `flask run`
 9. open website in browser: `http://localhost:5000`
 
-[>> download the printable board and tiles](printables/tiles+board.pdf)
+<a href="raw/master/printables/tiles%2Bboard.pdf" download='tiles+board.pdf'>
+  download the printable board and tiles
+</a>
 
 ## features
 
