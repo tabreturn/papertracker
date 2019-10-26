@@ -96,7 +96,7 @@ const bt_snapagain = document.getElementById('snapagain');
   elem.addEventListener('click', () => {
     const imagedata = snap(1);
     bt_snapfirst.classList.add('hide');
-    bt_snapfirst.classList.add('hide');
+    bt_snapagain.classList.add('hide');
 
     fetch('/snap', { method: 'PUT', body: imagedata })
       .then((response) => {
@@ -148,6 +148,7 @@ document.getElementById('resnap').addEventListener('click', () => {
   clearInterval(interval);
   fr_board.classList.add('hide');
   fr_snap.classList.remove('hide');
+  bt_snapfirst.classList.remove('hide');
   // remove all of the board cells
   [].forEach.call(fr_board.querySelectorAll('.cell'), function(e) {
     e.parentNode.removeChild(e);
