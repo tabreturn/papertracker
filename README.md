@@ -34,7 +34,7 @@ An educational platform for engaging 14–140 year-olds with music, technology, 
 8. run the server: `flask run`
 9. open website in browser: `http://localhost:5000`
 
-<a href="raw/master/printables/tiles%2Bboard.pdf" download='tiles+board.pdf'>
+<a href="https://github.com/tabreturn/webscript-papertracker/raw/master/printables/tiles%2Bboard.pdf" download='tiles+board.pdf'>
   download the printable board and tiles
 </a>
 
