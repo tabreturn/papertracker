@@ -21,7 +21,7 @@ export class Board {
     this.cols = cols;
     this.speed = speed;
     this.step = 0;
-    this.samples = {}; // preloaded samples
+    this.instruments = {}; // preloaded instruments
   }
   /**
    * Populate the cells and pulses arrays, and fill the board with visible cells.
@@ -99,21 +99,26 @@ export class Board {
     // add the starting position of any pulse to the pulses array
     if (tileicons[0].charAt(0) === '#') {
       this.pulses[r][c].color = tileicons[0];
-      this.pulses[r][c].dir = this.cells[r][c].tilepair[1];
+      this.pulses[r][c].dir = this.cells[r][c].tileinstr[1];
     }
     if (tileicons[1].charAt(0) === '#') {
       this.pulses[r][c].color = tileicons[1];
-      this.pulses[r][c].dir = this.cells[r][c].tilepair[0];
+      this.pulses[r][c].dir = this.cells[r][c].tileinstr[0];
     }
 
     const ta = tilepair.tileaudio;
-    const tp = tilepair.tilepair;
-    // preload samples
-    if (ta[0][0] === 'sample') {
-      this.samples[tp[0]] = new Tone.Player(ta[0][1]).toMaster();
-    }
-    if (ta[1][0] === 'sample') {
-      this.samples[tp[1]] = new Tone.Player(ta[1][1]).toMaster();
+    const ti = tilepair.tileinstr;
+
+    for (let i=0; i<2; i++) {
+      // preload instruments
+      switch (ta[i][0]) {
+        case 'sample':
+          this.instruments[ti[i]] = new Tone.Player(ta[i][1]).toMaster();
+          break;
+        case 'synth':
+          this.instruments[ti[i]] = new Tone.Synth(ta[i][1]).toMaster();
+          break;
+      }
     }
 
     this.drawBoard();
@@ -162,20 +167,19 @@ export class Board {
   }
 
   /**
-   * Plays sample or tone audio.
+   * Plays sample or synth audio.
    *
-   * @param {string} playthis The this.samples key or tone data to play.
-   * @param {string} type Either 'sample' or 'tone'.
+   * @param {string} tileaudio The cells[r][c].tileaudio.
+   * @param {string} tileinstr The cells[r][c].tileinstr.
    */
-  playTile(playthis, type) {
+  playTile(tileaudio, tileinstr) {
 
-    switch (type) {
+    switch (tileaudio[0]) {
       case 'sample':
-        this.samples[playthis].start();
+        this.instruments[tileinstr].start();
         break;
-      case 'tone':
-        const synth = new Tone.Synth(playthis[1]).toMaster();
-        synth.triggerAttackRelease(playthis[2], playthis[3]);
+      case 'synth':
+        this.instruments[tileinstr].triggerAttackRelease(tileaudio[2], tileaudio[3]);
         break;
     }
   }
@@ -228,26 +232,26 @@ export class Board {
 
     // the rules of the tiles/pieces are defined here
     this.loop2d((r,c) => {
-      const tilepair = this.cells[r][c].tilepair;
       const tileaudio = this.cells[r][c].tileaudio;
+      const tileinstr = this.cells[r][c].tileinstr;
 
-      if (typeof tilepair !== 'undefined' && this.pulses[r][c].dir) {
+      if (typeof tileinstr !== 'undefined' && this.pulses[r][c].dir) {
 
-        for (let i in tilepair) {
+        for (let i in tileinstr) {
           // change pulse direction
-          if (tilepair[i] === 'N' || tilepair[i] === 'S' ||
-              tilepair[i] === 'W' || tilepair[i] === 'E') {
-            this.pulses[r][c].dir = tilepair[i];
+          if (tileinstr[i] === 'N' || tileinstr[i] === 'S' ||
+              tileinstr[i] === 'W' || tileinstr[i] === 'E') {
+            this.pulses[r][c].dir = tileinstr[i];
           }
 
-          if (tilepair[i].substring(0, 2) === 'A_') {
+          if (tileinstr[i].substring(0, 2) === 'A_') {
             // play any instruments
             switch (tileaudio[i][0]) {
               case 'sample':
-                this.playTile(tilepair[i], 'sample');
+                this.playTile(tileaudio[i], tileinstr[i], 'sample');
                 break;
-              case 'tone':
-                this.playTile(tileaudio[i], 'tone');
+              case 'synth':
+                this.playTile(tileaudio[i], tileinstr[i], 'synth');
                 break;
             }
           }

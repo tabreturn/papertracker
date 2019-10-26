@@ -15,17 +15,17 @@ export class TilePair {
    * @param {string} orientation='v' An h or v for horizontal or vertical (does nothing yet).
    */
   constructor(tile1, tile2, orientation='v') {
-    this.orientation = orientation;
-    this.tilepair = [tile1, tile2];
-    this.tileicons = [tile1, tile2]; // these values are overwritten in the foreach below
-    this.tileaudio = [' ', ' '];
+    this.orientation = orientation;  // e.g. 'v'
+    this.tileinstr = [tile1, tile2]; // e.g. ['green', 'S']
+    this.tileicons = [tile1, tile2]; // e.g. ['#00FF00', '↓']
+    this.tileaudio = [' ', ' '];     // e.g. [['synth...'], ' ']
 
     [tile1, tile2].forEach(function(v, i) {
 
       Object.keys(config.arrows).forEach((key) => {
         // directions
         if (v === key) {
-          this.tilepair[i] = v;
+          this.tileinstr[i] = v;
           this.tileicons[i] = config.arrows[key];
         }
       });
