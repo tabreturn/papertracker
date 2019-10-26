@@ -32,7 +32,7 @@ class DetectTiles:
         params = aruco.DetectorParameters_create()
 
         # read in image
-        img = cv2.imread(('{}/{}.png').format(self.outdir, self.snap))
+        img = cv2.imread(('{}/{}').format(self.outdir, self.snap))
         corners, ids, rejectedpoints = aruco.detectMarkers(img, arucodict, parameters=params)
         # draw detected markers and save new result image
         aruco.drawDetectedMarkers(img, corners, ids)

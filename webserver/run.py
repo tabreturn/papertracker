@@ -14,7 +14,7 @@ app.config.from_pyfile('config.py') # create this file on the server
 # load tile config json
 tileconfig = {}
 
-with open(app.config['TILEJSON'], 'r', encoding='utf-8') as f:
+with open(app.config['TILE_JSON'], 'r', encoding='utf-8') as f:
 
     for i in range(8):
         next(f)
@@ -39,20 +39,22 @@ def snap():
     b64image = np.fromstring(base64.b64decode(b64string), np.uint8)
 
     # save image
-    sessionid = app.config['PREPEND'] + str(time.time())
+    sessionid = app.config['SNAP_PREFIX'] + str(time.time())
     count = request.values['count']
-    filename = ('{}/{}-{}.png').format(app.config['UPLOADS'], sessionid, count)
+    filename = ('{}/{}-{}.png').format(app.config['SNAP_DIR'], sessionid, count)
     snap = cv2.imdecode(b64image, cv2.IMREAD_COLOR)
     cv2.imwrite(filename, snap)
 
     # detect tiles after x-many photos snapped
     if int(count) == 1:
-        filename = ('{}-{}').format(sessionid, count)
 
-        if app.config['USETEST']:
-            coords = DetectTiles('test', app.config['MARKERTEST'], tileconfig)
+        if app.config['MARKER_TEST_ENABLE']:
+            coords = DetectTiles(app.config['MARKER_TEST_IMG'][1],
+                                 app.config['MARKER_TEST_IMG'][0],
+                                 tileconfig)
         else:
-            coords = DetectTiles(filename, app.config['UPLOADS'], tileconfig)
+            filename = ('{}-{}.png').format(sessionid, count)
+            coords = DetectTiles(filename, app.config['SNAP_DIR'], tileconfig)
 
         result = coords.arucoDetect()
         print(result)
@@ -60,9 +62,9 @@ def snap():
 
     return jsonify('another snap required')
 
-@app.route(app.config['PANEL'])
+@app.route(app.config['ROUTE_PANEL'])
 def panel():
-    files = os.listdir(app.config['UPLOADS'])
+    files = os.listdir(app.config['SNAP_DIR'])
     return render_template('panel.html', files=files[::-1])
 
 # utilities
