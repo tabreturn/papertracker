@@ -4,7 +4,6 @@ import {Board} from './Board.js';
 const video = document.getElementById('video');
 const resturl = '/snap';
 const devmode = 1;
-const sessionid = Date.now();
 
 function spawnBoard() {
 
@@ -35,7 +34,6 @@ function snap(count) {
   photocanvas.parentNode.removeChild(photocanvas);
   // convert canvas to base64 image data
   const formdata = new FormData();
-  formdata.append('sessionid', sessionid);
   formdata.append('imageBase64', photocanvas.toDataURL());
   formdata.append('count', count);
   return formdata;

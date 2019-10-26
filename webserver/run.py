@@ -6,6 +6,7 @@ import cv2.aruco as aruco
 import json
 import numpy as np
 import os
+import time
 
 app = Flask(__name__)
 app.config.from_pyfile('config.py') # create this file on the server
@@ -38,7 +39,7 @@ def snap():
     b64image = np.fromstring(base64.b64decode(b64string), np.uint8)
 
     # save image
-    sessionid = app.config['PREPEND'] + request.values['sessionid']
+    sessionid = app.config['PREPEND'] + str(time.time())
     count = request.values['count']
     filename = ('{}/{}-{}.png').format(app.config['UPLOADS'], sessionid, count)
     snap = cv2.imdecode(b64image, cv2.IMREAD_COLOR)
