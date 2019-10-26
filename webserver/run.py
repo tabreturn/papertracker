@@ -56,10 +56,10 @@ def snap():
 
     return jsonify('another snap required')
 
-@app.route(app.config['LSTMPROUTE'])
-def lstmp():
+@app.route(app.config['PANEL'])
+def panel():
     files = os.listdir(app.config['UPLOADS'])
-    return render_template('lstmp.html', files=files[::-1])
+    return render_template('panel.html', files=files[::-1])
 
 # utilities
 
