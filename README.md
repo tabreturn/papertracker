@@ -41,27 +41,20 @@ An educational platform for engaging 14–140 year-olds with music, technology, 
 - [x] place tiles (after above step)
 - [x] re-snap option if invalid json data
 - [x] run mp3 samples on tone.js player
-- [ ] preload tone.js samples
-- [ ] preloader to wait for photo processing and samples preload before revealing board
-- [ ] (TEST) simultaneous sessions (server prefixes images names?)
-- [ ] aggregate first and second photo coordinates?
-- [ ] monitor interface (to observe what the user sees on their phone)
+- [x] preload tone.js samples
+- [x] universal config (for js, python, etc. from a single file)
+- [ ] monitor interface (to observe what the user sees on their phone on another screen)
 - [ ] add pulse collision rule(s)
+- [ ] preloader to wait for photo processing and samples preload before revealing board
 
 **beta**
 - [ ] cache audio (service worker?)
-- [ ] universal config (for js, python, etc. from a single file)
-- [ ] server-side grid and tile detection?
-- [ ] during simulation, option to step (and step backward?)
-- [ ] orientable (horizontal/vertical) tiles
+- [ ] server-side markerless grid (and tile) detection?
+- [ ] orientable (horizontal/vertical) tiles?
 
 ## bugs
 
-- [x] convert to single page app
- - [x] camera and fullscreen should be prompted on splash/instructions page
- - [x] re-snap button must not reload the page
-- [x] delay buttons and board until server response
-- [ ] tone stutter (after multiple plays)
+- [ ] (TEST) simultaneous sessions (server prefixes images names?)
 
 ---
 
