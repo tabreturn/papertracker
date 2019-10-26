@@ -46,7 +46,8 @@ def snap():
 
     # detect tiles after x-many photos snapped
     if int(count) == 1:
-        coords = DetectTiles(sessionid+'-2', app.config['UPLOADS'], tileconfig)
+        filename = ('{}-{}').format(sessionid, count)
+        coords = DetectTiles(filename, app.config['UPLOADS'], tileconfig)
         #coords = DetectTiles('test', app.config['MARKERTEST'], tileconfig) # uncomment for test image
         result = coords.arucoDetect()
         print(result)
