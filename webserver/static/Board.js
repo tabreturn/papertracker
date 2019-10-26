@@ -21,7 +21,7 @@ export class Board {
     this.cols = cols;
     this.speed = speed;
     this.step = 0;
-    this.instruments = {} // preloaded instruments
+    this.samples = {} // preloaded samples
   }
   /**
    * Populate the cells and pulses arrays, and fill the board with visible cells.
@@ -108,16 +108,12 @@ export class Board {
 
     const ta = tilepair.tileaudio;
     const tp = tilepair.tilepair;
-    // preload instruments
-    for (let i=0; i<2; i++) {
-
-      if (ta[i][0] === 'sample') {
-        this.instruments[tp[i]] = new Tone.Player(ta[i][1]).toMaster();
-      }
-      // TODO: FIX SYNTH PLAYER  <----------------------------------------------------------------------
-      else if (ta[i][0] === 'tone') {
-        this.instruments[tp[i]] = new Tone.Synth(ta[i][1]).toMaster();
-      }
+    // preload samples
+    if (ta[0][0] === 'sample') {
+      this.samples[tp[0]] = new Tone.Player(ta[0][1]).toMaster();
+    }
+    if (ta[1][0] === 'sample') {
+      this.samples[tp[1]] = new Tone.Player(ta[1][1]).toMaster();
     }
 
     this.drawBoard();
@@ -161,20 +157,27 @@ export class Board {
         col >= this.cols || col < 0) {
       return true;
     }
-    
+
     return false;
   }
 
   /**
-   * Plays the tile audio associated in the tile definition.
+   * Plays sample or tone audio.
    *
-   * @param {string} tilesample The this.instruments key specifying the audio to play.
+   * @param {string} playthis The this.samples key or tone data to play.
+   * @param {string} type Either 'sample' or 'tone'.
    */
-  playTile(tilesample) {
-    this.instruments[tilesample].start()
-    // TODO: FIX SYNTH PLAYER  <----------------------------------------------------------------------
-    //const synth = new Tone.Synth(tileaudio[1]).toMaster();
-    //synth.triggerAttackRelease(tileaudio[2], tileaudio[3]);
+  playTile(playthis, type) {
+
+    switch (type) {
+      case 'sample':
+        this.samples[playthis].start()
+        break;
+      case 'tone':
+        const synth = new Tone.Synth(playthis[1]).toMaster();
+        synth.triggerAttackRelease(playthis[2], playthis[3]);
+        break;
+    }
   }
 
   /**
@@ -236,9 +239,17 @@ export class Board {
               tilepair[i] === 'W' || tilepair[i] === 'E') {
             this.pulses[r][c].dir = tilepair[i];
           }
-          // play any instruments
+
           if (tilepair[i].substring(0, 2) === 'A_') {
-            this.playTile(tilepair[i]);
+            // play any instruments
+            switch (tileaudio[i][0]) {
+              case 'sample':
+                this.playTile(tilepair[i], 'sample');
+                break;
+              case 'tone':
+                this.playTile(tileaudio[i], 'tone');
+                break;
+            }
           }
         }
       }
