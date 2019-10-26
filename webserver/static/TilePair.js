@@ -5,7 +5,7 @@
  */
 
 // configuration file for half-tiles
-import config from './config.js';
+import config from './TileConfig.js';
 
 export class TilePair {
   /**

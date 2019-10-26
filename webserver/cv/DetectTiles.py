@@ -5,7 +5,7 @@ import numpy
 def matchMarker(marker, tileconfig):
     '''
     Using the JSON tileconfig, match the marker number with a color/instrument.
-    The arrow symbol is always 49 (as defined further down).
+    The arrow symbol is always 29 (as defined further down).
     '''
     for k, v in tileconfig['colors'].items():
 
@@ -13,7 +13,7 @@ def matchMarker(marker, tileconfig):
             return k
 
     for k, v in tileconfig['instruments'].items():
-        
+
         if marker == v[0]:
             return k
 
@@ -28,7 +28,7 @@ class DetectTiles:
         self.tileconfig = tileconfig
 
     def arucoDetect(self):
-        arucodict = aruco.Dictionary_get(aruco.DICT_4X4_50)
+        arucodict = aruco.Dictionary_get(aruco.DICT_APRILTAG_16h5)
         params = aruco.DetectorParameters_create()
 
         # read in image
@@ -46,12 +46,12 @@ class DetectTiles:
         xaxis = []
         yaxis = []
 
-        ## this assumes the aruco ids for row indicators are 0-5, and columns are 20-30.
+        ## this assumes the aruco ids for row indicators are 0-9, and columns are 10-20.
         for i in index:
-            if (ids[i][0] <= 10) and (ids[i][0] >= 0):
+            if (ids[i][0] <= 9) and (ids[i][0] >= 0):
                 ## index markers for y-axis (columns)
                 yaxis.append(i)
-            if (ids[i][0] > 20) and (ids[i][0] < 31):
+            if (ids[i][0] > 10) and (ids[i][0] < 20):
                 ## index markers for x-axis (rows)
                 xaxis.append(i)
 
@@ -83,7 +83,7 @@ class DetectTiles:
 
         ## extract non-position markers
         for i in range(len(ids)):
-            if ids[i][0] >= 31: # !!! used to be > 50 !!!
+            if ids[i][0] >= 20: # where the special tile numbering begins
                 # extract indexes of musical objects and put into a list
                 mobjects.append(i)
 
@@ -97,7 +97,7 @@ class DetectTiles:
             ## check type of objects
             # this is an arrow object
             ## let's determine its orientation
-            if (ids[mobjects[i]] == 49):
+            if (ids[mobjects[i]] == 29):
                 if (sample[0][0][0] - sample [0][2][0]) > 0:
                     A = 1
                 else:
