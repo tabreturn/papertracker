@@ -169,8 +169,8 @@ export class Board {
   /**
    * Plays sample or synth audio.
    *
-   * @param {string} tileaudio The cells[r][c].tileaudio.
-   * @param {string} tileinstr The cells[r][c].tileinstr.
+   * @param {string} tileaudio The relevant cells[r][c].tileaudio.
+   * @param {string} tileinstr The relevant cells[r][c].tileinstr.
    */
   playTile(tileaudio, tileinstr) {
 
@@ -248,10 +248,10 @@ export class Board {
             // play any instruments
             switch (tileaudio[i][0]) {
               case 'sample':
-                this.playTile(tileaudio[i], tileinstr[i], 'sample');
+                this.playTile(tileaudio[i], tileinstr[i]);
                 break;
               case 'synth':
-                this.playTile(tileaudio[i], tileinstr[i], 'synth');
+                this.playTile(tileaudio[i], tileinstr[i]);
                 break;
             }
           }
