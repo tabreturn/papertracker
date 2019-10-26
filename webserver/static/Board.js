@@ -21,7 +21,7 @@ export class Board {
     this.cols = cols;
     this.speed = speed;
     this.step = 0;
-    this.samples = {} // preloaded samples
+    this.samples = {}; // preloaded samples
   }
   /**
    * Populate the cells and pulses arrays, and fill the board with visible cells.
@@ -171,7 +171,7 @@ export class Board {
 
     switch (type) {
       case 'sample':
-        this.samples[playthis].start()
+        this.samples[playthis].start();
         break;
       case 'tone':
         const synth = new Tone.Synth(playthis[1]).toMaster();

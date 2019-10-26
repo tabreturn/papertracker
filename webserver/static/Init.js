@@ -119,7 +119,7 @@ const bt_snapagain = document.getElementById('snapagain');
       });
     })
     .catch((error) => {
-      console.log(error)
+      console.log(error);
     });
   });
 });
