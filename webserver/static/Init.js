@@ -129,7 +129,7 @@ const bt_snapagain = document.getElementById('snapagain');
 var interval;
 const boardui = document.querySelector('#board .ui');
 
-document.getElementById('start').addEventListener('click', () => {
+document.getElementById('run').addEventListener('click', () => {
   event.stopPropagation();
   interval = setInterval(() => game.updateBoard(), 1000/game.speed);
   boardui.classList.add('hide');
