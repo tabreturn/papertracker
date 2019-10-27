@@ -30,7 +30,6 @@ class DetectTiles:
     def arucoDetect(self):
         arucodict = aruco.Dictionary_get(aruco.DICT_APRILTAG_16h5)
         params = aruco.DetectorParameters_create()
-
         # read in image
         img = cv2.imread(('{}/{}').format(self.outdir, self.snap))
         corners, ids, rejectedpoints = aruco.detectMarkers(img, arucodict, parameters=params)
@@ -143,8 +142,14 @@ class DetectTiles:
             print('dim error!!')
             return 'dim error!!'
         else:
-            return {
+            result = {
                 'columns':cols,
                 'rows': rows,
                 'labels': labels
             }
+            dictfile = dictfile = ('{}/{}.txt').format(self.outdir, self.snap)
+            # write result dictionary to txt file
+            with open(dictfile, 'w') as f:
+                print(result, file=f)
+
+            return result

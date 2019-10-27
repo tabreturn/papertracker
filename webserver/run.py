@@ -10,6 +10,7 @@ import time
 
 app = Flask(__name__)
 app.config.from_pyfile('config.py') # create this file on the server
+requiredsnaps = 1
 
 # load tile config json
 tileconfig = {}
@@ -18,6 +19,7 @@ with open(app.config['TILE_JSON'], 'r', encoding='utf-8') as f:
 
     for i in range(8):
         next(f)
+
     tileconfig = json.load(f)
 
 # routes
@@ -47,16 +49,7 @@ def snap():
 
     # detect tiles after x-many photos snapped
     if int(count) == 1:
-
-        if app.config['MARKER_TEST_ENABLE']:
-            coords = DetectTiles(app.config['MARKER_TEST_IMG'][1],
-                                 app.config['MARKER_TEST_IMG'][0],
-                                 tileconfig)
-        else:
-            filename = ('{}-{}.png').format(sessionid, count)
-            coords = DetectTiles(filename, app.config['SNAP_DIR'], tileconfig)
-
-        result = coords.arucoDetect()
+        result = runDetect(tileconfig, sessionid, count)
         print(result)
         return jsonify(transformCVforJSON(result))
 
@@ -64,10 +57,56 @@ def snap():
 
 @app.route(app.config['ROUTE_PANEL'])
 def panel():
+    '''
+    Panel page for viewing snaps.
+    '''
     files = os.listdir(app.config['SNAP_DIR'])
     return render_template('panel.html', files=files[::-1])
 
+@app.route(app.config['ROUTE_MONITOR'])
+def monitor():
+    '''
+    Monitor page for simulating the latest snaps recieved.
+    '''
+    return render_template('monitor.html')
+
+@app.route('/latestsnap', methods=['POST'])
+def latestsnap():
+    '''
+    Most recent photo data endpoint.
+    '''
+    if app.config['MARKER_TEST_ENABLE']:
+        latesttxt = app.config['MARKER_TEST_IMG'][1] + '.txt'
+        txtpath = ('{}/{}').format(app.config['MARKER_TEST_IMG'][0], latesttxt)
+        filename = str(time.time())
+    else:
+        latesttxt = os.listdir(app.config['SNAP_DIR'])[::-1][0]
+        txtpath = ('{}/{}').format(app.config['SNAP_DIR'], latesttxt)
+        filename = latesttxt
+
+    resultdict = open(txtpath, 'r')
+    resultdict = eval(resultdict.readline())
+
+    if latesttxt[-4:] == '.txt':
+        return jsonify([filename, transformCVforJSON(resultdict)])
+    else:
+        return jsonify(0)
+
 # utilities
+
+def runDetect(tileconfig, sessionid, count):
+    '''
+    Run tile detection on an image and return the marker coordinates.
+    '''
+    if app.config['MARKER_TEST_ENABLE']:
+        coords = DetectTiles(app.config['MARKER_TEST_IMG'][1],
+                             app.config['MARKER_TEST_IMG'][0],
+                             tileconfig)
+    else:
+        filename = ('{}-{}.png').format(sessionid, count)
+        coords = DetectTiles(filename, app.config['SNAP_DIR'], tileconfig)
+
+    return coords.arucoDetect()
 
 def transformCVforJSON(cvlist):
     '''

@@ -3,20 +3,11 @@ import {Board} from './Board.js';
 
 const video = document.getElementById('video');
 const resturl = '/snap';
-const devmode = 1;
 
 function spawnBoard() {
-
-  if (devmode) {
-    var game = new Board('board', 6, 10, 5); // Board(rows, cols, speed)
-    window.game = game;
-    window.TilePair = TilePair;
-  }
-  else {
-    var game = new Board();
-  }
-
-  game.setupBoard();
+  const papertracker = new Board('board', 6, 10, 5); // Board(rows, cols, speed)
+  window.papertracker = papertracker;
+  papertracker.setupBoard();
 }
 
 function snap(count) {
@@ -98,6 +89,7 @@ const bt_snapagain = document.getElementById('snapagain');
 
     fetch('/snap', { method: 'PUT', body: imagedata })
       .then((response) => {
+        
         if (response.ok) {
           return response.json();
         } else {
@@ -113,7 +105,7 @@ const bt_snapagain = document.getElementById('snapagain');
       spawnBoard();
       // add tiles to board
       json.forEach((tile) => {
-        game.addTilePair(tile[0], tile[1], new TilePair(tile[2][0], tile[2][1]));
+        papertracker.addTilePair(tile[0], tile[1], new TilePair(tile[2][0], tile[2][1]));
       });
     })
     .catch((error) => {
@@ -124,12 +116,12 @@ const bt_snapagain = document.getElementById('snapagain');
 
 // board step buttons
 
-var interval;
+let interval;
 const boardui = document.querySelector('#board .ui');
 
 document.getElementById('run').addEventListener('click', () => {
   event.stopPropagation();
-  interval = setInterval(() => game.updateBoard(), 1000/game.speed);
+  interval = setInterval(() => papertracker.updateBoard(), 1000/papertracker.speed);
   boardui.classList.add('hide');
 });
 
@@ -139,7 +131,7 @@ fr_board.addEventListener('click', () => {
 });
 
 document.getElementById('step').addEventListener('click', () => {
-  game.updateBoard();
+  papertracker.updateBoard();
 });
 
 document.getElementById('resnap').addEventListener('click', () => {
