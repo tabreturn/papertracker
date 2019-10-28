@@ -7,7 +7,7 @@ An educational platform for engaging 14–140 year-olds with music, technology, 
 [live demo](https://papertracker.cmp.ac.nz/)
 
 <a href="https://github.com/tabreturn/webscript-papertracker/raw/master/printables/tiles%2Bboard.pdf" download='tiles+board.pdf'>
-  download the printable board and tiles
+  printable board & tiles download
 </a>
 
 ---
