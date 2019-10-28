@@ -61,7 +61,7 @@ def panel():
     Panel page for viewing snaps.
     '''
     files = os.listdir(app.config['SNAP_DIR'])
-    return render_template('panel.html', files=files[::-1])
+    return render_template('panel.html', files=sorted(files)[::-1])
 
 @app.route(app.config['ROUTE_MONITOR'])
 def monitor():
