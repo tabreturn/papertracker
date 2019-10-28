@@ -80,7 +80,7 @@ def latestsnap():
         txtpath = ('{}/{}').format(app.config['MARKER_TEST_IMG'][0], latesttxt)
         filename = str(time.time())
     else:
-        latesttxt = os.listdir(app.config['SNAP_DIR'])[::-1][0]
+        latesttxt = sorted(os.listdir(app.config['SNAP_DIR']))[::-1][0]
         txtpath = ('{}/{}').format(app.config['SNAP_DIR'], latesttxt)
         filename = latesttxt
 
