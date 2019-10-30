@@ -84,6 +84,8 @@ const bt_snapagain = document.getElementById('snapagain');
 [bt_snapfirst, bt_snapagain].forEach((elem) => {
   elem.addEventListener('click', () => {
     const imagedata = snap(1);
+    const photocanvas = document.getElementById('video');
+    photocanvas.style.visibility = 'hidden';
     bt_snapfirst.classList.add('hide');
     bt_snapagain.classList.add('hide');
 
@@ -93,6 +95,7 @@ const bt_snapagain = document.getElementById('snapagain');
         if (response.ok) {
           return response.json();
         } else {
+          photocanvas.style.visibility = 'visible';
           bt_snapagain.classList.remove('hide');
           throw new Error('json error');
         }
