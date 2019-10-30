@@ -51,6 +51,7 @@ An educational platform for engaging 14–140 year-olds with music, technology, 
 - [x] generate session id using python?
 - [x] monitor interface (to observe what the user sees on their phone on another screen)
 - [x] add matomo config to config.py
+- [ ] test <input ...capture=camera" />
 - [ ] add pulse collision rule(s)
 - [ ] preloader to wait for photo processing and samples preload before revealing board
 

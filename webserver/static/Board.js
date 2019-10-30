@@ -10,8 +10,8 @@ export class Board {
   /**
    * Create a new board; ordinarily, just one board is required.
    * @param {string} id The id attribute for the board container element.
-   * @param {number} rows=5 Number of rows in the grid.
-   * @param {number} cols=11 Number of columns in the grid.
+   * @param {number} rows=6 Number of rows in the grid.
+   * @param {number} cols=10 Number of columns in the grid.
    * @param {number} speed=5 Game speed.
    */
   constructor(id, rows=5, cols=11, speed=5) {
@@ -57,7 +57,7 @@ export class Board {
     });
 
     const buffers = new Tone.Buffers(preload, function() {
-      // preload all of the samples listed in the preload array
+      // once preloaded, add all of the samples listed in the preload array
       Object.keys(buffers._buffers).forEach(function(key) {
         let getbuffer = buffers._buffers[key].get();
         this.instruments[key] = new Tone.Player(getbuffer).toMaster();
