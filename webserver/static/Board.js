@@ -1,6 +1,5 @@
 /**
  * Board module for drawing and controlling the board (and cells and pulses arrays).
- * For fontawesome, uncomment the relevant line in templates/jslibs.html.
  * @module Board
  */
 

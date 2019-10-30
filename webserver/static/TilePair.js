@@ -1,6 +1,5 @@
 /**
  * TilePair module for a single cell comprised of zero, one, or two half-tiles.
- * For fontawesome, uncomment the relevant line in templates/jslibs.html.
  * @module TilePair
  */
 
