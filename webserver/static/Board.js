@@ -215,6 +215,10 @@ export class Board {
    * Advance the state of all the cells in the cell array a single step.
    */
   updateBoard() {
+    // wait until the instruments have loaded
+    if (Object.keys(this.instruments).length !== Object.keys(config.instruments).length) {
+      return;
+    }
     // move the pulse along its current heading
     this.loop2d((r,c) => {
 
