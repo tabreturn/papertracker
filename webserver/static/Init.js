@@ -84,8 +84,7 @@ const bt_snapagain = document.getElementById('snapagain');
 [bt_snapfirst, bt_snapagain].forEach((elem) => {
   elem.addEventListener('click', () => {
     const imagedata = snap(1);
-    const photocanvas = document.getElementById('video');
-    photocanvas.style.visibility = 'hidden';
+    video.style.visibility = 'hidden';
     bt_snapfirst.classList.add('hide');
     bt_snapagain.classList.add('hide');
 
@@ -95,7 +94,7 @@ const bt_snapagain = document.getElementById('snapagain');
         if (response.ok) {
           return response.json();
         } else {
-          photocanvas.style.visibility = 'visible';
+          video.style.visibility = 'visible';
           bt_snapagain.classList.remove('hide');
           throw new Error('json error');
         }
@@ -142,6 +141,7 @@ document.getElementById('resnap').addEventListener('click', () => {
   fr_board.classList.add('hide');
   fr_snap.classList.remove('hide');
   bt_snapfirst.classList.remove('hide');
+  video.style.visibility = 'visible';
   // remove all of the board cells
   [].forEach.call(fr_board.querySelectorAll('.cell'), function(e) {
     e.parentNode.removeChild(e);
