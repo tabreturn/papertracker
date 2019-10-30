@@ -7,7 +7,7 @@ const resturl = '/snap';
 function spawnBoard() {
   const papertracker = new Board('board', 6, 10, 5); // Board(rows, cols, speed)
   window.papertracker = papertracker;
-  papertracker.setupBoard();
+  papertracker.initBoard();
 }
 
 function snap(count) {
@@ -89,7 +89,7 @@ const bt_snapagain = document.getElementById('snapagain');
 
     fetch('/snap', { method: 'PUT', body: imagedata })
       .then((response) => {
-        
+
         if (response.ok) {
           return response.json();
         } else {

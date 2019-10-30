@@ -7,7 +7,7 @@ const fr_board = document.getElementById('board');
 function spawnBoard() {
   const papertracker = new Board('board', 6, 10, 5); // Board(rows, cols, speed)
   window.papertracker = papertracker;
-  papertracker.setupBoard();
+  papertracker.initBoard();
 }
 
 let interval;

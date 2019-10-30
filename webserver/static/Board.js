@@ -4,6 +4,8 @@
  * @module Board
  */
 
+import config from './TileConfig.js';
+
 export class Board {
   /**
    * Create a new board; ordinarily, just one board is required.
@@ -23,6 +25,46 @@ export class Board {
     this.step = 0;
     this.instruments = {}; // preloaded instruments
   }
+
+  /**
+   * Initialize a new board.
+   */
+  initBoard() {
+    this.preloadInstruments(config.instruments);
+    this.setupBoard();
+  }
+
+  /**
+   * Preload tone instruments into the this.instruments array.
+   *
+   * @param {array} instruments An associative array of samples and synths to preload.
+   */
+  preloadInstruments(instruments) {
+    let preload = {}
+
+    Object.keys(instruments).forEach((key) => {
+      // add samples to preload list; add synths straight to this.instruments
+      for (let i=0; i<2; i++) {
+        switch (instruments[key][2][i]) {
+          case 'sample':
+            preload[key] = instruments[key][2][1];
+            break;
+          case 'synth':
+            this.instruments[key] = new Tone.Synth(instruments[key][2][1]).toMaster();
+            break;
+        }
+      }
+    });
+
+    const buffers = new Tone.Buffers(preload, function() {
+      // preload all of the samples listed in the preload array
+      Object.keys(buffers._buffers).forEach(function(key) {
+        let getbuffer = buffers._buffers[key].get();
+        this.instruments[key] = new Tone.Player(getbuffer).toMaster();
+      }.bind(this));
+    }.bind(this));
+  }
+
   /**
    * Populate the cells and pulses arrays, and fill the board with visible cells.
    */
@@ -104,21 +146,6 @@ export class Board {
     if (tileicons[1].charAt(0) === '#') {
       this.pulses[r][c].color = tileicons[1];
       this.pulses[r][c].dir = this.cells[r][c].tileinstr[0];
-    }
-
-    const ta = tilepair.tileaudio;
-    const ti = tilepair.tileinstr;
-
-    for (let i=0; i<2; i++) {
-      // preload instruments
-      switch (ta[i][0]) {
-        case 'sample':
-          this.instruments[ti[i]] = new Tone.Player(ta[i][1]).toMaster();
-          break;
-        case 'synth':
-          this.instruments[ti[i]] = new Tone.Synth(ta[i][1]).toMaster();
-          break;
-      }
     }
 
     this.drawBoard();
