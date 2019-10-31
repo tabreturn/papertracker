@@ -15,8 +15,9 @@ export class Board {
    */
   constructor(id, rows=5, cols=11, speed=5) {
     // config variables
-    this.cells = [];  // this array contains only immovable items (tile-pairs)
-    this.pulses = []; // this array contains only movable items (pulses)
+    this.cells = [];       // contains only immovable items (tile-pairs); updates each step
+    this.pulses = [];      // contains only movable items (pulses); updates each step
+    this.pulsesstart = []; // stores pulse starting positions
     this.id = id;
     this.rows = rows;
     this.cols = cols;
@@ -172,7 +173,6 @@ export class Board {
       // apply pulse color to the appropriate cell
       cell.style.backgroundColor = this.pulses[r][c].color;
     });
-
   }
 
   /**
@@ -211,13 +211,34 @@ export class Board {
   }
 
   /**
+   * Check if the pulse will collide with another pulse.
+   *
+   * @param {number} rd The row address for the pulse destination.
+   * @param {number} cd The column address for the pulse destination.
+   * @return {boolean} Return true if a collision is imminent.
+   */
+  checkCollision(rd, cd) {
+    let nextcell = this.pulses[rd][cd];
+
+    if (nextcell.color !== 'transparent' && nextcell.hasmoved) {
+      return true;
+    }
+    return false;
+  }
+
+  /**
    * Advance the state of all the cells in the cell array a single step.
    */
   updateBoard() {
+    // store pulse starting positions (for rerun button)
+    if (this.step === 0) {
+      this.pulsesstart = JSON.parse(JSON.stringify(this.pulses));
+    }
     // wait until the instruments have loaded
     if (Object.keys(this.instruments).length !== Object.keys(config.instruments).length) {
       return;
     }
+
     // move the pulse along its current heading
     this.loop2d((r,c) => {
 
@@ -225,25 +246,29 @@ export class Board {
 
         switch (this.pulses[r][c].dir) {
           case 'N':
-            if ( this.isOutOfBounds(r-1,c) ) break;
+            if (this.isOutOfBounds(r-1,c)) break;
+            if (this.checkCollision(r-1,c)) this.pulses[r][c+1].destroy = true;
             this.pulses[r-1][c].color = this.pulses[r][c].color;
             this.pulses[r-1][c].dir = 'N';
             this.pulses[r-1][c].hasmoved = true;
             break;
           case 'S':
-            if ( this.isOutOfBounds(r+1,c) ) break;
+            if (this.isOutOfBounds(r+1,c)) break;
+            if (this.checkCollision(r+1,c)) this.pulses[r][c+1].destroy = true;
             this.pulses[r+1][c].color = this.pulses[r][c].color;
             this.pulses[r+1][c].dir = 'S';
             this.pulses[r+1][c].hasmoved = true;
             break;
           case 'W':
-            if ( this.isOutOfBounds(r,c-1) ) break;
+            if (this.isOutOfBounds(r,c-1)) break;
+            if (this.checkCollision(r,c-1)) this.pulses[r][c+1].destroy = true;
             this.pulses[r][c-1].color = this.pulses[r][c].color;
             this.pulses[r][c-1].dir = 'W';
             this.pulses[r][c-1].hasmoved = true;
             break;
           case 'E':
-            if ( this.isOutOfBounds(r,c+1) ) break;
+            if (this.isOutOfBounds(r,c+1)) break;
+            if (this.checkCollision(r,c+1)) this.pulses[r][c+1].destroy = true;
             this.pulses[r][c+1].color = this.pulses[r][c].color;
             this.pulses[r][c+1].dir = 'E';
             this.pulses[r][c+1].hasmoved = true;
@@ -255,11 +280,15 @@ export class Board {
         this.pulses[r][c].hasmoved = true;
       }
     });
-    // reset the hasmoved states for next updateBoard() call
+    // reset the hasmoved states for next updateBoard() call ...
     this.loop2d((r,c) => {
-      this.pulses[r][c].hasmoved = false;
+      let pulse = this.pulses[r][c];
+      pulse.hasmoved = false;
+      // ... and destroy any pulses that have collided
+      if (pulse.destroy) {
+        this.pulses[r][c] = {color:'transparent', dir:null, hasmoved:false};
+      }
     });
-
     // the rules of the tiles/pieces are defined here
     this.loop2d((r,c) => {
       const tileaudio = this.cells[r][c].tileaudio;
@@ -290,6 +319,15 @@ export class Board {
     });
 
     this.step ++;
+    this.drawBoard();
+  }
+
+  /**
+   * Reset the pulse positions and step-count.
+   */
+  resetBoard() {
+    this.pulses = this.pulsesstart;
+    this.step = 0;
     this.drawBoard();
   }
 }
