@@ -52,7 +52,7 @@ An educational platform for engaging 14–140 year-olds with music, technology, 
 - [x] monitor interface (to observe what the user sees on their phone on another screen)
 - [x] add matomo config to config.py
 - [ ] add pulse collision rule(s)
-- [ ] run button to become reset/rerun button once clicked
+- [x] run button to become reset/rerun button once clicked
 - [ ] test <input ...capture=camera" />
 
 **beta**

@@ -120,16 +120,30 @@ const bt_snapagain = document.getElementById('snapagain');
 
 let interval;
 const boardui = document.querySelector('#board .ui');
+const bt_run = document.getElementById('run');
 
-document.getElementById('run').addEventListener('click', () => {
-  event.stopPropagation();
+bt_run.addEventListener('click', runButton);
+
+function runButton(e) {
+  e.stopPropagation();
+  e.target.innerHTML = '|&lt; reset';
+  bt_run.removeEventListener('click', runButton);
+  bt_run.addEventListener('click', resetButton);
   interval = setInterval(() => papertracker.updateBoard(), 1000/papertracker.speed);
   boardui.classList.add('hide');
-});
+}
+
+function resetButton(e) {
+  e.target.innerHTML = '|&gt; run';
+  bt_run.addEventListener('click', runButton);
+  boardui.classList.remove('hide');
+  clearInterval(interval);
+  papertracker.resetBoard();
+}
 
 fr_board.addEventListener('click', () => {
-  clearInterval(interval);
   boardui.classList.remove('hide');
+  clearInterval(interval);
 });
 
 document.getElementById('step').addEventListener('click', () => {
@@ -137,11 +151,14 @@ document.getElementById('step').addEventListener('click', () => {
 });
 
 document.getElementById('resnap').addEventListener('click', () => {
-  clearInterval(interval);
+  bt_run.removeEventListener('click', resetButton);
+  bt_run.addEventListener('click', runButton);
+  bt_run.innerHTML = '|&gt; run';
+  bt_snapfirst.classList.remove('hide');
   fr_board.classList.add('hide');
   fr_snap.classList.remove('hide');
-  bt_snapfirst.classList.remove('hide');
   video.style.visibility = 'visible';
+  clearInterval(interval);
   // remove all of the board cells
   [].forEach.call(fr_board.querySelectorAll('.cell'), function(e) {
     e.parentNode.removeChild(e);
