@@ -50,7 +50,7 @@ class DetectTiles:
             if (ids[i][0] <= 9) and (ids[i][0] >= 0):
                 ## index markers for y-axis (columns)
                 yaxis.append(i)
-            if (ids[i][0] > 10) and (ids[i][0] < 20):
+            if (ids[i][0] >= 10) and (ids[i][0] < 20):
                 ## index markers for x-axis (rows)
                 xaxis.append(i)
 
