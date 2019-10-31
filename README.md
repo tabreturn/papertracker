@@ -54,6 +54,7 @@ An educational platform for engaging 14–140 year-olds with music, technology, 
 - [x] add pulse collision rule(s)
 - [x] run button to become reset/rerun button once clicked
 - [ ] test <input ...capture=camera" />
+- [ ] collision symbol/indication?
 
 **beta**
 - [ ] cache audio (service worker?)
