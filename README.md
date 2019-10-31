@@ -51,18 +51,19 @@ An educational platform for engaging 14–140 year-olds with music, technology, 
 - [x] generate session id using python?
 - [x] monitor interface (to observe what the user sees on their phone on another screen)
 - [x] add matomo config to config.py
-- [ ] add pulse collision rule(s)
+- [x] add pulse collision rule(s)
 - [x] run button to become reset/rerun button once clicked
 - [ ] test <input ...capture=camera" />
 
 **beta**
 - [ ] cache audio (service worker?)
-- [ ] server-side markerless grid (and tile) detection?
+- [ ] markerless grid (and tile) detection?
 - [ ] orientable (horizontal/vertical) tiles?
 
 ## bugs
 
 - [ ] (TEST) simultaneous sessions (server prefixes images names?)
+- [ ] use rear camera on tablets
 
 ---
 
