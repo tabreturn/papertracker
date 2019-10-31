@@ -121,24 +121,26 @@ const bt_snapagain = document.getElementById('snapagain');
 let interval;
 const boardui = document.querySelector('#board .ui');
 const bt_run = document.getElementById('run');
+const bt_labelreset = '* reset';
+const bt_labelrun = '|&gt; run';
 
 bt_run.addEventListener('click', runButton);
+bt_run.innerHTML = bt_labelrun;
 
 function runButton(e) {
   e.stopPropagation();
-  e.target.innerHTML = '|&lt; reset';
-  bt_run.removeEventListener('click', runButton);
-  bt_run.addEventListener('click', resetButton);
-  interval = setInterval(() => papertracker.updateBoard(), 1000/papertracker.speed);
-  boardui.classList.add('hide');
-}
-
-function resetButton(e) {
-  e.target.innerHTML = '|&gt; run';
-  bt_run.addEventListener('click', runButton);
-  boardui.classList.remove('hide');
-  clearInterval(interval);
-  papertracker.resetBoard();
+  // switch between run and rerun states
+  if (e.target.innerHTML === bt_labelrun) {
+    e.target.innerHTML = bt_labelreset;
+    boardui.classList.add('hide');
+    interval = setInterval(() => papertracker.updateBoard(), 1000/papertracker.speed);
+  }
+  else if (e.target.innerHTML === bt_labelreset) {
+    e.target.innerHTML = bt_labelrun;
+    boardui.classList.remove('hide');
+    clearInterval(interval);
+    papertracker.resetBoard();
+  }
 }
 
 fr_board.addEventListener('click', () => {
@@ -151,9 +153,7 @@ document.getElementById('step').addEventListener('click', () => {
 });
 
 document.getElementById('resnap').addEventListener('click', () => {
-  bt_run.removeEventListener('click', resetButton);
-  bt_run.addEventListener('click', runButton);
-  bt_run.innerHTML = '|&gt; run';
+  bt_run.innerHTML = bt_labelrun;
   bt_snapfirst.classList.remove('hide');
   fr_board.classList.add('hide');
   fr_snap.classList.remove('hide');
