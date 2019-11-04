@@ -73,7 +73,7 @@ def monitor():
 @app.route('/latestsnap', methods=['POST'])
 def latestsnap():
     '''
-    Most recent photo data endpoint.
+    Most recent photo data endpoint (for monitor page).
     '''
     if app.config['MARKER_TEST_ENABLE']:
         latesttxt = app.config['MARKER_TEST_IMG'][1] + '.txt'
@@ -98,8 +98,25 @@ def test():
     For testing/experimenting.
     '''
     return render_template('test.html')
-    # UNFINISHED ..........................
-    # .....................................
+
+@app.route('/testsnap', methods=['POST'])
+def testsubmit():
+    '''
+    Testing/experimenting endpoint.
+    '''
+    # save image
+    photo = request.files['photo']
+    sessionid = app.config['SNAP_PREFIX'] + str(time.time())
+    count = request.values['count']
+    filename = ('{}/{}-{}.png').format(app.config['SNAP_DIR'], sessionid, count)
+    photo.save(filename)
+
+    # detect tiles after x-many photos snapped
+    if int(count) == 1:
+        result = runDetect(tileconfig, sessionid, count)
+        return jsonify(transformCVforJSON(result))
+
+    return jsonify('another snap required')
 
 # utilities
 
