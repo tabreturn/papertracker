@@ -30,6 +30,6 @@ export default
         "envelope"   : {"attackCurve":"exponential", "attack":0.05, "decay":0.2, "sustain":0.2, "release":1.5},
         "portamento" : 0.05	},
       "A3", "8n"] ],
-    "A_stab2": [24, "🎹", ["synth", {}, "A6", "8n"] ]
+    "A_stab2": [24, "<img src='./static/samples/synth.svg' />",  ["synth", {}, "A6", "8n"] ]
   }
 }
