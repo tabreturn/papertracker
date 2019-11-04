@@ -92,6 +92,15 @@ def latestsnap():
     else:
         return jsonify(0)
 
+@app.route('/test')
+def test():
+    '''
+    For testing/experimenting.
+    '''
+    return render_template('test.html')
+    # UNFINISHED ..........................
+    # .....................................
+
 # utilities
 
 def runDetect(tileconfig, sessionid, count):
