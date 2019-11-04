@@ -8,10 +8,10 @@ export default
 // python config (DetectTiles.py) reads from line 9 -- do not move!
 {
   "arrows": {
-    "N": "<img src='./static/samples/N.svg' />",
-    "S": "<img src='./static/samples/S.svg' />",
-    "W": "<img src='./static/samples/W.svg' />",
-    "E": "<img src='./static/samples/E.svg' />"
+    "N": "<img src='./static/theme/arrow-n.svg' />",
+    "S": "<img src='./static/theme/arrow-s.svg' />",
+    "W": "<img src='./static/theme/arrow-w.svg' />",
+    "E": "<img src='./static/theme/arrow-e.svg' />"
   },
 
   "colors": {
