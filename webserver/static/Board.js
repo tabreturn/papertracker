@@ -247,21 +247,21 @@ export class Board {
         switch (this.pulses[r][c].dir) {
           case 'N':
             if (this.isOutOfBounds(r-1,c)) break;
-            if (this.checkCollision(r-1,c)) this.pulses[r][c+1].destroy = true;
+            if (this.checkCollision(r-1,c)) this.pulses[r-1][c].destroy = true;
             this.pulses[r-1][c].color = this.pulses[r][c].color;
             this.pulses[r-1][c].dir = 'N';
             this.pulses[r-1][c].hasmoved = true;
             break;
           case 'S':
             if (this.isOutOfBounds(r+1,c)) break;
-            if (this.checkCollision(r+1,c)) this.pulses[r][c+1].destroy = true;
+            if (this.checkCollision(r+1,c)) this.pulses[r+1][c].destroy = true;
             this.pulses[r+1][c].color = this.pulses[r][c].color;
             this.pulses[r+1][c].dir = 'S';
             this.pulses[r+1][c].hasmoved = true;
             break;
           case 'W':
             if (this.isOutOfBounds(r,c-1)) break;
-            if (this.checkCollision(r,c-1)) this.pulses[r][c+1].destroy = true;
+            if (this.checkCollision(r,c-1)) this.pulses[r][c-1].destroy = true;
             this.pulses[r][c-1].color = this.pulses[r][c].color;
             this.pulses[r][c-1].dir = 'W';
             this.pulses[r][c-1].hasmoved = true;
