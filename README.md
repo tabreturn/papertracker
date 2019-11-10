@@ -63,9 +63,6 @@ An educational platform for engaging 14–140 year-olds with music, technology, 
 
 ## bugs
 
-- [ ] pulses moving north survive collisions
-- [ ] match the board colour with the print?
-- [ ] disregard tiles outside of the grid
 - [ ] (TEST) simultaneous sessions (server prefixes images names?)
 - [ ] use rear camera on tablets
 
