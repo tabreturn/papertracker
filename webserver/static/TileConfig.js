@@ -22,14 +22,15 @@ export default
   },
 
   "instruments": {
-    "A_hat":   [20, "<img src='./static/samples/hihat.svg' />",  ["sample", "./static/samples/hihat.mp3"] ],
+    "A_hat":   [20, "<img src='./static/samples/hihat.svg' />",  ["sample", "./static/samples/hihat1.mp3"] ],
     "A_kick1": [21, "<img src='./static/samples/kick1.svg' />",  ["sample", "./static/samples/kick1.mp3"] ],
     "A_kick2": [22, "<img src='./static/samples/kick2.svg' />",  ["sample", "./static/samples/kick2.mp3"] ],
-    "A_stab1": [23, "<img src='./static/samples/synth.svg' />",  ["synth", {
+    "A_keys":  [23, "<img src='./static/samples/keys.svg' />",   ["sample", "./static/samples/keys.mp3"] ],
+    "A_stab1": [30, "<img src='./static/samples/keys.svg' />",   ["synth", {
         "oscillator" : {"type":"amtriangle", "harmonicity":0.5, "modulationType":"sine"},
         "envelope"   : {"attackCurve":"exponential", "attack":0.05, "decay":0.2, "sustain":0.2, "release":1.5},
         "portamento" : 0.05	},
       "A3", "8n"] ],
-    "A_stab2": [24, "<img src='./static/samples/synth.svg' />",  ["synth", {}, "A6", "8n"] ]
+    "A_stab2": [31, "<img src='./static/samples/keys.svg' />",   ["synth", {}, "A6", "8n"] ]
   }
 }
