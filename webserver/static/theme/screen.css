@@ -10,6 +10,7 @@
   --swatch2: #6400C5;
   --swatch3: #1199CC;
   --swatch4: #F9FAFA;
+  --swatch5: #00A2DF;
   --focus: #FA0;
 }
 
@@ -146,9 +147,13 @@ h1 {
 –––––––––––––––––––––––––––––––––––––––––––––––––---------------------------– */
 
 #board {
-  background-color: var(--swatch4);
-  border-left: 2px solid var(--swatch3);
-  border-top: 2px solid var(--swatch3);
+  background-color: var(--swatch3);
+  /*background-image: url('logo.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 86%;*/
+  border-left: 2px solid var(--swatch5);
+  border-top: 2px solid var(--swatch5);
   color: var(--swatch0);
   display: grid;
   margin: auto;
@@ -163,8 +168,11 @@ h1 {
 
 #board .cell {
   align-items: center;
-  border-bottom: 2px solid var(--swatch3);
-  border-right: 2px solid var(--swatch3);
+  background-image: url('cellbg.svg'), url('cellbg.svg'), url('cellbg.svg'), url('cellbg.svg');
+  background-position: left top, right top, right bottom, left bottom;
+  background-repeat: no-repeat;
+  border-bottom: 2px solid var(--swatch5);
+  border-right: 2px solid var(--swatch5);
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
@@ -173,6 +181,7 @@ h1 {
 #board .cell .tile2 {
   align-items: center;
   display: flex;
+  height: 100%;
   justify-content: center;
 }
 

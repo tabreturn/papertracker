@@ -167,6 +167,10 @@ export class Board {
 
           if (tileicons[i].charAt(0) !== '#' && this.step === 0) {
             cell.querySelectorAll(elem)[0].innerHTML = tileicons[i];
+            // render all tiles with a white background
+            if (tileicons[i] !== ' ') {
+              cell.querySelectorAll(elem)[0].style.backgroundColor = 'rgba(255,255,255,0.6)';
+            }
           }
         }
       }
