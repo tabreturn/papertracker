@@ -55,6 +55,8 @@ An educational platform for engaging 14–140 year-olds with music, technology, 
 - [x] run button to become reset/rerun button once clicked
 - [ ] test <input ...capture=camera" />
 - [ ] collision symbol/indication?
+- [ ] different sound per colour (i.e. red pulse plays a different hihat than a green pulse)
+- [ ] random tile that gives an event a 50% chance of occurring (must be used with another half-tile)
 
 **beta**
 - [ ] cache audio (service worker?)
