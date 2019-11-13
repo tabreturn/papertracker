@@ -30,11 +30,11 @@ An educational platform for engaging 14–140 year-olds with music, technology, 
 
 # screenshots
 
-<img src="presentation/assets/screenshot_1.png" width="400" /><br />
+<img src="presentation/assets/screenshot_1.png" width="400" />
 
-<img src="presentation/assets/screenshot_2.png" width="400" /><br />
+<img src="presentation/assets/screenshot_2.png" width="400" />
 
-<img src="presentation/assets/screenshot_3.png" width="400" /><br />
+<img src="presentation/assets/screenshot_3.png" width="400" />
 
 
 
