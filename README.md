@@ -52,6 +52,8 @@ An educational platform for engaging 14–140 year-olds with music, technology, 
 8. run the server: `flask run`
 9. open website in browser: `http://localhost:5000`
 
+On subsequent runs, leave out steps 2, 3, 5.
+
 ## features
 
 **alpha**
