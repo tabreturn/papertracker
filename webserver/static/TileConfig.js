@@ -23,7 +23,7 @@ export default
 
   "instruments": {
     "A_hat":   [20, "<img src='./static/samples/hihat.svg' />",  ["sample", "./static/samples/hihat1.mp3"] ],
-    "A_kick1": [21, "<img src='./static/samples/kick1.svg' />",  ["sample", "./static/samples/kick1.mp3"] ],
+    "A_kick1": [21, "<img src='./static/samples/kick1.svg' />",  ["sample", "./static/samples/snare1.mp3"] ],
     "A_kick2": [22, "<img src='./static/samples/kick2.svg' />",  ["sample", "./static/samples/kick2.mp3"] ],
     "A_keys":  [23, "<img src='./static/samples/keys.svg' />",   ["sample", "./static/samples/keys.mp3"] ],
     "A_stab1": [30, "<img src='./static/samples/keys.svg' />",   ["synth", {
