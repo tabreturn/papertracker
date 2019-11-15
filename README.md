@@ -78,6 +78,7 @@ On subsequent runs, leave out steps 2, 3, 5.
 - [ ] cache audio (service worker?)
 - [ ] markerless grid (and tile) detection?
 - [ ] orientable (horizontal/vertical) tiles?
+- [ ] panel for uploading/configuring own instruments
 
 ## bugs
 
