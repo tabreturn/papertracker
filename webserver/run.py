@@ -44,8 +44,10 @@ def snap():
     sessionid = app.config['SNAP_PREFIX'] + str(time.time())
     count = request.values['count']
     filename = ('{}/{}-{}.png').format(app.config['SNAP_DIR'], sessionid, count)
-    snap = cv2.imdecode(b64image, cv2.IMREAD_COLOR)
-    cv2.imwrite(filename, snap)
+
+    if not app.config['MARKER_TEST_ENABLE']:
+        snap = cv2.imdecode(b64image, cv2.IMREAD_COLOR)
+        cv2.imwrite(filename, snap)
 
     # detect tiles after x-many photos snapped
     if int(count) == 1:
