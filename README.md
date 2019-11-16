@@ -88,6 +88,11 @@ On subsequent runs, leave out steps 2, 3, 5.
 - [ ] (TEST) simultaneous sessions (server prefixes images names?)
 - [ ] use rear camera on tablets
 
+## ideas
+
+* what happens if we put two kick drums next to each other? ('accent' and have it louder?)
+* what happens if we put two different arrows next to each other?
+
 ---
 
 Created by Andre Mūrnieks, Jon He, Radek Rudnicki, Tristan Bunn.
