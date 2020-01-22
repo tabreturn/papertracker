@@ -95,4 +95,4 @@ On subsequent runs, leave out steps 2, 3, 5.
 
 ---
 
-Created by Andre Mūrnieks, Jon He, Radek Rudnicki, Tristan Bunn.
+Created by (alphabetically by firstname) Andre Mūrnieks, Jon He, Radek Rudnicki, Tristan Bunn.
