@@ -82,6 +82,7 @@ On subsequent runs, leave out steps 2, 3, 5.
 
 ## bugs
 
+- [ ] aruco code detection too senstive to light conditions and poor photos
 - [x] pulses moving north survive collisions
 - [ ] match the board colour with the print?
 - [ ] disregard tiles outside of the grid
