@@ -16,25 +16,25 @@ An educational platform for engaging 14–140 year-olds with music, technology, 
 
 ## step 1: place tiles
 
-<img src="presentation/assets/step_1.gif" width="400" />
+<img src="https://raw.githubusercontent.com/tabreturn/papertracker/master/presentation/flash/assets/step_1.gif" width="400" />
 
 ## step 2: take photo
 
-<img src="presentation/assets/step_2.gif" width="400" />
+<img src="https://raw.githubusercontent.com/tabreturn/papertracker/master/presentation/flash/assets/step_2.gif" width="400" />
 
 ## step 3: simulation
 
-<img src="presentation/assets/step_3.gif" width="400" />
+<img src="https://raw.githubusercontent.com/tabreturn/papertracker/master/presentation/flash/assets/step_3.gif" width="400" />
 
 ---
 
 # screenshots
 
-<img src="presentation/assets/screenshot_1.png" width="400" />
+<img src="https://raw.githubusercontent.com/tabreturn/papertracker/master/presentation/flash/assets/screenshot_1.png" width="400" />
 
-<img src="presentation/assets/screenshot_2.png" width="400" />
+<img src="https://raw.githubusercontent.com/tabreturn/papertracker/master/presentation/flash/assets/screenshot_2.png" width="400" />
 
-<img src="presentation/assets/screenshot_3.png" width="400" />
+<img src="https://raw.githubusercontent.com/tabreturn/papertracker/master/presentation/flash/assets/screenshot_3.png" width="400" />
 
 
 
